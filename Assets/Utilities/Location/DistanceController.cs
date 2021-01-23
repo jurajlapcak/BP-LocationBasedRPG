@@ -1,7 +1,6 @@
 ﻿using Mapbox.CheapRulerCs;
-using Mapbox.Unity.Location;
 
-namespace Characters.Player
+namespace Mapbox.Unity.Location
 {
     public class DistanceCounter
     {
