@@ -1,7 +1,8 @@
-﻿using Animations;
+﻿using System;
+using Animations;
 using Characters.Player;
-using Mapbox.CheapRulerCs;
-using Mapbox.Utils;
+using Mapbox.Map;
+using Mapbox.Unity.Map;
 
 namespace Utilities.Location
 {
@@ -10,19 +11,20 @@ namespace Utilities.Location
 
     public class PositionWithLocationProvider : MonoBehaviour
     {
-        bool _isInitialized;
-        private static int i = 0;
 
         private Player _currentPlayer;
-
         //minimal distance (in metres) for a player position to update 
-        [SerializeField] private double minimalDistance = 1.0f;
-        private DistanceCounter _distanceCounter;
+        [SerializeField] private float minimalDistance = 1.0f;
+        private DistanceController _distanceController;
 
-        [SerializeField] private double speed = 1f;
-        private Rigidbody _rigidBody;
+        private LerpingController _lerpingController;
+
+        private Rigidbody _rigidbody;
+        
+        bool _isInitialized;
+        private AbstractMap map;
+
         ILocationProvider _locationProvider;
-
         ILocationProvider LocationProvider
         {
             get
@@ -38,9 +40,14 @@ namespace Utilities.Location
         }
 
 
+
+        public bool isLerping;
+
+        
         private void Awake()
         {
             _currentPlayer = GameManager.Instance.CurrentPlayer;
+            _rigidbody = _currentPlayer.GetComponent<Rigidbody>();
         }
 
         void Start()
@@ -48,46 +55,59 @@ namespace Utilities.Location
             LocationProviderFactory.Instance.mapManager.OnInitialized += () =>
             {
                 _isInitialized = true;
-                _distanceCounter = new DistanceCounter(LocationProvider.CurrentLocation, 0);
+                map =  LocationProviderFactory.Instance.mapManager;
+                _distanceController = new DistanceController(LocationProvider.CurrentLocation, 0);
+                this._lerpingController = new LerpingController(map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude));
             };
-            _rigidBody = GetComponent<Rigidbody>();
+        }
+
+        private void Update()
+        {
+            if (_isInitialized)
+            {
+                Location newLocation = LocationProvider.CurrentLocation;
+                float distance = (float)this._distanceController.DistanceUpdate(newLocation);
+                if (distance == 0)
+                {
+                    _distanceController.SetTimePassed(1.0f);
+                    if (!this._lerpingController.IsLerping)
+                    {
+                        _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_IDLE);
+                    }
+                }
+                else
+                {
+                    if (distance >= this.minimalDistance)
+                    {
+                        this._distanceController.Apply(newLocation, distance);
+                        this._lerpingController.StartLerping(transform.position, map.GeoToWorldPosition(newLocation.LatitudeLongitude),1.0f);
+                        this._distanceController.SetTimePassed(Time.deltaTime);
+                        _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_WALKING);
+                        Debug.Log("Wanted position: "+map.GeoToWorldPosition(newLocation.LatitudeLongitude));
+                    }
+                    else
+                    {
+                        this._distanceController.Deny(distance, Time.deltaTime);
+                        if(!this._lerpingController.IsLerping){
+                            _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_IDLE);
+                        }
+                    }
+                }
+            }
+
         }
 
         private void FixedUpdate()
         {
-            if (_isInitialized)
-            {
-                var map = LocationProviderFactory.Instance.mapManager;
-                Location newLocation = LocationProvider.CurrentLocation;
-                Vector3 newPosition = map.GeoToWorldPosition(newLocation.LatitudeLongitude);
-                double distance = this._distanceCounter.Distance(newLocation);
-                
-                Debug.Log(i + " Distance: " + distance);
-                
-                if (distance >= this.minimalDistance)
+            if(_isInitialized){
+                if (this._lerpingController.IsLerping)
                 {
-                    this._distanceCounter.SwapAndAdd(newLocation, distance);
-                    if (newPosition != transform.position)
-                    {
-                        Vector3 direction = (newPosition - transform.position).normalized;
-                        PositionTransition(direction);
-                        i++;
-                        //DEBUG
-                        //STUFF
-                        Debug.Log(i + " Direction: " + direction);
-                        Debug.Log(i + " Wanted Position: " + newPosition);
-                        Debug.Log(i + " Actual Position: " + transform.position);
-                    }
+                    _rigidbody.MovePosition(_lerpingController.Lerp());
+                    Debug.Log("Actualposition "+transform.position);
                 }
             }
         }
 
-        private void PositionTransition(Vector3 direction)
-        {
-            _rigidBody.isKinematic = true;
-            _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_WALKING);
-            Debug.Log("New Position: " + (transform.position + (direction * ((float)speed * Time.deltaTime))));
-            _rigidBody.MovePosition(transform.position + (direction * ((float)speed * Time.deltaTime)));
-        }
+
     }
 }

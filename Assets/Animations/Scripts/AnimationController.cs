@@ -23,5 +23,7 @@ namespace Animations
             //save currently playing animation state
             CurrentAnimation = animation;
         }
+        
+        
     }
 }

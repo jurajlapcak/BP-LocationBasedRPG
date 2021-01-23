@@ -10,5 +10,9 @@ namespace Animations
          //super constructor   
         }
 
+        public void PlayIdle()
+        {
+            
+        }
     }
 }
