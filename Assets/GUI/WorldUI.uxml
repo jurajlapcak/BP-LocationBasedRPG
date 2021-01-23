@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="Screen" class="Screen">
+        <Style src="WorldStyle.uss" />
+        <ui:VisualElement name="UpperPanel" class="UpperPanel">
+            <ui:VisualElement name="Buttons" class="Buttons">
+                <ui:Button text="Button" name="CharacterButton" class="MenuButton" style="left: 0;" />
+                <ui:Button text="Button" name="MenuButton" class="MenuButton" style="position: absolute; top: auto; left: auto; right: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomPanel" class="BottomPanel">
+            <ui:VisualElement name="BarContainer" class="BarContainer" style="position: absolute;">
+                <uie:ProgressBar title="my-progress" name="Health" class="StatusBar" style="top: 20%;" />
+                <uie:ProgressBar title="my-progress" name="Experience" class="StaticBar StatusBar" style="top: 60%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="NameContainer" class="NameContainer" style="position: absolute; background-color: rgb(107, 95, 77);">
+                <ui:Label text="Label" name="Name" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
