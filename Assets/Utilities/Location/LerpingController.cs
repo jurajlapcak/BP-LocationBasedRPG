@@ -9,7 +9,6 @@
         //time to move from start to end
         private float _time;
         private float _timeStarted;
-        private float _distance;
         private bool _isLerping;
         
         public bool IsLerping => _isLerping;
@@ -18,25 +17,24 @@
 
         public LerpingController(Vector3 startPosition)
         {
-            this._startPosition = startPosition;
-            this._endPosition = startPosition;
-            this._time = 1;
-            this._distance = 1;
-            this._isLerping = false;
+            _startPosition = startPosition;
+            _endPosition = startPosition;
+            _time = 1;
+            _isLerping = false;
         }
 
 
-        public void StartLerping(Vector3 startPosition, Vector3 endPosition, float time)
+        public void StartLerping(Vector3 startPosition, Vector3 endPosition)
         {
-            this._isLerping = true;
-            this._startPosition = startPosition;
-            this._endPosition = endPosition;
-            this._timeStarted = Time.time;
+            _isLerping = true;
+            _startPosition = startPosition;
+            _endPosition = endPosition;
+            _timeStarted = Time.time;
         }
         
         public void StopLerping()
         {
-            this._isLerping = false;
+            _isLerping = false;
             
         }
 
@@ -49,7 +47,7 @@
 
             if (percentageCompleted >= 1.0f)
             {
-                this.StopLerping();
+                StopLerping();
             }
 
             return position;
