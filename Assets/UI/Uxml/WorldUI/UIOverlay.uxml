@@ -1,19 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="WorldStyle.uss" />
-    <ui:VisualElement name="Screen" focusable="false" class="Screen">
-        <ui:VisualElement name="UpperPanel" class="UpperPanel">
-            <ui:VisualElement name="Buttons" class="Buttons">
-                <ui:Button text="Button" name="CharacterButton" class="MenuButton" style="left: 0;" />
-                <ui:Button text="Button" name="MenuButton" class="MenuButton" style="position: absolute; top: auto; left: auto; right: 0;" />
+    <Style src="UIOverlayStyle.uss" />
+    <ui:VisualElement name="screen" focusable="false" class="screen">
+        <ui:VisualElement name="upperpanel" class="upper-panel">
+            <ui:VisualElement name="buttonscontainer" class="buttons-container">
+                <ui:VisualElement name="characterbutton" class="button character-button" />
+                <ui:VisualElement name="menubutton" class="button menu-button" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="BottomPanel" class="BottomPanel">
-            <ui:VisualElement name="BarContainer" class="BarContainer" style="position: absolute;">
-                <ui:VisualElement name="HealthBar" class="StatusBar" />
-                <ui:VisualElement name="ExperienceBar" />
-            </ui:VisualElement>
-            <ui:VisualElement name="NameContainer" class="NameContainer" style="position: absolute; background-color: rgb(107, 95, 77);">
-                <ui:Label text="Label" name="Name" />
+        <ui:VisualElement name="bottompanel" class="bottom-panel">
+            <ui:VisualElement name="namecontainer" class="name-container" />
+            <ui:VisualElement name="barcontainer" class="bar-container">
+                <ui:VisualElement name="healthbar" class="status-bar" />
+                <ui:VisualElement name="experiencebar" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

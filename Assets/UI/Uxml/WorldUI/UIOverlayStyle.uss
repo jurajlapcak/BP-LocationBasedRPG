@@ -1,69 +1,87 @@
-.Screen {
-    position: absolute;
+.screen {
     width: 100%;
     height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 }
 
-.UpperPanel {
-    position: absolute;
-    left: 0;
+.upper-panel {
     width: 100%;
     height: 80%;
+    position: absolute;
+    left: 0;
 }
 
-.BottomPanel {
-    position: absolute;
+.buttons-container {
+    flex-direction: row;
     width: 100%;
+    height: 10%;
+    position: absolute;
+    bottom: 1%;
+}
+
+.button {
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.character-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    left: 0;
     bottom: 0;
-    height: 20%;
-    flex-direction: column;
-    background-color: rgb(50, 46, 40);
+    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/ProfileButton.png');
 }
 
-.Buttons {
+.menu-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/MoreButton.png');
+}
+
+.bottom-panel {
+    /*flex-direction: column;*/
     width: 100%;
     height: 20%;
     position: absolute;
     bottom: 0;
+    background-color: rgb(53, 53, 50);
 }
 
-.NameContainer {
-    position: absolute;
+.name-container {
     width: 100%;
     height: 20%;
+    position: absolute;
     top: 0;
     left: 0;
+    background-color: rgb(167, 144, 91);
 }
 
-.BarContainer {
-    position: absolute;
+.bar-container {
     width: 100%;
     height: 80%;
+    position: absolute;
     top: 20%;
     left: 0;
 }
 
-.MenuButton {
-    width: 20%;
-    height: 20%;
-    position: absolute;
-    top: auto;
-    left: auto;
-    right: auto;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    padding-top: 0;
-}
-
-.StatusBar {
-    position: absolute;
-    left: 10%;
+.status-bar {
     width: 80%;
     height: 20%;
+    position: absolute;
+    left: 10%;
 }
