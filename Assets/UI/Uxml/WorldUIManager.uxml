@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="UIOverlay" src="UIOverlay.uxml" />
+    <LocationRPG.WorldUIManager>
+        <ui:Instance template="UIOverlay" name="UIOverlay" />
+    </LocationRPG.WorldUIManager>
+</ui:UXML>

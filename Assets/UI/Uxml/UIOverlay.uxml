@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="UIOverlayStyle.uss" />
+    <ui:VisualElement name="screen" focusable="false" class="screen">
+        <ui:VisualElement name="upperpanel" class="upper-panel">
+            <ui:VisualElement name="buttonscontainer" class="buttons-container">
+                <ui:VisualElement name="characterbutton" class="button character-button" />
+                <ui:VisualElement name="menubutton" class="button menu-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottompanel" class="bottom-panel">
+            <ui:VisualElement name="namecontainer" class="name-container" />
+            <ui:VisualElement name="barcontainer" class="bar-container">
+                <ui:VisualElement name="healthbar" class="status-bar" />
+                <ui:VisualElement name="experiencebar" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
