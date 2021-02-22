@@ -2,6 +2,8 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+//TODO
+//transform into VisualElement Class, for UI builder
 public class WorldGUIController : MonoBehaviour
 {
     private VisualElement _root;

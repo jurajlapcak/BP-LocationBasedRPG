@@ -1,0 +1,33 @@
+.menu-panel {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    background-color: whitesmoke;
+}
+
+.menu-button {
+    width: 85%;
+    height: 15%;
+    position: absolute;
+    left: 7.5%;
+    -unity-text-align: middle-center;
+    /*-unity-font: resource('Fonts/Inter/Inter-Italic');*/
+}
+
+.options-button {
+    top: 25%;
+    background-color: pink;
+}
+
+.exit-button {
+    top: 55%;
+    background-color: aqua;
+}
+
+.button-label {
+    width: 100%;
+    height: 100%;
+    font-size: initial;
+}

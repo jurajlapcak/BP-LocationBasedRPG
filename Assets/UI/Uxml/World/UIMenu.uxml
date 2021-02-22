@@ -1,3 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="UIMenuStyle.uss" />
+    <Style src="UIStyle.uss"/>
+    <Style src="UIMenuStyle.uss"/>
+    <ui:VisualElement name="screen" class="screen">
+        <ui:VisualElement name="menuPanel" class="menu-panel">
+            <ui:VisualElement name="closePanel" class="close-panel">
+                <ui:VisualElement name="closeButton" class="close-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="optionsButton" class="menu-button options-button">
+                <ui:Label text="Options" display-tooltip-when-elided="true" name="options-text" class="button-label text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="exitButton" class="menu-button exit-button">
+                <ui:Label text="Exit" display-tooltip-when-elided="true" name="exit-text" class="button-label text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

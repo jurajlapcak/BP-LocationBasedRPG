@@ -1,3 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="/Assets/UI/Uxml/UICharacterStyle.uss" />
+    <Style src="UIStyle.uss"/>
+    <Style src="UICharacterStyle.uss"/>
+    <ui:VisualElement name="screen" class="screen">
+        <ui:VisualElement name="closePanel" class="close-panel">
+            <ui:VisualElement name="closeButton" class="close-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

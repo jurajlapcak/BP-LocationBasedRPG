@@ -1,7 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="UIOverlay" src="UIOverlay.uxml"/>
-    <LocationRPG.WorldUIManager class="screen">
-        <Style src="WorldUIManager.uss" />
-        <ui:Instance template="UIOverlay" name="UIOverlay" class="screen" />
+    <ui:Template name="UIMenuManager" src="UIMenuManager.uxml"/>
+    <ui:Template name="UICharacter" src="UICharacter.uxml"/>
+    <Style src="UIManager.uss"/>
+    <LocationRPG.WorldUIManager name="WorldUIManager" class="screen">
+        <ui:Instance template="UIOverlay" name="UIOverlay" class="screen"/>
+        <ui:Instance template="UICharacter" name="UICharacter" class="screen" style="display: none;"/>
+        <ui:Instance template="UIMenuManager" name="UIMenuManager" class="screen" style="display: none;"/>
     </LocationRPG.WorldUIManager>
 </ui:UXML>
