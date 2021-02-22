@@ -12,8 +12,6 @@
     height: 15%;
     position: absolute;
     left: 7.5%;
-    -unity-text-align: middle-center;
-    /*-unity-font: resource('Fonts/Inter/Inter-Italic');*/
 }
 
 .options-button {

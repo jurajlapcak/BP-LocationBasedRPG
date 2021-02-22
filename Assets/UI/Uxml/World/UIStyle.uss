@@ -26,4 +26,6 @@
 }
 
 .text {
+    -unity-text-align: middle-center;
+
 }
