@@ -1,0 +1,79 @@
+.upper-panel {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+}
+
+.buttons-container {
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    bottom: 1%;
+}
+
+.overlay-button {
+    width: auto;
+    height: auto;
+    position: relative;
+    background-color: rgba(228, 228, 228, 0);
+    border-color: rgba(228, 228, 228, 0);
+}
+
+.character-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/ProfileButton.png');
+}
+
+.menu-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/MoreButton.png');
+}
+
+.bottom-panel {
+    /*flex-direction: column;*/
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(53, 53, 50);
+}
+
+.name-container {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(167, 144, 91);
+}
+
+.bar-container {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    top: 20%;
+    left: 0;
+}
+
+.status-bar {
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    left: 10%;
+}

@@ -45,7 +45,6 @@ namespace LocationRPG
             float x = position.x + GenerateRandRange();
             float y = position.y;
             float z = position.z + GenerateRandRange();
-            ;
             int index = Random.Range(0, availableMonsters.Length);
 
             Monster monster = Instantiate(availableMonsters[index], new Vector3(x, y, z), Quaternion.identity);

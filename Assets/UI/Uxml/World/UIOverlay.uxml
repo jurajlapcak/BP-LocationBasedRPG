@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="UIStyle.uss" />
-    <Style src="UIOverlayStyle.uss" />    
+    <Style src="../_uss/UIStyle.uss" />
+    <Style src="uss/UIOverlayStyle.uss" />    
     <ui:VisualElement name="screen" class="screen">
         <ui:VisualElement name="upperPanel" class="upper-panel">
             <ui:VisualElement name="buttonsContainer" class="buttons-container">
-                <ui:VisualElement name="characterButton" class="overlay-button character-button" />
-                <ui:VisualElement name="menuButton" class="overlay-button menu-button" />
+                <ui:Button name="characterButton" class="overlay-button character-button" />
+                <ui:Button name="menuButton" class="overlay-button menu-button" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">

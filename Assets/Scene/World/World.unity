@@ -1434,37 +1434,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1183572568}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1321328681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7532130393229554759, guid: 2853d4deed365644f9cc1e094b5a1399,
-    type: 3}
-  m_PrefabInstance: {fileID: 1440136887}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1321328682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7532130393229554811, guid: 2853d4deed365644f9cc1e094b5a1399,
     type: 3}
   m_PrefabInstance: {fileID: 1440136887}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321328685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321328681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa422f1ab6ea584fa0dec69c1fc4491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableMonsters:
-  - {fileID: -4480555818761291731, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
-  player: {fileID: 1523162379}
-  waitTime: 60
-  startingMonsters: 5
-  minSpawnRange: 0.5
-  maxSpawnRange: 50
 --- !u!21 &1354875471
 Material:
   serializedVersion: 6
@@ -1825,10 +1800,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1523162378}
   - component: {fileID: 1523162382}
-  - component: {fileID: 1523162381}
   - component: {fileID: 1523162380}
   - component: {fileID: 1523162379}
   - component: {fileID: 1523162383}
+  - component: {fileID: 1523162381}
+  - component: {fileID: 1523162384}
   m_Layer: 0
   m_Name: Player Parent
   m_TagString: Untagged
@@ -1886,15 +1862,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523162377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061d2afb48ace4fd19611279b6cf732f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a21e7685ebb477a9e098caef0d854bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useDeviceOrientation: 1
-  _subtractUserHeading: 1
-  _rotationFollowFactor: 1
-  _rotateZ: 0
-  _useNegativeAngle: 0
-  _useTransformLocationProvider: 0
+  subtractUserHeading: 1
+  rotationFollowFactor: 1
 --- !u!114 &1523162382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1924,6 +1896,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &1523162384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523162377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa422f1ab6ea584fa0dec69c1fc4491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableMonsters:
+  - {fileID: -4480555818761291731, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
+  player: {fileID: 1523162379}
+  waitTime: 60
+  startingMonsters: 5
+  minSpawnRange: 0.5
+  maxSpawnRange: 10
 --- !u!1 &1647166837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1094528686802348, guid: 35ce2bb4caba9434db5e656796b632b1,
