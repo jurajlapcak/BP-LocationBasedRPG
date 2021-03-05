@@ -1,0 +1,27 @@
+.title-panel {
+    background-image: resource('Hand Painted Seamless Wood Texture/Textures/Wood2');
+    -unity-background-scale-mode: scale-and-crop;
+    width: 100%;
+    height: 100%;
+}
+
+.buttons-panel {
+    width: 70%;
+    height: 50%;
+    position: absolute;
+    left: 15%;
+    top: 50%;
+}
+
+.title-button {
+    width: 100%;
+    height: 15%;
+    margin-bottom: 10%;
+    -unity-font-style: bold;
+}
+
+.title-text {
+    width: 100%;
+    height: 100%;
+    font-size: 900%;
+}
