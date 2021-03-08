@@ -11,7 +11,10 @@ namespace LocationRPG
         private VisualElement _UIMenuManager;
         private VisualElement _UIMenu;
         private VisualElement _UIOptionsMenu;
-        public new class UxmlFactory : UxmlFactory<WorldUIManager, UxmlTraits> { }
+
+        public new class UxmlFactory : UxmlFactory<WorldUIManager, UxmlTraits>
+        {
+        }
 
         public WorldUIManager()
         {
@@ -29,22 +32,21 @@ namespace LocationRPG
             _UIOverlay.Q("menuButton").RegisterCallback<ClickEvent>(ev => EnableMenuScreen());
             _UIOverlay.Q("characterButton").RegisterCallback<ClickEvent>(ev => EnableCharacterScreen());
             _UIMenu.Q("optionsButton").RegisterCallback<ClickEvent>(ev => EnableOptionsScreen());
-            
+
             _UICharacter.Q("closeButton").RegisterCallback<ClickEvent>(ev => EnableUIOverlay());
             _UIMenu.Q("closeButton").RegisterCallback<ClickEvent>(ev => EnableUIOverlay());
             _UIOptionsMenu.Q("closeButton").RegisterCallback<ClickEvent>(ev => EnableUIOverlay());
-            
         }
-        
+
         void EnableUIOverlay()
         {
             _UIOverlay.style.display = DisplayStyle.Flex;
-            
+
             _UIOptionsMenu.style.display = DisplayStyle.None;
             _UIMenuManager.style.display = DisplayStyle.None;
             _UICharacter.style.display = DisplayStyle.None;
         }
-        
+
         void EnableMenuScreen()
         {
             _UIMenuManager.style.display = DisplayStyle.Flex;
@@ -59,7 +61,7 @@ namespace LocationRPG
             _UIOverlay.style.display = DisplayStyle.None;
             _UIMenuManager.style.display = DisplayStyle.None;
         }
-        
+
         //TODO
         void EnableOptionsScreen()
         {

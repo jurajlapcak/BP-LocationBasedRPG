@@ -7,21 +7,22 @@ namespace LocationRPG
 
     public class PositionWithLocationProvider : MonoBehaviour
     {
-
         private Player _currentPlayer;
+
         //minimal distance (in metres) for a player position to update
         //distance counter for counting moved distance
         [SerializeField] private float minimalDistance = 1.0f;
         private DistanceController _distanceController;
-        
+
         //lerping controller for smooth transition between positions
         private LerpingController _lerpingController;
-        
-        
+
+
         bool _isInitialized;
         private AbstractMap map;
 
         ILocationProvider _locationProvider;
+
         ILocationProvider LocationProvider
         {
             get
@@ -31,10 +32,11 @@ namespace LocationRPG
                 {
                     _locationProvider = LocationProviderFactory.Instance.DefaultLocationProvider;
                 }
+
                 return _locationProvider;
             }
         }
-        
+
         private void Awake()
         {
             _currentPlayer = GameManager.Instance.CurrentPlayer;
@@ -45,9 +47,10 @@ namespace LocationRPG
             LocationProviderFactory.Instance.mapManager.OnInitialized += () =>
             {
                 _isInitialized = true;
-                map =  LocationProviderFactory.Instance.mapManager;
+                map = LocationProviderFactory.Instance.mapManager;
                 _distanceController = new DistanceController(LocationProvider.CurrentLocation, 0);
-                _lerpingController = new LerpingController(map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude));
+                _lerpingController =
+                    new LerpingController(map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude));
             };
         }
 
@@ -56,13 +59,8 @@ namespace LocationRPG
             if (_isInitialized)
             {
                 Location newLocation = LocationProvider.CurrentLocation;
-                
-                #if UNITY_EDITOR
-                //DEBUG STUFF
-                Debug.Log(newLocation.LatitudeLongitude);
-                #endif
-                
-                float distance = (float)_distanceController.DistanceUpdate(newLocation);
+
+                float distance = (float) _distanceController.DistanceUpdate(newLocation);
                 if (distance == 0)
                 {
                     _distanceController.SetTimePassed(1.0f);
@@ -76,32 +74,32 @@ namespace LocationRPG
                     if (distance >= minimalDistance)
                     {
                         _distanceController.Apply(newLocation, distance);
-                        _lerpingController.StartLerping(transform.position, map.GeoToWorldPosition(newLocation.LatitudeLongitude));
+                        _lerpingController.StartLerping(transform.position,
+                            map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                         _distanceController.SetTimePassed(Time.deltaTime);
                         _currentPlayer.Animation.ToggleWalking();
                     }
                     else
                     {
                         _distanceController.Deny(distance, Time.deltaTime);
-                        if(!_lerpingController.IsLerping){
+                        if (!_lerpingController.IsLerping)
+                        {
                             _currentPlayer.Animation.ToggleIdle();
                         }
                     }
                 }
             }
-
         }
 
         private void FixedUpdate()
         {
-            if(_isInitialized){
+            if (_isInitialized)
+            {
                 if (_lerpingController.IsLerping)
                 {
                     transform.position = _lerpingController.Lerp();
                 }
             }
         }
-
-
     }
 }

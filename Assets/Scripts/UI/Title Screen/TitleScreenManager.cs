@@ -5,14 +5,16 @@ using UnityEngine.UIElements;
 namespace LocationRPG
 {
     // manages title screen
-    public class TitleScreenManager: VisualElement
+    public class TitleScreenManager : VisualElement
     {
         private VisualElement _playButton;
         private VisualElement _optionsButton;
         private VisualElement _exitButton;
-        
-        public new class UxmlFactory : UxmlFactory<TitleScreenManager, UxmlTraits> { }
-        
+
+        public new class UxmlFactory : UxmlFactory<TitleScreenManager, UxmlTraits>
+        {
+        }
+
         public TitleScreenManager()
         {
             RegisterCallback<GeometryChangedEvent>(OnGeometryChange);
@@ -23,7 +25,7 @@ namespace LocationRPG
             _playButton = this.Q("playButton");
             _optionsButton = this.Q("optionsButton");
             _exitButton = this.Q("exitButton");
-            
+
             _playButton.RegisterCallback<ClickEvent>(ev => Play());
             _optionsButton.RegisterCallback<ClickEvent>(ev => ShowOptions());
             _exitButton.RegisterCallback<ClickEvent>(ev => Application.Quit());
@@ -31,12 +33,11 @@ namespace LocationRPG
 
         void Play()
         {
-            SceneManager.LoadScene(SceneTypes.WORLD);
+            SceneManager.LoadScene(SceneNameConstants.WORLD);
         }
 
         void ShowOptions()
         {
-            
         }
     }
 }

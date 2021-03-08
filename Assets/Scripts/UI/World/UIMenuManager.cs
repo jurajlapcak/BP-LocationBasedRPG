@@ -5,10 +5,12 @@ namespace LocationRPG
 {
     //Manages buttons for options and exiting game
     /*TODO: Controls options for audio and SAVING*/
-          
+
     public class UIMenuManager : VisualElement
     {
-        public new class UxmlFactory : UxmlFactory<UIMenuManager, UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<UIMenuManager, UxmlTraits>
+        {
+        }
 
         public UIMenuManager()
         {
@@ -19,12 +21,12 @@ namespace LocationRPG
         {
             this.Q("exitButton").RegisterCallback<ClickEvent>(ev => QuitGame());
         }
+
         void QuitGame()
         {
             Debug.Log("Game is exiting");
             //TODO save
             Application.Quit();
         }
-
     }
 }

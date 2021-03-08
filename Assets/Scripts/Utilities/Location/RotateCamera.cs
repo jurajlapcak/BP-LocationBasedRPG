@@ -21,6 +21,7 @@ namespace LocationRPG
         Quaternion _targetRotation;
 
         ILocationProvider _locationProvider;
+
         public ILocationProvider LocationProvider
         {
             private get
@@ -37,13 +38,13 @@ namespace LocationRPG
                 if (_locationProvider != null)
                 {
                     _locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
-
                 }
+
                 _locationProvider = value;
                 _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
             }
         }
-        
+
         void Start()
         {
             LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
@@ -101,7 +102,7 @@ namespace LocationRPG
 
             return euler;
         }
-        
+
         void FixedUpdate()
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, _targetRotation,

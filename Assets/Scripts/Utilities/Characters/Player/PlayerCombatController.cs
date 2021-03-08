@@ -1,6 +1,6 @@
 ﻿namespace LocationRPG
 {
-    public class PlayerCombatController 
+    public class PlayerCombatController
     {
         private int level = 1;
         private int xp = 0;
@@ -18,7 +18,5 @@
         public int LevelBase => levelBase;
 
         public float Hp => hp;
-
-
     }
 }

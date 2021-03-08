@@ -8,6 +8,7 @@ namespace LocationRPG
         [SerializeField] private GameObject playerModel;
         private PlayerCombatController _playerCombatController;
         private PlayerAnimationController _playerAnimationController;
+
         private void Awake()
         {
             Assert.IsNotNull(playerModel);
@@ -15,9 +16,8 @@ namespace LocationRPG
             _playerAnimationController = new PlayerAnimationController(playerModel.GetComponent<Animator>(),
                 AnimationConstants.PLAYER_IDLE);
         }
-        
+
         public PlayerCombatController PlayerCombatController => _playerCombatController;
         public PlayerAnimationController Animation => _playerAnimationController;
-
     }
 }

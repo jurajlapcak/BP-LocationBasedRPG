@@ -6,7 +6,5 @@
         public const string PLAYER_IDLE = "Player Idle";
         public const string PLAYER_IDLE_FOOTS = "Player Idle Foot";
         public const string PLAYER_WALKING = "Player Walking";
-        
-        
     }
 }

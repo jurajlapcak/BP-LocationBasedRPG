@@ -7,16 +7,16 @@ namespace LocationRPG
     {
         private CheapRuler _cheapRuler;
         private Location _oldLocation;
-        
+
         //total session's distance covered in metres [m]
         private double _distanceCovered;
 
         //distance that device covered since last update
         private double _distance;
-        
+
         //speed that passed since the last transform of position [s]
         private double _timePassed;
-        
+
 
         public double Distance => _distance;
 
@@ -43,7 +43,7 @@ namespace LocationRPG
         {
             double[] oldLatlong = {_oldLocation.LatitudeLongitude.x, _oldLocation.LatitudeLongitude.y};
             double[] newLatlong = {newLocation.LatitudeLongitude.x, newLocation.LatitudeLongitude.y};
-            double distance = _cheapRuler.Distance(oldLatlong,newLatlong);
+            double distance = _cheapRuler.Distance(oldLatlong, newLatlong);
             _distance = distance;
             return distance;
         }
@@ -54,7 +54,8 @@ namespace LocationRPG
         {
             _distanceCovered += distance;
             _oldLocation = newLocation;
-        }   
+        }
+
         public void Deny(double distance, double time)
         {
             _timePassed += time;
