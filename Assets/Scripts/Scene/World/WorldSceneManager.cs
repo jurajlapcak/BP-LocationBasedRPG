@@ -9,7 +9,10 @@ namespace LocationRPG
     {
         public override void monsterInterract(GameObject monster)
         {
-            SceneManager.LoadScene(SceneTypes.FIGHT_SCREEN);
+            List<GameObject> objectsToMove = new List<GameObject>();
+            objectsToMove.Add(monster);
+            // objectsToMove.Add(GameManager.Instance.CurrentPlayer);
+            SceneSwitchManager.Instance.SwitchScene(SceneNameConstants.FIGHT_SCREEN, objectsToMove);
         }
     }
 }
