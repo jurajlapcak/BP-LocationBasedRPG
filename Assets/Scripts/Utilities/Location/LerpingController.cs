@@ -15,7 +15,6 @@ namespace LocationRPG
 
         public bool IsLerping => _isLerping;
 
-        public float TimeStarted => _timeStarted;
 
         public LerpingController(Vector3 startPosition)
         {

@@ -7,21 +7,9 @@ namespace LocationRPG
 {
     public class WorldSceneManager : RPGSceneManager
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public override void monsterInterract(GameObject monster)
         {
-            SceneManager.LoadScene(SceneTypes.FightScene.ToString());
+            SceneManager.LoadScene(SceneTypes.FIGHT_SCREEN);
         }
     }
 }

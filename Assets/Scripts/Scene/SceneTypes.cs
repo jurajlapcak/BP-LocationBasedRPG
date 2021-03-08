@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace LocationRPG
+﻿namespace LocationRPG
 {
-    public enum SceneTypes
+    public static class SceneTypes
     {
-        World,
-        Loading,
-        FightScene,
+        public const string WORLD = "World";
+        public const string FIGHT_SCREEN = "FightScene";
     }
 }

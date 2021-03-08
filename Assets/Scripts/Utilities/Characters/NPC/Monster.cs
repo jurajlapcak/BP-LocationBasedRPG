@@ -26,9 +26,9 @@ namespace LocationRPG
         {
             WorldSceneManager worldSceneManager = FindObjectOfType<WorldSceneManager>();
             Scene activeScene = SceneManager.GetActiveScene();
-            if (activeScene.name.Equals(SceneTypes.World.ToString()))
+            if (activeScene.name.Equals(SceneTypes.WORLD))
             {
-                worldSceneManager.monsterInterract(this.gameObject);
+                worldSceneManager.monsterInterract(gameObject);
             }
         }
     }

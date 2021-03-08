@@ -17,8 +17,6 @@ namespace LocationRPG
         //speed that passed since the last transform of position [s]
         private double _timePassed;
         
-        //speed that device is traveling at [m/s]
-        private double _currentSpeed;
 
         public double Distance => _distance;
 
@@ -35,10 +33,9 @@ namespace LocationRPG
         {
             _cheapRuler = new CheapRuler(oldLocation.LatitudeLongitude.x
                 , CheapRulerUnits.Meters);
-            this._timePassed = 1;
-            this._oldLocation = oldLocation;
-            this._distanceCovered = distanceCovered;
-            this._currentSpeed = 1;
+            _timePassed = 1;
+            _oldLocation = oldLocation;
+            _distanceCovered = distanceCovered;
         }
 
         //count distance 
@@ -47,21 +44,20 @@ namespace LocationRPG
             double[] oldLatlong = {_oldLocation.LatitudeLongitude.x, _oldLocation.LatitudeLongitude.y};
             double[] newLatlong = {newLocation.LatitudeLongitude.x, newLocation.LatitudeLongitude.y};
             double distance = _cheapRuler.Distance(oldLatlong,newLatlong);
-            this._distance = distance;
+            _distance = distance;
             return distance;
         }
 
         //remembers newLocation as location that player is at at the moment
         //Also adds covered distance to distance counter
-        public double Apply(Location newLocation, double distance)
+        public void Apply(Location newLocation, double distance)
         {
-            this._distanceCovered += distance;
-            this._oldLocation = newLocation;
-            return this.CurrentSpeed;
+            _distanceCovered += distance;
+            _oldLocation = newLocation;
         }   
         public void Deny(double distance, double time)
         {
-            this._timePassed += time;
+            _timePassed += time;
         }
     }
 }

@@ -95,23 +95,13 @@ namespace LocationRPG
             var currentEuler = localRotation.eulerAngles;
             var euler = Mapbox.Unity.Constants.Math.Vector3Zero;
 
-            // if (_rotateZ)
-            // {
-            //     euler.z = -newAngle;
-            //
-            //     euler.x = currentEuler.x;
-            //     euler.y = currentEuler.y;
-            // }
-            // else
-            // {
-                euler.y = -newAngle;
-
-                euler.x = currentEuler.x;
-                euler.z = currentEuler.z;
-            // }
+            euler.y = -newAngle;
+            euler.x = currentEuler.x;
+            euler.z = currentEuler.z;
 
             return euler;
         }
+        
         void FixedUpdate()
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, _targetRotation,
