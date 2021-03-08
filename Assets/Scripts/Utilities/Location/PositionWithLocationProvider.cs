@@ -56,13 +56,19 @@ namespace LocationRPG
             if (_isInitialized)
             {
                 Location newLocation = LocationProvider.CurrentLocation;
+                
+                #if UNITY_EDITOR
+                //DEBUG STUFF
+                Debug.Log(newLocation.LatitudeLongitude);
+                #endif
+                
                 float distance = (float)_distanceController.DistanceUpdate(newLocation);
                 if (distance == 0)
                 {
                     _distanceController.SetTimePassed(1.0f);
                     if (!_lerpingController.IsLerping)
                     {
-                        _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_IDLE);
+                        _currentPlayer.Animation.ToggleIdle();
                     }
                 }
                 else
@@ -72,13 +78,13 @@ namespace LocationRPG
                         _distanceController.Apply(newLocation, distance);
                         _lerpingController.StartLerping(transform.position, map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                         _distanceController.SetTimePassed(Time.deltaTime);
-                        _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_WALKING);
+                        _currentPlayer.Animation.ToggleWalking();
                     }
                     else
                     {
                         _distanceController.Deny(distance, Time.deltaTime);
                         if(!_lerpingController.IsLerping){
-                            _currentPlayer.Animation.ChangeAnimation(AnimationConstants.PLAYER_IDLE);
+                            _currentPlayer.Animation.ToggleIdle();
                         }
                     }
                 }

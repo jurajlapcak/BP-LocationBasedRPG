@@ -9,7 +9,7 @@ namespace LocationRPG
         public AnimationController(Animator _animator, string _currentAnimation)
         {
             this._animator = _animator;
-            this.CurrentAnimation = _currentAnimation;
+            CurrentAnimation = _currentAnimation;
         }
         
         public void ChangeAnimation(string animation)

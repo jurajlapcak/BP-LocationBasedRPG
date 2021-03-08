@@ -10,9 +10,14 @@ namespace LocationRPG
          //super constructor   
         }
 
-        public void PlayIdle()
+        public void ToggleWalking()
         {
-            
+            ChangeAnimation(AnimationConstants.PLAYER_WALKING);
+        }
+        
+        public void ToggleIdle()
+        {
+            ChangeAnimation(AnimationConstants.PLAYER_IDLE);
         }
     }
 }

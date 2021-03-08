@@ -13,7 +13,7 @@ namespace LocationRPG
             Assert.IsNotNull(playerModel);
             _playerCombatController = new PlayerCombatController();
             _playerAnimationController = new PlayerAnimationController(playerModel.GetComponent<Animator>(),
-                AnimationConstants.PLAYER_IDLE_FOOTS);
+                AnimationConstants.PLAYER_IDLE);
         }
         
         public PlayerCombatController PlayerCombatController => _playerCombatController;
