@@ -8,14 +8,6 @@ namespace LocationRPG
 {
     public class SceneSwitchManager : Singleton<SceneSwitchManager>
     {
-#if UNITY_EDITOR
-        private int i;
-        private void Awake()
-        {
-            i = 0;
-        }
-#endif
-
         public void SwitchScene(string sceneName, List<GameObject> objectsToMove)
         {
             StartCoroutine(LoadScene(sceneName, objectsToMove));
@@ -23,27 +15,26 @@ namespace LocationRPG
 
         private IEnumerator LoadScene(string sceneName, List<GameObject> objectsToMove)
         {
-            AsyncOperation sceneAsync = SceneManager.LoadSceneAsync(sceneName);
+            // Set the current Scene to be able to unload it later
+            Scene currentScene = SceneManager.GetActiveScene();
+            
+            // Load new scene in the background additively, which means current scene won't automatically unload
+            AsyncOperation sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+
+            SceneManager.sceneLoaded += (scene, mode) => { SceneManager.SetActiveScene(sceneToLoad); };
+
+            while (!sceneAsync.isDone)
+            {
+                yield return null;
+            }
             
             foreach (GameObject gameObj in objectsToMove)
             {
                 SceneManager.MoveGameObjectToScene(gameObj, sceneToLoad);
             }
-            SceneManager.sceneLoaded += (scene, mode) =>
-            {
-                SceneManager.SetActiveScene(sceneToLoad);
-            };
             
-            while (!sceneAsync.isDone)
-            {
-#if UNITY_EDITOR
-                Debug.Log((i++) + "Loading..");
-#endif
-                yield return null;
-            }
-
-
+            SceneManager.UnloadSceneAsync(currentScene);
         }
     }
 }

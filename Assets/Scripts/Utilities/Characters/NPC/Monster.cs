@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace LocationRPG
@@ -12,7 +13,7 @@ namespace LocationRPG
 
         private void Start()
         {
-            Destroy(gameObject, despawnTime);
+            // Destroy(gameObject, despawnTime);
         }
 
 
