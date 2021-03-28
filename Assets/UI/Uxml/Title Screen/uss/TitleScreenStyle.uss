@@ -23,5 +23,6 @@
 .title-text {
     width: 100%;
     height: 100%;
-    font-size: 900%;
+    font-size: 50;
+    white-space: normal;
 }

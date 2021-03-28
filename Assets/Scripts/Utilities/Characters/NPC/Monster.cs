@@ -11,12 +11,6 @@ namespace LocationRPG
         [SerializeField] private float deffense = 1;
         [SerializeField] private float despawnTime = 180;
 
-        private void Start()
-        {
-            // Destroy(gameObject, despawnTime);
-        }
-
-
         public float Hp => hp;
 
         public float Attack => attack;
@@ -29,6 +23,7 @@ namespace LocationRPG
             Scene activeScene = SceneManager.GetActiveScene();
             if (activeScene.name.Equals(SceneNameConstants.WORLD))
             {
+                gameObject.name = "skeleton-interacted";
                 worldSceneManager.monsterInterract(gameObject);
             }
         }
