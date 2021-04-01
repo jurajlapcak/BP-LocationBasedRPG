@@ -15,19 +15,21 @@ namespace LocationRPG
         public new class UxmlFactory : UxmlFactory<WorldUIManager, UxmlTraits>
         {
         }
-
+        
         public WorldUIManager()
         {
             RegisterCallback<GeometryChangedEvent>(OnGeometryChange);
         }
 
-        void OnGeometryChange(GeometryChangedEvent evt)
-        {
+       void OnGeometryChange(GeometryChangedEvent evt)
+        {   
             _UIOverlay = this.Q("UIOverlay");
             _UICharacter = this.Q("UICharacter");
             _UIMenuManager = this.Q("UIMenuManager");
             _UIMenu = _UIMenuManager.Q("UIMenu");
             _UIOptionsMenu = _UIMenuManager.Q("UIOptionsMenu");
+            
+            SetTextSize();
 
             _UIOverlay.Q("menuButton").RegisterCallback<ClickEvent>(ev => EnableMenuScreen());
             _UIOverlay.Q("characterButton").RegisterCallback<ClickEvent>(ev => EnableCharacterScreen());
@@ -67,6 +69,17 @@ namespace LocationRPG
         {
             _UIOptionsMenu.style.display = DisplayStyle.Flex;
             _UIMenu.style.display = DisplayStyle.None;
+        }
+        
+        void SetTextSize()
+        {
+            VisualElement idk;
+            if(!(_UIMenu is null)){
+                idk = _UIMenu.Q(className:"button-label");
+                Debug.Log("0 " + idk);
+                idk.style.fontSize = Screen.width ;
+                Debug.Log("2 " + idk.style.fontSize);
+            }
         }
     }
 }

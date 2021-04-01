@@ -23,8 +23,8 @@ namespace LocationRPG
             Scene activeScene = SceneManager.GetActiveScene();
             if (activeScene.name.Equals(SceneNameConstants.WORLD))
             {
-                gameObject.name = "skeleton-interacted";
                 worldSceneManager.monsterInterract(gameObject);
+                gameObject.name = "monster-interacted";
             }
         }
     }

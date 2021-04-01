@@ -15,7 +15,7 @@
     height: 100%;
     position: absolute;
     right: 7.5%;
-    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/ExitButton.png');
+    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/ExitButton.png');
     background-color: rgba(228, 228, 228, 0);
     border-color: rgba(228, 228, 228, 0);
 }
@@ -25,8 +25,4 @@
     height: 20%;
     position: absolute;
     top: 0;
-}
-
-.text {
-    -unity-text-align: middle-center;
 }

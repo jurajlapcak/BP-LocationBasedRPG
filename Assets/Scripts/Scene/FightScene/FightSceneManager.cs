@@ -15,11 +15,13 @@ namespace LocationRPG
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            GameObject monster = GameObject.Find("skeleton-interacted");
-            Debug.Log(monster.name);
-            monster.name = "Skeleton";
-
-            monster.transform.position = new Vector3(0,0,1);
+            GameObject monster = GameObject.Find("monster-interacted");
+            GameObject monsterParent = GameObject.Find("Monster Parent");
+            
+            monster.transform.position =  Vector3.zero;
+            monster.transform.rotation =  new Quaternion(0,0,0,0);;
+            monster.transform.SetParent(monsterParent.transform, false);
+            monster.name = "Monster";
         }
     }
 }

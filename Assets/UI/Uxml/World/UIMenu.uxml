@@ -7,10 +7,10 @@
                 <ui:Button name="closeButton" class="close-button" />
             </ui:VisualElement>
             <ui:Button name="optionsButton" class="menu-button options-button">
-                <ui:Label text="Options" display-tooltip-when-elided="true" name="options-text" class="button-label text" />
+                <ui:Label text="Options" display-tooltip-when-elided="true" name="options-text" class="button-label"/>
             </ui:Button>
             <ui:Button name="exitButton" class="menu-button exit-button">
-                <ui:Label text="Exit" display-tooltip-when-elided="true" name="exit-text" class="button-label text" />
+                <ui:Label text="Exit" display-tooltip-when-elided="true" name="exit-text" class="button-label"/>
             </ui:Button>
         </ui:VisualElement>
     </ui:VisualElement>

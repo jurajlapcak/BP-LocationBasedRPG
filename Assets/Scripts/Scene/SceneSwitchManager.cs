@@ -17,23 +17,23 @@ namespace LocationRPG
         {
             // Set the current Scene to be able to unload it later
             Scene currentScene = SceneManager.GetActiveScene();
-            
+
             // Load new scene in the background additively, which means current scene won't automatically unload
             AsyncOperation sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
 
             SceneManager.sceneLoaded += (scene, mode) => { SceneManager.SetActiveScene(sceneToLoad); };
 
-            while (!sceneAsync.isDone)
-            {
-                yield return null;
-            }
-            
             foreach (GameObject gameObj in objectsToMove)
             {
                 SceneManager.MoveGameObjectToScene(gameObj, sceneToLoad);
             }
-            
+
+            while (!sceneAsync.isDone)
+            {
+                yield return null;
+            }
+
             SceneManager.UnloadSceneAsync(currentScene);
         }
     }

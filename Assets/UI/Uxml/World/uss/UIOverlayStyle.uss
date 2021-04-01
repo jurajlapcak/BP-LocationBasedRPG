@@ -30,7 +30,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/ProfileButton.png');
+    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/ProfileButton.png');
 }
 
 .menu-button {
@@ -42,11 +42,10 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    background-image: url('/Assets/UI/Buttons/UsefulButtonsPack/MoreButton.png');
+    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/MoreButton.png');
 }
 
 .bottom-panel {
-    /*flex-direction: column;*/
     width: 100%;
     height: 20%;
     position: absolute;
