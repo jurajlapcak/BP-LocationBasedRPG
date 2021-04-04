@@ -21,7 +21,7 @@ namespace LocationRPG
         {
             WorldSceneManager worldSceneManager = FindObjectOfType<WorldSceneManager>();
             Scene activeScene = SceneManager.GetActiveScene();
-            if (activeScene.name.Equals(SceneNameConstants.WORLD))
+            if (activeScene.name.Equals(SceneNameConstants.WORLD_SCENE))
             {
                 worldSceneManager.monsterInterract(gameObject);
                 gameObject.name = "monster-interacted";

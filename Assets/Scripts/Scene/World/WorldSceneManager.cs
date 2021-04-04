@@ -10,7 +10,7 @@ namespace LocationRPG
             List<GameObject> objectsToMove = new List<GameObject>();
             objectsToMove.Add(monster);
             
-            SceneSwitchManager.Instance.SwitchScene(SceneNameConstants.FIGHT_SCREEN, objectsToMove);
+            SceneSwitchManager.Instance.SwitchScene(SceneNameConstants.COMBAT_SCENE, objectsToMove);
         }
     }
 }
