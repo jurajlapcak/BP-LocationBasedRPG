@@ -1,10 +1,9 @@
 ﻿using Mapbox.Unity.Map;
+using Mapbox.Unity.Location;
+using UnityEngine;
 
 namespace LocationRPG
 {
-    using Mapbox.Unity.Location;
-    using UnityEngine;
-
     public class PositionWithLocationProvider : MonoBehaviour
     {
         private Player _currentPlayer;

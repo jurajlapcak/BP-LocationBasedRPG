@@ -6,18 +6,18 @@ namespace LocationRPG
     public class Player : MonoBehaviour
     {
         [SerializeField] private GameObject playerModel;
-        private PlayerCombatController _playerCombatController;
+        private PlayerStats _playerStats;
         private PlayerAnimationController _playerAnimationController;
 
         private void Awake()
         {
             Assert.IsNotNull(playerModel);
-            _playerCombatController = new PlayerCombatController();
+            _playerStats = new PlayerStats();
             _playerAnimationController = new PlayerAnimationController(playerModel.GetComponent<Animator>(),
                 AnimationConstants.PLAYER_IDLE);
         }
 
-        public PlayerCombatController PlayerCombatController => _playerCombatController;
+        public PlayerStats PlayerStats => _playerStats;
         public PlayerAnimationController Animation => _playerAnimationController;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using LocationRPG;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

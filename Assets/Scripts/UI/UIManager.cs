@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
@@ -29,13 +26,13 @@ namespace LocationRPG
 
         public void updateLevel()
         {
-            levelText.text = _currentPlayer.PlayerCombatController.Level.ToString();
+            levelText.text = _currentPlayer.PlayerStats.Level.ToString();
         }
 
         public void updateXP()
         {
-            xpText.text = _currentPlayer.PlayerCombatController.Xp + " / " +
-                          _currentPlayer.PlayerCombatController.RequiredXp;
+            xpText.text = _currentPlayer.PlayerStats.Xp + " / " +
+                          _currentPlayer.PlayerStats.RequiredXp;
         }
     }
 }
