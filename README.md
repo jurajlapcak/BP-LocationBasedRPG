@@ -1,6 +1,7 @@
 <div>
   <h1>LocationBasedRPG</h1>
   <img src="https://github.com/georgeHeishi/LocationBasedRPG/blob/master/Assets/Resources/Icon/icon1.png" width="300" />
+  <hr>
 </div>
 
 <div>
