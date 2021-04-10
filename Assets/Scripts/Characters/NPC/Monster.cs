@@ -1,30 +1,22 @@
-﻿using LocationRPG;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 namespace LocationRPG
 {
-    public class Monster : MonoBehaviour
+    public class Monster : Unit
     {
-        [SerializeField] private float hp = 100;
-        [SerializeField] private float attack = 1;
-        [SerializeField] private float deffense = 1;
-        [SerializeField] private float despawnTime = 180;
-
-        public float Hp => hp;
-
-        public float Attack => attack;
-
-        public float Deffense => deffense;
-
-        private void OnMouseDown()
+        public void OnMouseUp()
         {
-            WorldSceneManager worldSceneManager = FindObjectOfType<WorldSceneManager>();
-            Scene activeScene = SceneManager.GetActiveScene();
-            if (activeScene.name.Equals(SceneNameConstants.WORLD_SCENE))
+            if (!InteractionManager.Instance.InteractionLock)
             {
-                worldSceneManager.monsterInterract(gameObject);
-                gameObject.name = "monster-interacted";
+                WorldSceneManager worldSceneManager = FindObjectOfType<WorldSceneManager>();
+                Scene activeScene = SceneManager.GetActiveScene();
+                if (activeScene.name.Equals(SceneNameConstants.WORLD_SCENE))
+                {
+                    worldSceneManager.monsterInterract(gameObject);
+                    gameObject.name = "monster-interacted";
+                }
             }
         }
     }

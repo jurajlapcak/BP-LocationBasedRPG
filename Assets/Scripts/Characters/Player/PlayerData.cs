@@ -29,7 +29,7 @@ namespace LocationRPG
 
         public float Attack => _attack;
         
-        public PlayerData(PlayerStats playerStats)
+        public PlayerData(Player playerStats)
         {
             _level = playerStats.Level;
             _xp = playerStats.Xp;

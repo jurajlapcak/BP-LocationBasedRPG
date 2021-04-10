@@ -6,7 +6,7 @@ namespace LocationRPG
 {
     public class PositionWithLocationProvider : MonoBehaviour
     {
-        private Player _currentPlayer;
+        private PlayerController _currentPlayer;
 
         //minimal distance (in metres) for a player position to update
         //distance counter for counting moved distance

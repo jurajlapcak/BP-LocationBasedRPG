@@ -1,23 +1,41 @@
-﻿using UnityEngine;
-using UnityEngine.Assertions;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
 namespace LocationRPG
 {
-    public class Player : MonoBehaviour
+    public class Player : Unit
     {
-        [SerializeField] private GameObject playerModel;
-        private PlayerStats _playerStats;
-        private PlayerAnimationController _playerAnimationController;
+        //TODO: inventory
 
-        private void Awake()
+        //TODO: init
+        public void Init()
         {
-            Assert.IsNotNull(playerModel);
-            _playerStats = new PlayerStats();
-            _playerAnimationController = new PlayerAnimationController(playerModel.GetComponent<Animator>(),
-                AnimationConstants.PLAYER_IDLE);
         }
 
-        public PlayerStats PlayerStats => _playerStats;
-        public PlayerAnimationController Animation => _playerAnimationController;
+        public void Save()
+        {
+            SaveSystem.SavePlayer(this);
+        }
+
+        public void Load()
+        {
+            PlayerData playerData = SaveSystem.LoadPlayer();
+            if (playerData is null)
+            {
+                Init();
+            }
+            else
+            {
+                _level = playerData.Level;
+                _xp = playerData.Xp;
+                _requiredXp = playerData.RequiredXp;
+                _levelBase = playerData.LevelBase;
+
+                _hp = playerData.Hp;
+                _defense = playerData.Defense;
+                _attack = playerData.Attack;
+            }
+        }
     }
 }

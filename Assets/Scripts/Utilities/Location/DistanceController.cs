@@ -22,12 +22,12 @@ namespace LocationRPG
 
         public void SetTimePassed(double time)
         {
-            this._timePassed = time;
+            _timePassed = time;
         }
 
         public double TimePassed => _timePassed;
 
-        public double CurrentSpeed => this._distance / this._timePassed;
+        public double CurrentSpeed => _distance / _timePassed;
 
         public DistanceController(Location oldLocation, double distanceCovered)
         {

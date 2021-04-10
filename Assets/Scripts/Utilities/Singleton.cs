@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LocationRPG
 {
@@ -17,7 +15,11 @@ namespace LocationRPG
                     _instance = FindObjectOfType<T>();
                 }
 
-                DontDestroyOnLoad(_instance);
+                if (Application.isPlaying)
+                {
+                    DontDestroyOnLoad(_instance);
+                }
+
                 return _instance;
             }
         }

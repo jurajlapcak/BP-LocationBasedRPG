@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace LocationRPG
 {
+
+    //SAVE paths: https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
     public static class SaveSystem
     {
-        public static void SavePlayer(PlayerStats playerStats)
+        public static void SavePlayer(Player player)
         {
             string path = Application.persistentDataPath + "/player.bin";
 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(path);
-            PlayerData playerData = new PlayerData(playerStats);
+            PlayerData playerData = new PlayerData(player);
             bf.Serialize(file, playerData);
             file.Close();
         }

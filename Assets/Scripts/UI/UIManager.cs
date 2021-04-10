@@ -9,7 +9,7 @@ namespace LocationRPG
         [SerializeField] private Text xpText;
         [SerializeField] private Text levelText;
         [SerializeField] private GameObject menu;
-        private Player _currentPlayer = GameManager.Instance.CurrentPlayer;
+        private PlayerController _currentPlayer = GameManager.Instance.CurrentPlayer;
 
         private void Awake()
         {
@@ -26,13 +26,13 @@ namespace LocationRPG
 
         public void updateLevel()
         {
-            levelText.text = _currentPlayer.PlayerStats.Level.ToString();
+            levelText.text = _currentPlayer.Player.Level.ToString();
         }
 
         public void updateXP()
         {
-            xpText.text = _currentPlayer.PlayerStats.Xp + " / " +
-                          _currentPlayer.PlayerStats.RequiredXp;
+            xpText.text = _currentPlayer.Player.Xp + " / " +
+                          _currentPlayer.Player.RequiredXp;
         }
     }
 }

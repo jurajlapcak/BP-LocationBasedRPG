@@ -5,8 +5,9 @@ namespace LocationRPG
 {
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private Player currentPlayer;
-        public Player CurrentPlayer => currentPlayer;
+        [SerializeField] private PlayerController currentPlayer;
+        
+        public PlayerController CurrentPlayer => currentPlayer;
 
         private void Awake()
         {

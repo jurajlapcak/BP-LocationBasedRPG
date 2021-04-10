@@ -8,7 +8,7 @@ namespace LocationRPG
     public class MonsterFactory : Singleton<MonsterFactory>
     {
         [SerializeField] private Monster[] availableMonsters;
-        [SerializeField] private Player player;
+        [SerializeField] private PlayerController player;
         [SerializeField] private float waitTime = 45.0f;
         [SerializeField] private int startingMonsters = 5;
         [SerializeField] private float minSpawnRange = 0.5f;

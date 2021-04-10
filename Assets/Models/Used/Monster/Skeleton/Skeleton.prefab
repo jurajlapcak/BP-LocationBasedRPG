@@ -3029,10 +3029,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12eb2e1af8eac0b4091f37f1e4563558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  attack: 1
-  deffense: 1
-  despawnTime: 180
+  _level: 1
+  _xp: 0
+  _requiredXp: 10
+  _levelBase: 10
+  _hp: 100
+  _defense: 1
+  _attack: 1
 --- !u!65 &5905608517159874718
 BoxCollider:
   m_ObjectHideFlags: 0
