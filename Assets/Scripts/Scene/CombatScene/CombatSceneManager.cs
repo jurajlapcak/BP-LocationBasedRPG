@@ -37,6 +37,7 @@ namespace LocationRPG
             monster.name = "Monster";
             
             //initialize player
+            //TODO: load from disk
             PlayerController player = GameManager.Instance.CurrentPlayer;
             _player = player.Player;
             

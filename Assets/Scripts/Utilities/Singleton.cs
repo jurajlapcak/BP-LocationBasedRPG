@@ -15,11 +15,6 @@ namespace LocationRPG
                     _instance = FindObjectOfType<T>();
                 }
 
-                if (Application.isPlaying)
-                {
-                    DontDestroyOnLoad(_instance);
-                }
-
                 return _instance;
             }
         }
