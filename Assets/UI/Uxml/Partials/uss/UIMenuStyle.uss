@@ -1,0 +1,40 @@
+.menu-panel {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    background-color: whitesmoke;
+}
+
+.menu-button {
+    width: 85%;
+    height: 15%;
+    position: absolute;
+    left: 7.5%;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.options-button {
+    top: 25%;
+    background-color: rgb(200, 200, 200);
+}
+
+.exit-button {
+    top: 55%;
+    background-color: rgb(200, 200, 200);
+}
+
+.button-label {
+    width: 100%;
+    height: 100%;
+    font-size: 500%;
+    -unity-font-style: bold;
+}

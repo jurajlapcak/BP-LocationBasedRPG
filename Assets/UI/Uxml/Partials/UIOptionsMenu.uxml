@@ -1,0 +1,12 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
+    <Style src="uss/UIMenuStyle.uss"/>
+    <Style src="uss/UIOptionsMenuStyle.uss"/>
+    <ui:VisualElement name="screen" class="screen">
+        <ui:VisualElement name="menuPanel" class="menu-panel">
+            <ui:VisualElement name="closePanel" class="close-panel">
+                <ui:Button name="closeButton" class="close-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

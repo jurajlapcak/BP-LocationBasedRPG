@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="../_uss/UIStyle.uss" />
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
     <Style src="uss/UIOverlayStyle.uss" />    
     <ui:VisualElement name="screen" class="screen">
         <ui:VisualElement name="upperPanel" class="upper-panel">

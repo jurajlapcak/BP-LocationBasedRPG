@@ -961,7 +961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 2b6dd6cf1e334f018e03005fabb40ef7, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 7e9c4ac32ad5e6e4eac1e9531cc499fa,
+    type: 3}
   m_SortingOrder: 0
 --- !u!1 &930161825
 GameObject:
@@ -1014,7 +1015,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
