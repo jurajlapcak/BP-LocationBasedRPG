@@ -1,18 +1,29 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
-    <Style src="uss/UIOverlayStyle.uss" />    
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
+    <Style src="uss/UIOverlayStyle.uss"/>
     <ui:VisualElement name="screen" class="screen">
         <ui:VisualElement name="upperPanel" class="upper-panel">
             <ui:VisualElement name="buttonsContainer" class="buttons-container">
-                <ui:Button name="characterButton" class="overlay-button character-button" />
-                <ui:Button name="menuButton" class="overlay-button menu-button" />
+                <ui:Button name="characterButton" class="overlay-button character-button"/>
+                <ui:Button name="menuButton" class="overlay-button menu-button"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">
-            <ui:VisualElement name="nameContainer" class="name-container" />
+            <ui:VisualElement name="nameContainer" class="name-container"/>
             <ui:VisualElement name="barContainer" class="bar-container">
-                <ui:VisualElement name="healthBar" class="status-bar" />
-                <ui:VisualElement name="experienceBar" />
+                <Style src="/Assets/UI/Uxml/Partials/Bar/Bar.uss"/>
+                <ui:VisualElement name="healthBar" class="status-bar health-bar">
+                    <ui:VisualElement name="healthBarFrame" class="health-bar-frame bar-frame"/>
+                    <ui:VisualElement name="healthBarBar" class="health-bar-bar bar-bar">
+                        <ui:VisualElement name="healthBarFilling" class="health-bar-filling bar-filling"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="experienceBar" class="status-bar experience-bar">
+                    <ui:VisualElement name="experienceBarFrame" class="experience-bar-frame bar-frame"/>
+                    <ui:VisualElement name="experienceBarBar" class="experience-bar-bar bar-bar">
+                        <ui:VisualElement name="experienceBarFilling" class="experience-bar-filling bar-filling"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine.UIElements;
 using UnityEngine;
 
 namespace LocationRPG
@@ -9,11 +10,17 @@ namespace LocationRPG
         private Button _menuButton;
         private Button _characterButton;
 
+        private VisualElement _experienceBarFilling;
+        private VisualElement _healthBarFilling;
+
         public Button MenuButton => _menuButton;
         public Button CharacterButton => _characterButton;
 
         protected override void OnEnable()
         {
+            _experienceBarFilling = null;
+            _healthBarFilling = null;
+
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
         }
@@ -24,6 +31,33 @@ namespace LocationRPG
 
             _menuButton = _root.Q<Button>("menuButton");
             _characterButton = _root.Q<Button>("characterButton");
+
+            _experienceBarFilling = _root.Q("experienceBarFilling");
+            _healthBarFilling = _root.Q("healthBarFilling");
+        }
+
+        private void Update()
+        {
+            if (!(_experienceBarFilling is null))
+            {
+                float currentHp = GameManager.Instance.CurrentPlayer.Player.CurrentHp;
+                float maxHp = GameManager.Instance.CurrentPlayer.Player.Hp;
+                UpdateBar(_experienceBarFilling, currentHp, maxHp);
+            }
+
+            if (!(_healthBarFilling is null))
+            {
+                float currentExp = GameManager.Instance.CurrentPlayer.Player.Xp;
+                float maxExp = GameManager.Instance.CurrentPlayer.Player.RequiredXp;
+                UpdateBar(_healthBarFilling, currentExp, maxExp);
+            }
+        }
+
+        private void UpdateBar(VisualElement barFilling, float currentValue, float maxValue)
+        {
+            float ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
+
+            barFilling.transform.scale = new Vector3(ratio, 1, 1);
         }
     }
 }
