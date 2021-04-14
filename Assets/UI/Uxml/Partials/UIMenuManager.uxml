@@ -1,9 +1,0 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="UIMenu" src="UIMenu.uxml" />
-    <ui:Template name="UIOptionsMenu" src="UIOptionsMenu.uxml" />
-    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
-    <LocationRPG.UIMenuManager name="UIMenuManager" class="screen">
-        <ui:Instance template="UIMenu" name="UIMenu" class="screen" />
-        <ui:Instance template="UIOptionsMenu" name="UIOptionsMenu" class="screen" style="display: none;"/>
-    </LocationRPG.UIMenuManager>
-</ui:UXML>

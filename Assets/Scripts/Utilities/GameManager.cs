@@ -13,5 +13,15 @@ namespace LocationRPG
         {
             Assert.IsNotNull(currentPlayer);
         }
+
+        public void Save()
+        {
+            currentPlayer.Player.Save();
+        }
+
+        public void Load()
+        {
+            currentPlayer.Player.Load();
+        }
     }
 }

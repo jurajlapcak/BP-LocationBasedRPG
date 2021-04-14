@@ -10,7 +10,11 @@ namespace LocationRPG
         [SerializeField] protected int _levelBase = 10;
 
         [SerializeField] protected float _hp = 100;
+        [SerializeField] protected float _currentHp = 100;
+
         [SerializeField] protected float _defense = 1;
+        [SerializeField] protected float _currentDefense = 1;
+
         [SerializeField] protected float _attack = 1;
         
         public int Level
@@ -43,6 +47,11 @@ namespace LocationRPG
             set => _hp = value;
         }
 
+        public float CurrentHp
+        {
+            get => _currentHp;
+            set => _currentHp = value;
+        }
         public float Defense
         {
             get => _defense;
@@ -53,6 +62,29 @@ namespace LocationRPG
         {
             get => _attack;
             set => _attack = value;
+        }
+
+        //if return = true then unit has died
+        //          = false then unit didn't die
+        public bool TakeDamage(float damage)
+        {
+            _currentHp -= damage;
+
+            if (_currentHp <= 0)
+            {
+                return true;
+            }
+
+            Debug.Log(_currentHp);
+            
+            return false;
+        }
+
+        public void IncreaseDefense(float defense)
+        {
+            _currentDefense += defense;
+            
+            Debug.Log(_currentDefense);
         }
     }
 }

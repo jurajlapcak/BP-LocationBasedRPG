@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace LocationRPG
 {
-    public class CombatSystem : MonoBehaviour
+    public class CombatSystem : Singleton<CombatSystem>
     {
         [SerializeField] private CombatSceneManager combatSceneManager;
 
@@ -37,28 +37,93 @@ namespace LocationRPG
             if (turn == PLAYER_TURN)
             {
                 _state = CombatState.PLAYERTURN;
-                PlayerTurn();
+                StartCoroutine(PlayerTurn());
             }
             else if (turn == MONSTER_TURN)
             {
                 _state = CombatState.MONSTERTURN;
-                MonsterTurn();
+                StartCoroutine(MonsterTurn());
             }
         }
 
-        private void PlayerTurn()
-        {
-        }
-
-        private void MonsterTurn()
-        {
-        }
-
-        private IEnumerator PlayerAttack()
+        private IEnumerator PlayerTurn()
         {
             yield return new WaitForSeconds(2f);
         }
 
+        private IEnumerator MonsterTurn()
+        {
+            yield return new WaitForSeconds(2f);
+            
+            _state = CombatState.PLAYERTURN;
+            StartCoroutine(PlayerTurn());
+        }
+
+        private IEnumerator PlayerAttack()
+        {
+            //temporary dmg
+            bool hasDied = _monster.TakeDamage(10f);
+            
+            //update UI current hp
+            
+            yield return new WaitForSeconds(2f);
+            
+            //if monster dead then win
+            if (hasDied)
+            {
+                _state = CombatState.WON;
+                EndBattle();
+            }
+            else
+            {
+                //Change state to EnemyTurn
+                _state = CombatState.MONSTERTURN;
+                StartCoroutine(MonsterTurn());
+            }
+        }
+        
+        private IEnumerator PlayerDefend()
+        {
+            _player.IncreaseDefense(2f);
+            
+            yield return new WaitForSeconds(2f);
+            
+            //Change state to EnemyTurn
+            _state = CombatState.MONSTERTURN;
+            StartCoroutine(MonsterTurn());
+        }
+
+        private void EndBattle()
+        {
+            if (_state == CombatState.WON)
+            {
+                Debug.Log("You've WON!");
+            }else if (_state == CombatState.LOST)
+            {
+                Debug.Log("You've LOST!");
+            }
+        }
+        
+        public void OnAttackButton()
+        {
+            Debug.Log(_state);
+            if (_state != CombatState.PLAYERTURN)
+            {
+                return;
+            }
+            StartCoroutine(PlayerAttack());
+        }
+        
+        public void OnDefendButton()
+        {
+            Debug.Log(_state);
+            if (_state != CombatState.PLAYERTURN)
+            {
+                return;
+            }
+            StartCoroutine(PlayerDefend());
+        }
+        
         //generates random turn
         //returns int:  PLAYER_TURN = 0
         //              MONSTER_TURN = 1

@@ -1,4 +1,6 @@
-﻿namespace LocationRPG
+﻿using UnityEngine;
+
+namespace LocationRPG
 {
     public class InteractionManager : SingletonDontDestroy<InteractionManager>
     {
@@ -18,11 +20,17 @@
         public void Lock()
         {
             interactionLock = true;
+#if UNITY_EDITOR
+            Debug.Log("lock");
+#endif
         }
 
         public void Unlock()
         {
             interactionLock = false;
+#if UNITY_EDITOR
+            Debug.Log("unlock");
+#endif
         }
     }
 }
