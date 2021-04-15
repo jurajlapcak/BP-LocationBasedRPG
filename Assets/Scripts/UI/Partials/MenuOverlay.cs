@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace LocationRPG.Partials
+namespace LocationRPG
 {
     [RequireComponent(typeof(UIDocument))]
     public class MenuOverlay : AbstractOverlay
@@ -13,12 +13,12 @@ namespace LocationRPG.Partials
         public Button CloseButton => _closeButton;
         public Button OptionsButton => _optionsButton;
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
         }
-
+        
         public override void Init(GeometryChangedEvent evt)
         {
             _screen = _root.Q("screen");
@@ -28,6 +28,8 @@ namespace LocationRPG.Partials
             _exitButton = _root.Q<Button>("exitButton");
             
             _exitButton.RegisterCallback<ClickEvent>(ev => QuitGame());
+            
+            _isInitialized = true;
         }
         
         void QuitGame()
@@ -37,6 +39,11 @@ namespace LocationRPG.Partials
             GameManager.Instance.Save();
             
             Application.Quit();
+        }
+        
+        public void Test()
+        {
+            Debug.Log("MenuOverlay");
         }
     }
 }

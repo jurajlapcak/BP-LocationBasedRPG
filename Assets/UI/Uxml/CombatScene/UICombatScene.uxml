@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="UIMenuManager" src="/Assets/UI/Uxml/Partials/UIMenuManager.uxml"/>
     <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
     <Style src="/Assets/UI/Uxml/CombatScene/uss/CombatSceneStyle.uss"/>
 
@@ -22,6 +21,5 @@
             </ui:VisualElement>
         </ui:VisualElement>
 
-        <ui:Instance template="UIMenuManager" name="UIMenuManager" class="screen" style="display: none;"/>
     </LocationRPG.CombatUIManager>
 </ui:UXML>

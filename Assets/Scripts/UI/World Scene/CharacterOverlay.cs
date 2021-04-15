@@ -10,16 +10,23 @@ namespace LocationRPG
         
         public Button CloseButton => _closeButton;
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
         }
+        
         public override void Init(GeometryChangedEvent evt)
         {
             _screen = _root.Q("screen");
             _closeButton = _root.Q<Button>("closeButton");
+            
+            _isInitialized = true;
         }
-        
+
+        public void Test()
+        {
+            Debug.Log("CharacterOverlay");
+        }
     }
 }

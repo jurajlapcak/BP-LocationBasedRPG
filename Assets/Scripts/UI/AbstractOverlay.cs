@@ -8,12 +8,13 @@ namespace LocationRPG
     {
         protected VisualElement _root;
         protected VisualElement _screen;
+
+        protected bool _isInitialized = false;
         
         public VisualElement Screen => _screen;
         public VisualElement Root => _root;
-
-        protected abstract void OnEnable();
-
+        public bool IsInitialized => _isInitialized;
+        
         public abstract void Init(GeometryChangedEvent evt);
 
         public void ShowOverlay()

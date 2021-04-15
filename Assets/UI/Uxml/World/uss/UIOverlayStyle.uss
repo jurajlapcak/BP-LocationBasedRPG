@@ -72,14 +72,14 @@
 
 .status-bar {
     width: 80%;
-    height: 30%;
+    height: 20%;
     position: absolute;
     left: 10%;
 }
 
 .health-bar {
     position: absolute;
-    top: 10%;
+    top: 15%;
 }
 
 .experience-bar {

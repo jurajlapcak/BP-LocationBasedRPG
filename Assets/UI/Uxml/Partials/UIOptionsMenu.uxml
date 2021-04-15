@@ -1,5 +1,5 @@
 ﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
     <Style src="uss/UIMenuStyle.uss"/>
     <Style src="uss/UIOptionsMenuStyle.uss"/>
     <ui:VisualElement name="screen" class="screen" style="display: none;">
