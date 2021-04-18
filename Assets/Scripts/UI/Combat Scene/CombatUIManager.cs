@@ -1,71 +1,77 @@
-﻿using System;
-using UnityEditorInternal;
-using UnityEngine.UIElements;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 
 namespace LocationRPG
 {
-    public class CombatUIManager : VisualElement
+    public class CombatUIManager : AbstractUIManager
     {
+        [SerializeField] private CombatOverlay combatOverlay;
+        [SerializeField] private MenuOverlay menuOverlay;
+        [SerializeField] private OptionsOverlay optionsOverlay;
+
         private CombatSystem _combatSystem;
-        
-        private Button _attackButton;
-        private Button _defendButton;
 
-        public new class UxmlFactory : UxmlFactory<CombatUIManager, UxmlTraits>
+
+        private void OnEnable()
         {
+            _isInitilized = false;
+            Assert.IsNotNull(combatOverlay);
+            Assert.IsNotNull(menuOverlay);
+            Assert.IsNotNull(optionsOverlay);
+
+            StartCoroutine(Init());
         }
 
-        public CombatUIManager()
-        {
-            RegisterCallback<GeometryChangedEvent>(Init);
-        }
-
-        void Init(GeometryChangedEvent evt)
+        private IEnumerator Init()
         {
             _combatSystem = CombatSystem.Instance;
-            
-            _attackButton = this.Q<Button>("attackButton");
-            _defendButton = this.Q<Button>("defendButton");
-            
+
+            //https://forum.unity.com/threads/rootvisualelement-is-null-onenable-using-the-built-in-uitoolkit-in-2021-2.1068176/
+            //wait until all roots have been initialized, bug in UI Toolkit
+
+            yield return new WaitUntil(() => combatOverlay.IsInitialized);
+            CombatOverlayInit();
+
+            yield return new WaitUntil(() => menuOverlay.IsInitialized);
+            MenuOverlayInit();
+
+            yield return new WaitUntil(() => optionsOverlay.IsInitialized);
+            OptionsOverlayInit();
+
+            Debug.Log("Initilized all");
+            _isInitilized = true;
+        }
+
+        private void CombatOverlayInit()
+        {
             //AttackButton initialization
-            ButtonInit(_attackButton, _combatSystem.OnAttackButton);
+            ButtonInit(combatOverlay.AttackButton, _combatSystem.OnAttackButton);
             //DefendButton initialization
-            ButtonInit(_defendButton, _combatSystem.OnDefendButton);
-        }
-        
-        private delegate void ButtonEvent();
-        
-        void ButtonInit(Button button, ButtonEvent buttonEvent)
-        {
-
-            button.clickable.activators.Clear();
-
-            button.RegisterCallback<MouseDownEvent>(ev =>
-            {
-                LockInteractions();
-            });
-            button.RegisterCallback<MouseUpEvent>(ev =>
-            {
-                UnlockInteractions();
-                buttonEvent();
-            });
-        }
-        
-        void LockInteractions()
-        {
-            InteractionManager.Instance.Lock();
-#if UNITY_EDITOR
-            Debug.Log("lock");
-#endif
+            ButtonInit(combatOverlay.DefendButton, _combatSystem.OnDefendButton);
         }
 
-        void UnlockInteractions()
+        private void MenuOverlayInit()
         {
-            InteractionManager.Instance.Unlock();
-#if UNITY_EDITOR
-            Debug.Log("unlock");
-#endif
+            ButtonInit(menuOverlay.CloseButton, EnableUIOverlay);
+            ButtonInit(menuOverlay.OptionsButton, EnableOptionsScreen);
+        }
+
+        private void OptionsOverlayInit()
+        {
+            ButtonInit(optionsOverlay.CloseButton, EnableUIOverlay);
+        }
+
+
+        private void EnableUIOverlay()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void EnableOptionsScreen()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

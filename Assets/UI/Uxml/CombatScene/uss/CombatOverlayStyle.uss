@@ -1,20 +1,19 @@
 .upper-panel {
     width: 100%;
-    height: 10%;
+    height: 80%;
     position: absolute;
     top: 0;
-    background-color: rgb(53, 53, 50);
 }
 
 .bottom-panel {
     width: 100%;
-    height: 10%;
+    height: 20%;
     position: absolute;
     bottom: 0;
     background-color: rgb(53, 53, 50);
 }
 
-.buttons-container {
+.buttons-panel {
     flex-direction: row;
     width: 100%;
     height: 40%;
@@ -46,4 +45,25 @@
     font-size: 500%;
     -unity-font-style: bold;
     color: rgb(53, 53, 50);
+}
+.menu-panel {
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+}
+.menu-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    right: 1%;
+    top: 0;
+    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/MoreButton.png');
+    background-color: rgba(228, 228, 228, 0);
+    border-color: rgba(228, 228, 228, 0);
 }

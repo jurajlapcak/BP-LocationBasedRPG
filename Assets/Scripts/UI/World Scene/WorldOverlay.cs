@@ -23,6 +23,7 @@ namespace LocationRPG
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
         }
+        
         public override void Init(GeometryChangedEvent evt)
         {
             _screen = _root.Q("screen");

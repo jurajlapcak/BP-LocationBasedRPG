@@ -5,16 +5,12 @@ using UnityEngine.UIElements;
 
 namespace LocationRPG
 {
-    public class WorldUIManager : MonoBehaviour
+    public class WorldUIManager : AbstractUIManager
     {
         [SerializeField] private CharacterOverlay characterOverlay;
         [SerializeField] private WorldOverlay worldOverlay;
         [SerializeField] private MenuOverlay menuOverlay;
         [SerializeField] private OptionsOverlay optionsOverlay;
-
-        private bool _isInitilized;
-
-        public bool IsInitilized => _isInitilized;
 
         private void OnEnable()
         {
@@ -68,30 +64,6 @@ namespace LocationRPG
         private void OptionsOverlayInit()
         {
             ButtonInit(optionsOverlay.CloseButton, EnableUIOverlay);
-        }
-
-        private delegate void EnableScreen();
-
-        private void ButtonInit(Button button, EnableScreen enableScreen)
-        {
-            button.clickable.activators.Clear();
-
-            button.RegisterCallback<MouseDownEvent>(ev => { LockInteractions(); });
-            button.RegisterCallback<MouseUpEvent>(ev =>
-            {
-                UnlockInteractions();
-                enableScreen();
-            });
-        }
-
-        void LockInteractions()
-        {
-            InteractionManager.Instance.Lock();
-        }
-
-        void UnlockInteractions()
-        {
-            InteractionManager.Instance.Unlock();
         }
 
         void EnableUIOverlay()
