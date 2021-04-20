@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UIElements;
 
 namespace LocationRPG
 {
@@ -13,10 +12,13 @@ namespace LocationRPG
 
         private CombatSystem _combatSystem;
 
-
+        public CombatOverlay CombatOverlay => combatOverlay;
+        public MenuOverlay MenuOverlay => menuOverlay;
+        public OptionsOverlay OptionsOverlay => optionsOverlay;
+        
         private void OnEnable()
         {
-            _isInitilized = false;
+            _isInitialized = false;
             Assert.IsNotNull(combatOverlay);
             Assert.IsNotNull(menuOverlay);
             Assert.IsNotNull(optionsOverlay);
@@ -41,11 +43,13 @@ namespace LocationRPG
             OptionsOverlayInit();
 
             Debug.Log("Initilized all");
-            _isInitilized = true;
+            _isInitialized = true;
         }
 
         private void CombatOverlayInit()
         {
+            //MenuButton initialization
+            ButtonInit(combatOverlay.MenuButton, EnableMenuScreen);
             //AttackButton initialization
             ButtonInit(combatOverlay.AttackButton, _combatSystem.OnAttackButton);
             //DefendButton initialization
@@ -66,12 +70,28 @@ namespace LocationRPG
 
         private void EnableUIOverlay()
         {
-            throw new System.NotImplementedException();
+            UnlockInteractions();
+            combatOverlay.ShowOverlay();
+            menuOverlay.HideOverlay();
+            optionsOverlay.HideOverlay();
         }
 
+        private void EnableMenuScreen()
+        {
+            LockInteractions();
+            combatOverlay.ShowOverlay();
+            menuOverlay.ShowOverlay();
+            optionsOverlay.HideOverlay();
+        }
+        
         private void EnableOptionsScreen()
         {
-            throw new System.NotImplementedException();
+            LockInteractions();
+            combatOverlay.ShowOverlay();
+            menuOverlay.HideOverlay();
+            optionsOverlay.ShowOverlay();
         }
+        
+        
     }
 }

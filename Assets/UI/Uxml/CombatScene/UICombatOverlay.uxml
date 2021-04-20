@@ -7,15 +7,45 @@
             <ui:VisualElement name="menuPanel" class="menu-panel">
                 <ui:Button name="menuButton" class="menu-button"/>
             </ui:VisualElement>
+
+            <Style src="/Assets/UI/Uxml/Partials/Bar/Bar.uss"/>
+
+            <ui:VisualElement name="barsPanel" class="bars-panel">
+
+                <ui:Label text="Player" display-tooltip-when-elided="true" name="Player-name"
+                          class="unit-name player-name"/>
+
+                <ui:VisualElement name="playerBar" class="player-bar status-bar">
+                    <ui:VisualElement name="playerHealthBarFrame" class="health-bar-frame bar-frame"/>
+                    <ui:VisualElement name="playerHealthBarBar" class="health-bar-bar bar-bar">
+                        <ui:VisualElement name="playerHealthBarFilling" class="health-bar-filling bar-filling"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:Label text="0" display-tooltip-when-elided="true" name="playerHp" class="hp-text player-hp"/>
+
+                <ui:Label text="Monster" display-tooltip-when-elided="true" name="Monster-name"
+                          class="unit-name monster-name"/>
+
+                <ui:VisualElement name="monsterBar" class="monster-bar status-bar">
+
+                    <ui:VisualElement name="monsterHealthBarFrame" class="health-bar-frame bar-frame"/>
+                    <ui:VisualElement name="monsterHealthBarBar" class="health-bar-bar bar-bar">
+                        <ui:VisualElement name="monsterHealthBarFilling" class="health-bar-filling bar-filling"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:Label text="0" display-tooltip-when-elided="true" name="monsterHp" class="hp-text monster-hp"/>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">
             <ui:VisualElement class="buttons-panel">
                 <ui:Button name="attackButton" class="action-button attack-button">
-                    <ui:Label text="Attack" display-tooltip-when-elided="true" name="options-text"
+                    <ui:Label text="Attack" display-tooltip-when-elided="true" name="optionsText"
                               class="button-label"/>
                 </ui:Button>
                 <ui:Button name="defendButton" class="action-button defend-button">
-                    <ui:Label text="Defend" display-tooltip-when-elided="true" name="options-text"
+                    <ui:Label text="Defend" display-tooltip-when-elided="true" name="optionsText"
                               class="button-label"/>
                 </ui:Button>
             </ui:VisualElement>

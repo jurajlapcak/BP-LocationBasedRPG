@@ -23,7 +23,7 @@ namespace LocationRPG
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
         }
-        
+
         public override void Init(GeometryChangedEvent evt)
         {
             _screen = _root.Q("screen");
@@ -59,11 +59,6 @@ namespace LocationRPG
             float ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
 
             barFilling.transform.scale = new Vector3(ratio, 1, 1);
-        }
-        
-        public void Test()
-        {
-            Debug.Log("WorldOverlay");
         }
     }
 }

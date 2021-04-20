@@ -13,12 +13,100 @@
     background-color: rgb(53, 53, 50);
 }
 
+.menu-panel {
+    flex-direction: row;
+    width: 100%;
+    height: 7.5%;
+    position: absolute;
+    top: 2.5%;
+    left: 0;
+}
+
+.menu-button {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    right: 1%;
+    top: 0;
+    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/MoreButton.png');
+    background-color: rgba(228, 228, 228, 0);
+    border-color: rgba(228, 228, 228, 0);
+}
+
+.bars-panel {
+    width: 100%;
+    height: 12.5%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+}
+
+.unit-name {
+    font-size: 700%;
+    color: white;
+    position: absolute;
+    top: 15%;
+}
+
+.player-name {
+    position: absolute;
+    left: 5%;
+}
+
+.monster-name {
+    position: absolute;
+    right: 5%;
+}
+
+.hp-text{
+    font-size: 420%;
+    color: white;
+    position: absolute;
+    top: 62%;
+}
+
+.player-hp{
+    left: 7%;
+}
+
+.monster-hp{
+    right: 7%;
+}
+
+.status-bar {
+    height: 30%;
+    width: 40%;
+    position: absolute;
+    top: 60%;
+}
+
+.player-bar {
+    position: absolute;
+    left: 5%;
+}
+
+.monster-bar {
+    position: absolute;
+    left: 55%;
+}
+
 .buttons-panel {
     flex-direction: row;
     width: 100%;
     height: 40%;
     position: absolute;
     bottom: 30%;
+}
+
+.button-label {
+    width: 100%;
+    height: 100%;
+    font-size: 500%;
+    -unity-font-style: bold;
+    color: rgb(53, 53, 50);
 }
 
 .action-button {
@@ -31,39 +119,10 @@
     position: absolute;
 }
 
-.attack-button{
+.attack-button {
     left: 10%;
 }
 
-.defend-button{
+.defend-button {
     left: 60%;
-}
-
-.button-label{
-    width: 100%;
-    height: 100%;
-    font-size: 500%;
-    -unity-font-style: bold;
-    color: rgb(53, 53, 50);
-}
-.menu-panel {
-    flex-direction: row;
-    width: 100%;
-    height: 10%;
-    position: absolute;
-    top: 5%;
-    left: 0;
-}
-.menu-button {
-    -unity-background-scale-mode: scale-to-fit;
-    flex-direction: row;
-    flex-grow: 0;
-    width: 20%;
-    height: 100%;
-    position: absolute;
-    right: 1%;
-    top: 0;
-    background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/MoreButton.png');
-    background-color: rgba(228, 228, 228, 0);
-    border-color: rgba(228, 228, 228, 0);
 }

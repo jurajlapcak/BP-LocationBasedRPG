@@ -5,9 +5,9 @@ namespace LocationRPG
 {
     public abstract class AbstractUIManager : MonoBehaviour
     {
-        protected bool _isInitilized;
+        protected bool _isInitialized;
 
-        public bool IsInitilized => _isInitilized;
+        public bool IsInitialized => _isInitialized;
         
         protected delegate void EnableScreen();
 
@@ -25,11 +25,13 @@ namespace LocationRPG
 
         protected void LockInteractions()
         {
+            Debug.Log("lock");
             InteractionManager.Instance.Lock();
         }
 
         protected void UnlockInteractions()
         {
+            Debug.Log("unlock");
             InteractionManager.Instance.Unlock();
         }
     }

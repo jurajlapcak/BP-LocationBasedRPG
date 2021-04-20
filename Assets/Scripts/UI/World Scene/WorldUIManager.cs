@@ -14,7 +14,7 @@ namespace LocationRPG
 
         private void OnEnable()
         {
-            _isInitilized = false;
+            _isInitialized = false;
             Assert.IsNotNull(characterOverlay);
             Assert.IsNotNull(worldOverlay);
             Assert.IsNotNull(menuOverlay);
@@ -40,7 +40,7 @@ namespace LocationRPG
             OptionsOverlayInit();
 
             Debug.Log("Initilized all");
-            _isInitilized = true;
+            _isInitialized = true;
         }
 
         //GeometryChangedEvent evt

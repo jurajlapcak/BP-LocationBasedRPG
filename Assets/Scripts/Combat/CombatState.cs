@@ -1,6 +1,6 @@
 ﻿namespace LocationRPG
 {
-    public  enum CombatState
+    public enum CombatState
     {
         START,
         PLAYERTURN,

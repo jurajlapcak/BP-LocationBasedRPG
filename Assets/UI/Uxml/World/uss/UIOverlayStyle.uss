@@ -30,16 +30,16 @@
 }
 .menu-panel{
     width: 100%;
-    height: 10%;
+    height: 7.5%;
     position: absolute;
-    top: 5%;
+    top: 2.5%;
     left: 0;
 }
 .menu-button {
     -unity-background-scale-mode: scale-to-fit;
     flex-direction: row;
     flex-grow: 0;
-    width: 20%;
+    width: 10%;
     height: 100%;
     position: absolute;
     right: 1%;

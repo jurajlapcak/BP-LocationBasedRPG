@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
 namespace LocationRPG
@@ -8,16 +8,28 @@ namespace LocationRPG
     public class CombatSystem : Singleton<CombatSystem>
     {
         [SerializeField] private CombatSceneManager combatSceneManager;
+        [SerializeField] private CombatUIManager combatUIManager;
 
         private Unit _player;
         private Unit _monster;
 
         private CombatState _state;
 
+        private bool _isInitialized;
+
         private const int PLAYER_TURN = 0;
         private const int MONSTER_TURN = 1;
 
         public CombatState State => _state;
+
+        public bool IsInitialized => _isInitialized;
+
+        private void OnEnable()
+        {
+            _isInitialized = false;
+            Assert.IsNotNull(combatSceneManager);
+            Assert.IsNotNull(combatUIManager);
+        }
 
         private void Start()
         {
@@ -30,32 +42,47 @@ namespace LocationRPG
             _player = combatSceneManager.Player;
             _monster = combatSceneManager.Monster;
 
+            StartCoroutine(UIInit());
+
             int turn = GenerateRandTurn();
+
+            _isInitialized = true;
 
             yield return new WaitForSeconds(2f);
 
             if (turn == PLAYER_TURN)
             {
-                _state = CombatState.PLAYERTURN;
                 StartCoroutine(PlayerTurn());
             }
             else if (turn == MONSTER_TURN)
             {
-                _state = CombatState.MONSTERTURN;
                 StartCoroutine(MonsterTurn());
             }
         }
 
+        private IEnumerator UIInit()
+        {
+            yield return new WaitUntil(() => combatUIManager.IsInitialized);
+            combatUIManager.CombatOverlay.PlayerHp.text = _player.CurrentHp + "/" + _player.Hp;
+            combatUIManager.CombatOverlay.MonsterHp.text = _monster.CurrentHp + "/" + _monster.Hp;
+        }
+
         private IEnumerator PlayerTurn()
         {
+            _state = CombatState.PLAYERTURN;
+
             yield return new WaitForSeconds(2f);
+
+            //Wait for player action
         }
 
         private IEnumerator MonsterTurn()
         {
+            _state = CombatState.MONSTERTURN;
+
             yield return new WaitForSeconds(2f);
-            
-            _state = CombatState.PLAYERTURN;
+
+            //start PlayerTurn
             StartCoroutine(PlayerTurn());
         }
 
@@ -63,11 +90,18 @@ namespace LocationRPG
         {
             //temporary dmg
             bool hasDied = _monster.TakeDamage(10f);
-            
+            float currentHp = 0f;
             //update UI current hp
-            
+            if (!hasDied)
+            {
+                currentHp = _monster.CurrentHp;
+            }
+
+            combatUIManager.CombatOverlay.MonsterHp.text = currentHp + "/" + _monster.Hp;
+            combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, currentHp, _monster.Hp);
+
             yield return new WaitForSeconds(2f);
-            
+
             //if monster dead then win
             if (hasDied)
             {
@@ -76,20 +110,18 @@ namespace LocationRPG
             }
             else
             {
-                //Change state to EnemyTurn
-                _state = CombatState.MONSTERTURN;
+                //start EnemyTurn
                 StartCoroutine(MonsterTurn());
             }
         }
-        
+
         private IEnumerator PlayerDefend()
         {
             _player.IncreaseDefense(2f);
-            
+
             yield return new WaitForSeconds(2f);
-            
-            //Change state to EnemyTurn
-            _state = CombatState.MONSTERTURN;
+
+            //start EnemyTurn
             StartCoroutine(MonsterTurn());
         }
 
@@ -98,12 +130,13 @@ namespace LocationRPG
             if (_state == CombatState.WON)
             {
                 Debug.Log("You've WON!");
-            }else if (_state == CombatState.LOST)
+            }
+            else if (_state == CombatState.LOST)
             {
                 Debug.Log("You've LOST!");
             }
         }
-        
+
         public void OnAttackButton()
         {
             Debug.Log(_state);
@@ -111,9 +144,10 @@ namespace LocationRPG
             {
                 return;
             }
+
             StartCoroutine(PlayerAttack());
         }
-        
+
         public void OnDefendButton()
         {
             Debug.Log(_state);
@@ -121,9 +155,10 @@ namespace LocationRPG
             {
                 return;
             }
+
             StartCoroutine(PlayerDefend());
         }
-        
+
         //generates random turn
         //returns int:  PLAYER_TURN = 0
         //              MONSTER_TURN = 1
