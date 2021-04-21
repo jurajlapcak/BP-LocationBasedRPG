@@ -20,7 +20,7 @@ namespace LocationRPG
             PlayerController playerController = GameManager.Instance.CurrentPlayer;
             
             //initialize player
-            playerController.Player.Load();
+            playerController.LoadPlayer();
         }
 
         

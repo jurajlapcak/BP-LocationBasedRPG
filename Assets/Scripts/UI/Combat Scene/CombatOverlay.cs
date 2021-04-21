@@ -68,7 +68,6 @@ namespace LocationRPG
             }
             else
             {
-                // float previousLeft = _monsterHealthBar.style.left.value.value;
                 _monsterHealthBar.style.left = new StyleLength(Length.Percent(100-(ratio * 100)));
                 _monsterHealthBar.transform.scale = new Vector3(ratio, 1, 1);
             }

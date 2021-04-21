@@ -36,14 +36,9 @@ namespace LocationRPG
         {
             Debug.Log("Game is exiting");
             
-            GameManager.Instance.Save();
+            GameManager.Instance.CurrentPlayer.SavePlayer();
             
             Application.Quit();
-        }
-        
-        public void Test()
-        {
-            Debug.Log("MenuOverlay");
         }
     }
 }

@@ -722,12 +722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe6c4600f907e64ca01409d01326a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
 --- !u!4 &584573189
 Transform:
   m_ObjectHideFlags: 0
@@ -2604,6 +2598,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6822131558167741671, guid: 98d0dba4de1d3e54296fec1b4336357c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6822131557459532271}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98d0dba4de1d3e54296fec1b4336357c, type: 3}
 --- !u!1 &6822131557459532269 stripped
@@ -2631,6 +2630,18 @@ MonoBehaviour:
   startingMonsters: 5
   minSpawnRange: 0.5
   maxSpawnRange: 5
+--- !u!114 &6822131557459532271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6656739975894224193, guid: 98d0dba4de1d3e54296fec1b4336357c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6822131557459532268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822131557459532269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2d0a9ad390452faad0c71171439082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6822131557459532272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2658,3 +2669,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtractUserHeading: 0
   rotationFollowFactor: 1
+--- !u!114 &6822131557459532274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822131557459532269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2d0a9ad390452faad0c71171439082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 1
+  _xp: 0
+  _requiredXp: 10
+  _levelBase: 10
+  _hp: 100
+  _currentHp: 100
+  _defense: 1
+  _currentDefense: 1
+  _attack: 1

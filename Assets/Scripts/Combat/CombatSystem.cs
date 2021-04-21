@@ -34,10 +34,10 @@ namespace LocationRPG
         private void Start()
         {
             _state = CombatState.START;
-            StartCoroutine(SetupCombat());
+            StartCoroutine(Init());
         }
 
-        private IEnumerator SetupCombat()
+        private IEnumerator Init()
         {
             _player = combatSceneManager.Player;
             _monster = combatSceneManager.Monster;
@@ -88,6 +88,9 @@ namespace LocationRPG
 
         private IEnumerator PlayerAttack()
         {
+            //move to monster
+            //play animation, moving => attacking
+            
             //temporary dmg
             bool hasDied = _monster.TakeDamage(10f);
             float currentHp = 0f;

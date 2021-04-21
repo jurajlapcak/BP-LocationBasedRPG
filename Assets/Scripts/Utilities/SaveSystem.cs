@@ -32,11 +32,9 @@ namespace LocationRPG
 
                 return playerData;
             }
-            else
-            {
-                Debug.Log("Save file not found in " + path);
-                return null;
-            }
+
+            Debug.Log("Save file not found in " + path);
+            return null;
         }
     }
 }
