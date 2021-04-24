@@ -39,18 +39,19 @@ namespace LocationRPG
 
         private void Update()
         {
-            if (!(_experienceBarFilling is null))
-            {
-                float currentHp = GameManager.Instance.CurrentPlayer.Player.CurrentHp;
-                float maxHp = GameManager.Instance.CurrentPlayer.Player.Hp;
-                UpdateBar(_experienceBarFilling, currentHp, maxHp);
-            }
-
             if (!(_healthBarFilling is null))
             {
-                float currentExp = GameManager.Instance.CurrentPlayer.Player.Xp;
-                float maxExp = GameManager.Instance.CurrentPlayer.Player.RequiredXp;
-                UpdateBar(_healthBarFilling, currentExp, maxExp);
+                float currentHp = GameManager.Instance.CurrentPlayer.Unit.CurrentHp;
+                float maxHp = GameManager.Instance.CurrentPlayer.Unit.Hp;
+                
+                UpdateBar(_healthBarFilling, currentHp, maxHp);
+            }
+
+            if (!(_experienceBarFilling is null))
+            {
+                float currentExp = GameManager.Instance.CurrentPlayer.Unit.Xp;
+                float maxExp = GameManager.Instance.CurrentPlayer.Unit.RequiredXp;
+                UpdateBar(_experienceBarFilling, currentExp, maxExp);
             }
         }
 

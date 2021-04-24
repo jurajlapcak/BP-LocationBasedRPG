@@ -24,6 +24,11 @@ namespace LocationRPG
             _isLerping = false;
         }
 
+        public LerpingController(float time)
+        {
+            _time = time;
+            _isLerping = false;
+        }
 
         public void StartLerping(Vector3 startPosition, Vector3 endPosition)
         {

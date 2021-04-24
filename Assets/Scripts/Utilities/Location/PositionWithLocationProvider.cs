@@ -65,7 +65,7 @@ namespace LocationRPG
                     _distanceController.SetTimePassed(1.0f);
                     if (!_lerpingController.IsLerping)
                     {
-                        _currentPlayer.Animation.ToggleIdle();
+                        _currentPlayer.AnimationController.ToggleIdle();
                     }
                 }
                 else
@@ -76,14 +76,14 @@ namespace LocationRPG
                         _lerpingController.StartLerping(transform.position,
                             map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                         _distanceController.SetTimePassed(Time.deltaTime);
-                        _currentPlayer.Animation.ToggleWalking();
+                        _currentPlayer.AnimationController.ToggleWalking();
                     }
                     else
                     {
                         _distanceController.Deny(distance, Time.deltaTime);
                         if (!_lerpingController.IsLerping)
                         {
-                            _currentPlayer.Animation.ToggleIdle();
+                            _currentPlayer.AnimationController.ToggleIdle();
                         }
                     }
                 }

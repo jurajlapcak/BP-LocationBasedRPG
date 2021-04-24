@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
@@ -10,8 +11,8 @@ namespace LocationRPG
         [SerializeField] private CombatSceneManager combatSceneManager;
         [SerializeField] private CombatUIManager combatUIManager;
 
-        private Unit _player;
-        private Unit _monster;
+        private PlayerController _playerController;
+        private MonsterController _monsterController;
 
         private CombatState _state;
 
@@ -24,6 +25,9 @@ namespace LocationRPG
 
         public bool IsInitialized => _isInitialized;
 
+        //observer pattern
+        public static event Action OnInitialize;
+        
         private void OnEnable()
         {
             _isInitialized = false;
@@ -39,16 +43,14 @@ namespace LocationRPG
 
         private IEnumerator Init()
         {
-            _player = combatSceneManager.Player;
-            _monster = combatSceneManager.Monster;
+            _playerController = combatSceneManager.PlayerController;
+            _monsterController = combatSceneManager.MonsterController;
 
             StartCoroutine(UIInit());
 
+            yield return new WaitUntil(() => _isInitialized);
+            
             int turn = GenerateRandTurn();
-
-            _isInitialized = true;
-
-            yield return new WaitForSeconds(2f);
 
             if (turn == PLAYER_TURN)
             {
@@ -63,15 +65,19 @@ namespace LocationRPG
         private IEnumerator UIInit()
         {
             yield return new WaitUntil(() => combatUIManager.IsInitialized);
-            combatUIManager.CombatOverlay.PlayerHp.text = _player.CurrentHp + "/" + _player.Hp;
-            combatUIManager.CombatOverlay.MonsterHp.text = _monster.CurrentHp + "/" + _monster.Hp;
+            yield return new WaitUntil(() => combatSceneManager.IsInitialized);
+            combatUIManager.CombatOverlay.PlayerHp.text = _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
+            combatUIManager.CombatOverlay.MonsterHp.text = _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
+            
+            _isInitialized = true;
+            OnInitialize?.Invoke();
         }
 
         private IEnumerator PlayerTurn()
         {
             _state = CombatState.PLAYERTURN;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
 
             //Wait for player action
         }
@@ -80,7 +86,18 @@ namespace LocationRPG
         {
             _state = CombatState.MONSTERTURN;
 
+            //move to player
+            _monsterController.MoveToPlayer(_playerController.gameObject);
+            _monsterController.AnimationController.ToggleRunning();
+            yield return new WaitForSeconds(1.5f);
+            _monsterController.AnimationController.PlayAttack();
             yield return new WaitForSeconds(2f);
+            _monsterController.AnimationController.ToggleRunning();
+
+            //move back
+            _monsterController.MoveToPlace();            
+            yield return new WaitForSeconds(1.5f);
+            _monsterController.AnimationController.ToggleIdle();
 
             //start PlayerTurn
             StartCoroutine(PlayerTurn());
@@ -90,20 +107,29 @@ namespace LocationRPG
         {
             //move to monster
             //play animation, moving => attacking
-            
+            _playerController.MoveToMonster(_monsterController.gameObject);
+            _playerController.AnimationController.ToggleWalking();
+            yield return new WaitForSeconds(1.5f);
+            _playerController.AnimationController.PlayAttack();
+            yield return new WaitForSeconds(2f);
+            _playerController.AnimationController.ToggleWalking();
+
             //temporary dmg
-            bool hasDied = _monster.TakeDamage(10f);
+            bool hasDied = _monsterController.Unit.TakeDamage(10f);
             float currentHp = 0f;
             //update UI current hp
             if (!hasDied)
             {
-                currentHp = _monster.CurrentHp;
+                currentHp = _monsterController.Unit.CurrentHp;
             }
 
-            combatUIManager.CombatOverlay.MonsterHp.text = currentHp + "/" + _monster.Hp;
-            combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, currentHp, _monster.Hp);
+            combatUIManager.CombatOverlay.MonsterHp.text = currentHp + "/" + _monsterController.Unit.Hp;
+            combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, currentHp, _monsterController.Unit.Hp);
 
-            yield return new WaitForSeconds(2f);
+            //move back
+            _playerController.MoveToPlace();            
+            yield return new WaitForSeconds(1.5f);
+            _playerController.AnimationController.ToggleIdle();
 
             //if monster dead then win
             if (hasDied)
@@ -120,7 +146,7 @@ namespace LocationRPG
 
         private IEnumerator PlayerDefend()
         {
-            _player.IncreaseDefense(2f);
+            _playerController.Unit.IncreaseDefense(2f);
 
             yield return new WaitForSeconds(2f);
 

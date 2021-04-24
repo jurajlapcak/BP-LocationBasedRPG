@@ -6,22 +6,38 @@ using UnityEngine.SceneManagement;
 namespace LocationRPG
 
 {
-    public class CombatSceneManager: MonoBehaviour
+    public class CombatSceneManager: Singleton<CombatSceneManager>
     {
         [SerializeField] private GameObject playerParent;
         [SerializeField] private GameObject monsterParent;
 
+        private PlayerController _playerController;
+        private MonsterController _monsterController;
+        
         private Player _player;
         private Monster _monster;
 
+        private bool _isInitialized;
+        
+        public GameObject PlayerParent => playerParent;
+        public GameObject MonsterParent => monsterParent;
+
+        public PlayerController PlayerController => _playerController;
+        public MonsterController MonsterController => _monsterController;
+        
         public Player Player => _player;
         public Monster Monster => _monster;
+
+        
+        public bool IsInitialized => _isInitialized;
         
         //called when object that has this component is enabled
         public void OnEnable()
         {
             //when scene loaded
+            _isInitialized = false;
             SceneManager.sceneLoaded += SceneInit;
+            CombatSystem.OnInitialize += Test;
         }
 
         //initializes scene
@@ -30,7 +46,9 @@ namespace LocationRPG
             //initialize enemy
             GameObject monster = GameObject.Find("monster-interacted");
             _monster = monster.GetComponent<Monster>();
+            _monsterController = monster.GetComponent<MonsterController>();
             
+            //position monster to it's place
             monster.transform.position =  Vector3.zero;
             monster.transform.rotation =  new Quaternion(0,0,0,0);;
             monster.transform.SetParent(monsterParent.transform, false);
@@ -38,10 +56,15 @@ namespace LocationRPG
             
             //initialize player
             //TODO: load from disk
-            PlayerController player = GameManager.Instance.CurrentPlayer;
-            _player = player.Player;
-            
-            playerParent.GetComponent<PlayerController>().Player = player.Player;
+            _playerController = playerParent.GetComponent<PlayerController>();
+            _playerController.LoadPlayer();
+            _player = _playerController.Unit;
+            _isInitialized = true;
+        }
+
+        private void Test()
+        {
+            Debug.Log("Initialized Combat, scene ready");
         }
     }
 }

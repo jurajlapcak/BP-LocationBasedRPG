@@ -2,10 +2,10 @@
 
 namespace LocationRPG
 {
-    public abstract class AnimationController
+    public class AnimationController
     {
-        protected Animator _animator;
-        protected string CurrentAnimation;
+        private Animator _animator;
+        private string CurrentAnimation;
 
         public AnimationController(Animator _animator, string _currentAnimation)
         {
@@ -13,16 +13,42 @@ namespace LocationRPG
             CurrentAnimation = _currentAnimation;
         }
 
-        public void ChangeAnimation(string animation)
+        private void ChangeAnimation(string animation)
         {
             //do not overloop
             if (CurrentAnimation == animation) return;
 
-            //play new animation
+           //play new animation
             _animator.Play(animation);
 
             //save currently playing animation state
             CurrentAnimation = animation;
+            Debug.Log(CurrentAnimation);
+        }
+        
+        public void ToggleWalking()
+        {
+            ChangeAnimation(AnimationConstants.WALKING);
+        }
+
+        public void ToggleIdle()
+        {
+            ChangeAnimation(AnimationConstants.IDLE);
+        }
+
+        public void ToggleRunning()
+        {
+            ChangeAnimation(AnimationConstants.RUNNING);
+        }
+        
+        public void PlayAttack()
+        {
+            ChangeAnimation(AnimationConstants.ATTACK);
+        }
+
+        public void PlayDying()
+        {
+            ChangeAnimation(AnimationConstants.DYING);
         }
     }
 }

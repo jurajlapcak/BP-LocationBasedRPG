@@ -23,6 +23,7 @@ namespace LocationRPG
             PlayerData playerData = SaveSystem.LoadPlayer();
             if (playerData is null)
             {
+                Debug.Log("Init");
                 Init();
             }
             else

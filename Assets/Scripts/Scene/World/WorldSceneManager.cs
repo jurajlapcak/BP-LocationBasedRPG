@@ -26,7 +26,7 @@ namespace LocationRPG
         
         public override void monsterInterract(GameObject monster)
         {
-            Player player = GameManager.Instance.CurrentPlayer.Player;
+            Player player = GameManager.Instance.CurrentPlayer.Unit;
             List<GameObject> objectsToMove = new List<GameObject>();
             objectsToMove.Add(monster);
             

@@ -3,8 +3,11 @@
     public static class AnimationConstants
     {
         //Constants are the names of corresponding Animations
-        public const string PLAYER_IDLE = "Player Idle";
-        public const string PLAYER_IDLE_FOOTS = "Player Idle Foot";
-        public const string PLAYER_WALKING = "Player Walking";
+        public const string IDLE = "Idle";
+        public const string IDLE_FOOTS = "Idle Foot";
+        public const string WALKING = "Walking";
+        public const string RUNNING = "Running";
+        public const string ATTACK = "Attack";
+        public const string DYING = "Dying";
     }
 }
