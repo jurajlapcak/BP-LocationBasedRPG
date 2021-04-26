@@ -35,17 +35,16 @@ namespace LocationRPG
         {
             ChangeAnimation(AnimationConstants.IDLE);
         }
-
-        public void ToggleRunning()
-        {
-            ChangeAnimation(AnimationConstants.RUNNING);
-        }
         
         public void PlayAttack()
         {
             ChangeAnimation(AnimationConstants.ATTACK);
         }
 
+        public void PlayHit()
+        {
+            ChangeAnimation(AnimationConstants.HIT);
+        }
         public void PlayDying()
         {
             ChangeAnimation(AnimationConstants.DYING);

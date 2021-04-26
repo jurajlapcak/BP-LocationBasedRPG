@@ -5,6 +5,13 @@ namespace LocationRPG
 {
     public class PlayerController : UnitController<Player>
     {
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _beforeAttackTime = 0.1f;
+            _afterAttackTime = 0.5f;
+        }
+
         public void SavePlayer()
         {
             unit.Save();
@@ -15,16 +22,16 @@ namespace LocationRPG
             unit.Load();
         }
 
-        public void MoveToMonster(GameObject monster)
+        public override void MoveToEnemy(GameObject enemy)
         {
-            float z = monster.GetComponent<Collider>().bounds.size.z;
+            float z = enemy.GetComponent<Collider>().bounds.size.z;
 
             float offset = -(z + 0.3f);
 
-            MoveToGameObject(monster, offset);
+            MoveToGameObject(enemy, offset);
         }
-        
-        public void MoveToPlace()
+
+        public override void MoveToPlace()
         {
             MoveToPosition(Vector3.zero);
         }

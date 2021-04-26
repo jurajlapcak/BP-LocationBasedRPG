@@ -8,6 +8,7 @@
         public const string WALKING = "Walking";
         public const string RUNNING = "Running";
         public const string ATTACK = "Attack";
+        public const string HIT = "Hit";
         public const string DYING = "Dying";
     }
 }

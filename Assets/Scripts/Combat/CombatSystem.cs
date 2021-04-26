@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Mapbox.Map;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace LocationRPG
@@ -27,7 +30,7 @@ namespace LocationRPG
 
         //observer pattern
         public static event Action OnInitialize;
-        
+
         private void OnEnable()
         {
             _isInitialized = false;
@@ -46,10 +49,14 @@ namespace LocationRPG
             _playerController = combatSceneManager.PlayerController;
             _monsterController = combatSceneManager.MonsterController;
 
+            Debug.Log("Before: "+_monsterController.BeforeAttackTime);
+            Debug.Log("After: " + _monsterController.AfterAttackTime);
+            Debug.Log("Remaining: "+_monsterController.RemainingTime);
+
             StartCoroutine(UIInit());
 
             yield return new WaitUntil(() => _isInitialized);
-            
+
             int turn = GenerateRandTurn();
 
             if (turn == PLAYER_TURN)
@@ -66,9 +73,11 @@ namespace LocationRPG
         {
             yield return new WaitUntil(() => combatUIManager.IsInitialized);
             yield return new WaitUntil(() => combatSceneManager.IsInitialized);
-            combatUIManager.CombatOverlay.PlayerHp.text = _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
-            combatUIManager.CombatOverlay.MonsterHp.text = _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
-            
+            combatUIManager.CombatOverlay.PlayerHp.text =
+                _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
+            combatUIManager.CombatOverlay.MonsterHp.text =
+                _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
+
             _isInitialized = true;
             OnInitialize?.Invoke();
         }
@@ -76,94 +85,19 @@ namespace LocationRPG
         private IEnumerator PlayerTurn()
         {
             _state = CombatState.PLAYERTURN;
-
             yield return new WaitForSeconds(1.5f);
-
             //Wait for player action
         }
 
         private IEnumerator MonsterTurn()
         {
             _state = CombatState.MONSTERTURN;
-
-            //move to player
-            _monsterController.MoveToPlayer(_playerController.gameObject);
-            _monsterController.AnimationController.ToggleRunning();
-            yield return new WaitForSeconds(1.5f);
-            _monsterController.AnimationController.PlayAttack();
-            yield return new WaitForSeconds(2f);
-            _monsterController.AnimationController.ToggleRunning();
-
-            //move back
-            _monsterController.MoveToPlace();            
-            yield return new WaitForSeconds(1.5f);
-            _monsterController.AnimationController.ToggleIdle();
-
-            //start PlayerTurn
-            StartCoroutine(PlayerTurn());
+            yield return StartCoroutine(MonsterAttack());
         }
 
-        private IEnumerator PlayerAttack()
+        private IEnumerator MonsterAttack()
         {
-            //move to monster
-            //play animation, moving => attacking
-            _playerController.MoveToMonster(_monsterController.gameObject);
-            _playerController.AnimationController.ToggleWalking();
-            yield return new WaitForSeconds(1.5f);
-            _playerController.AnimationController.PlayAttack();
-            yield return new WaitForSeconds(2f);
-            _playerController.AnimationController.ToggleWalking();
-
-            //temporary dmg
-            bool hasDied = _monsterController.Unit.TakeDamage(10f);
-            float currentHp = 0f;
-            //update UI current hp
-            if (!hasDied)
-            {
-                currentHp = _monsterController.Unit.CurrentHp;
-            }
-
-            combatUIManager.CombatOverlay.MonsterHp.text = currentHp + "/" + _monsterController.Unit.Hp;
-            combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, currentHp, _monsterController.Unit.Hp);
-
-            //move back
-            _playerController.MoveToPlace();            
-            yield return new WaitForSeconds(1.5f);
-            _playerController.AnimationController.ToggleIdle();
-
-            //if monster dead then win
-            if (hasDied)
-            {
-                _state = CombatState.WON;
-                EndBattle();
-            }
-            else
-            {
-                //start EnemyTurn
-                StartCoroutine(MonsterTurn());
-            }
-        }
-
-        private IEnumerator PlayerDefend()
-        {
-            _playerController.Unit.IncreaseDefense(2f);
-
-            yield return new WaitForSeconds(2f);
-
-            //start EnemyTurn
-            StartCoroutine(MonsterTurn());
-        }
-
-        private void EndBattle()
-        {
-            if (_state == CombatState.WON)
-            {
-                Debug.Log("You've WON!");
-            }
-            else if (_state == CombatState.LOST)
-            {
-                Debug.Log("You've LOST!");
-            }
+            yield return Attack(_monsterController, _playerController);
         }
 
         public void OnAttackButton()
@@ -186,6 +120,102 @@ namespace LocationRPG
             }
 
             StartCoroutine(PlayerDefend());
+        }
+
+        private IEnumerator PlayerAttack()
+        {
+            yield return Attack(_playerController, _monsterController);
+        }
+
+        private IEnumerator PlayerDefend()
+        {
+            _playerController.Unit.IncreaseDefense(2f);
+
+            yield return new WaitForSeconds(2f);
+
+            //start EnemyTurn
+        }
+
+        private IEnumerator Attack<T, TU>(UnitController<T> unitController, UnitController<TU> enemUnitController)
+            where T : Unit where TU : Unit
+        {
+            //move to enemy
+            unitController.MoveToEnemy(enemUnitController.gameObject);
+            unitController.AnimationController.ToggleWalking();
+            yield return new WaitForSeconds(1.5f);
+
+            //attack
+            unitController.AnimationController.PlayAttack();
+
+            yield return new WaitForSeconds(unitController.BeforeAttackTime);
+            enemUnitController.AnimationController.PlayHit();
+
+            yield return new WaitForSeconds(unitController.AfterAttackTime);
+
+            //temporary dmg
+            bool hasDied = enemUnitController.Unit.TakeDamage(10f);
+            float currentHp = 0f;
+            //update UI current hp
+            if (!hasDied)
+            {
+                currentHp = enemUnitController.Unit.CurrentHp;
+            }
+
+            if (_state == CombatState.PLAYERTURN)
+            {
+                combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, currentHp, enemUnitController.Unit.Hp);
+            }
+            else if (_state == CombatState.MONSTERTURN)
+            {
+                combatUIManager.CombatOverlay.UpdateBar(CombatBars.PLAYERBAR, currentHp, enemUnitController.Unit.Hp);
+            }
+
+            //wait remaining time
+            yield return new WaitForSeconds(unitController.RemainingTime);
+
+            //move back
+            unitController.MoveToPlace();
+            unitController.AnimationController.ToggleWalking();
+            yield return new WaitForSeconds(1.5f);
+
+            unitController.AnimationController.ToggleIdle();
+            
+            switch (_state)
+            {
+                case CombatState.PLAYERTURN :
+                    if (hasDied)
+                    {
+                        _state = CombatState.WON;
+                        EndBattle();
+                        break;
+                    }
+                    StartCoroutine(MonsterTurn());
+                    break;
+                case CombatState.MONSTERTURN :
+                    if (hasDied)
+                    {
+                        _state = CombatState.LOST;
+                        EndBattle();
+                        break;
+                    }
+                    StartCoroutine(PlayerTurn());
+                    break;
+                default:
+                    Debug.Log("Weird state");
+                    break;
+            }
+        }
+        
+        private void EndBattle()
+        {
+            if (_state == CombatState.WON)
+            {
+                Debug.Log("You've WON!");
+            }
+            else if (_state == CombatState.LOST)
+            {
+                Debug.Log("You've LOST!");
+            }
         }
 
         //generates random turn

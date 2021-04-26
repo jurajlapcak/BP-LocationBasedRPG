@@ -13,6 +13,22 @@ namespace LocationRPG
         protected LerpingController _lerpingController;
         protected bool _isMoving;
 
+        protected float _attackTime = 3f;
+        protected float _beforeAttackTime = 1f;
+        protected float _afterAttackTime = 1f;
+
+        public float AttackTime => _attackTime;
+        public float BeforeAttackTime => _beforeAttackTime;
+        public float AfterAttackTime => _afterAttackTime;
+        public float RemainingTime
+        {
+            get
+            {
+                float result = _attackTime - _beforeAttackTime - _afterAttackTime;
+                return (result < 0f) ? 0f : result;
+            }
+        }
+
         public T Unit
         {
             get => unit;
@@ -21,7 +37,7 @@ namespace LocationRPG
         
         public AnimationController AnimationController => _animationController;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             Assert.IsNotNull(unitModel);
             Assert.IsNotNull(unit);
@@ -44,6 +60,14 @@ namespace LocationRPG
                 gameObject.transform.position = _lerpingController.Lerp();
             }
         }
+
+        public virtual void MoveToEnemy(GameObject enemy)
+        {
+        }
+        
+        public virtual void MoveToPlace()
+        {
+        }
         
         protected void MoveToGameObject(GameObject monster, float offset)
         {
@@ -54,6 +78,7 @@ namespace LocationRPG
 
         protected void MoveToPosition(Vector3 position)
         {
+            //Player position in combat scene is (0, 0, 0)
             _lerpingController.StartLerping(gameObject.transform.position, position);
         }
     }
