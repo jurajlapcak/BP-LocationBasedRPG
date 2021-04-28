@@ -146,7 +146,7 @@ namespace LocationRPG
             //move to enemy
             unitController.MoveToEnemy(enemUnitController.gameObject);
             unitController.AnimationController.ToggleWalking();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(UnitController<Unit>.MoveTime);
 
             //attack
             unitController.AnimationController.PlayAttack();
@@ -180,7 +180,7 @@ namespace LocationRPG
             //move back
             unitController.MoveToPlace();
             unitController.AnimationController.ToggleWalking();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(UnitController<Unit>.MoveTime);
 
             unitController.AnimationController.ToggleIdle();
 
@@ -216,10 +216,12 @@ namespace LocationRPG
         {
             if (_state == CombatState.WON)
             {
+                combatUIManager.ResultOverlay.ShowWin();
                 Debug.Log("You've WON!");
             }
             else if (_state == CombatState.LOST)
             {
+                combatUIManager.ResultOverlay.ShowLose();
                 Debug.Log("You've LOST!");
             }
         }

@@ -5,13 +5,13 @@
         <ui:VisualElement name="screen" class="screen title-panel">
             <ui:VisualElement name="titlePanel" class="screen title-panel">
                 <ui:VisualElement name="buttonsPanel" class="buttons-panel">
-                    <ui:Button name="playButton" class="title-button">
+                    <ui:Button name="playButton" class="title-button button">
                         <ui:Label name="play-text" text="Play" class="title-text" />
                     </ui:Button>
-                    <ui:Button name="optionsButton" class="title-button">
+                    <ui:Button name="optionsButton" class="title-button button">
                         <ui:Label name="options-text" text="Options" class="title-text" />
                     </ui:Button>
-                    <ui:Button name="exitButton" class="title-button">
+                    <ui:Button name="exitButton" class="title-button button">
                         <ui:Label name="exit-text" text="Exit" class="title-text" />
                     </ui:Button>
                 </ui:VisualElement>

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
 namespace LocationRPG
 {
@@ -9,12 +10,15 @@ namespace LocationRPG
         [SerializeField] private CombatOverlay combatOverlay;
         [SerializeField] private MenuOverlay menuOverlay;
         [SerializeField] private OptionsOverlay optionsOverlay;
+        [SerializeField] private ResultOverlay resultOverlay;
 
         private CombatSystem _combatSystem;
 
         public CombatOverlay CombatOverlay => combatOverlay;
         public MenuOverlay MenuOverlay => menuOverlay;
         public OptionsOverlay OptionsOverlay => optionsOverlay;
+
+        public ResultOverlay ResultOverlay => resultOverlay; 
         
         private void OnEnable()
         {
@@ -22,6 +26,7 @@ namespace LocationRPG
             Assert.IsNotNull(combatOverlay);
             Assert.IsNotNull(menuOverlay);
             Assert.IsNotNull(optionsOverlay);
+            Assert.IsNotNull(resultOverlay);
 
             StartCoroutine(Init());
         }
@@ -42,7 +47,10 @@ namespace LocationRPG
             yield return new WaitUntil(() => optionsOverlay.IsInitialized);
             OptionsOverlayInit();
 
-            Debug.Log("Initilized all");
+            yield return new WaitUntil(() => resultOverlay.IsInitialized);
+            OptionsOverlayInit();
+            
+            Debug.Log("Initialized all overlays");
             _isInitialized = true;
         }
 
@@ -91,7 +99,5 @@ namespace LocationRPG
             menuOverlay.HideOverlay();
             optionsOverlay.ShowOverlay();
         }
-        
-        
     }
 }

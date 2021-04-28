@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LocationRPG
 {
@@ -10,13 +11,19 @@ namespace LocationRPG
         [SerializeField] protected int _levelBase = 10;
 
         [SerializeField] protected float _hp = 100;
-        [SerializeField] protected float _currentHp = 100;
+        [SerializeField] protected float _currentHp;
 
         [SerializeField] protected float _defense = 1;
-        [SerializeField] protected float _currentDefense = 1;
+        [SerializeField] protected float _currentDefense;
 
         [SerializeField] protected float _attack = 1;
-        
+
+        private void OnEnable()
+        {
+            _currentHp = _hp;
+            _currentDefense = _defense;
+        }
+
         public int Level
         {
             get => _level;

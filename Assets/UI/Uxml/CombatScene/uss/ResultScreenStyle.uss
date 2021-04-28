@@ -1,0 +1,41 @@
+.black-screen {
+    background-color: black;
+    opacity: 0.85;
+}
+
+.main-panel{
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    left: 0;
+}
+
+.result-container{
+    height: 10%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 25%;
+    -unity-text-align: middle-center;
+}
+
+.result-text{
+    font-size: 1000%;
+    color: white;
+}
+
+.continue-container{
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    -unity-text-align: middle-center;
+}
+
+.text{
+    margin-top: 5%;
+    font-size: 600%;
+    color: #999999;
+}

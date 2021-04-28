@@ -13,6 +13,8 @@ namespace LocationRPG
         protected LerpingController _lerpingController;
         protected bool _isMoving;
 
+        public const float MoveTime = 0.5f; 
+        
         protected float _attackTime = 3f;
         protected float _beforeAttackTime = 1f;
         protected float _afterAttackTime = 1f;
@@ -49,7 +51,7 @@ namespace LocationRPG
                 AnimationConstants.IDLE);
             // if (SceneManager.GetActiveScene().name == SceneNameConstants.COMBAT_SCENE)
             // {
-                _lerpingController = new LerpingController(1.5f);
+                _lerpingController = new LerpingController(MoveTime);
             // }
         }
 

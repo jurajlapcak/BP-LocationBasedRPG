@@ -24,10 +24,5 @@ namespace LocationRPG
             
             _isInitialized = true;
         }
-        
-        public void Test()
-        {
-            Debug.Log("OptionsOverlay");
-        }
     }
 }

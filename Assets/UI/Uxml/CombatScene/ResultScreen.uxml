@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
+    <Style src="uss/ResultScreenStyle.uss"/>
+
+    <ui:VisualElement name="screen" class="screen" style="display: none">
+        <ui:VisualElement name="black-screen" class="screen black-screen"/>
+
+        <ui:VisualElement name="main-panel" class="main-panel">
+            <ui:VisualElement name="result-container" class="result-container">
+                <ui:Label text="YOU WIN!" name="win-text" class="result-text" style="display: none"/>
+                <ui:Label text="YOU LOSE!" name="lose-text" class="result-text" style="display: none"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="continue-container" class="continue-container">
+                <ui:Label text="Tap to continue.." name="continue-text" class="text"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>
