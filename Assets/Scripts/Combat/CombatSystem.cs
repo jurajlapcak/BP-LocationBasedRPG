@@ -18,6 +18,7 @@ namespace LocationRPG
         private MonsterController _monsterController;
 
         private CombatState _state;
+        private AttackState _attackState;
 
         private bool _isInitialized;
 
@@ -41,6 +42,7 @@ namespace LocationRPG
         private void Start()
         {
             _state = CombatState.START;
+            _attackState = AttackState.NONE;
             StartCoroutine(Init());
         }
 
@@ -49,9 +51,9 @@ namespace LocationRPG
             _playerController = combatSceneManager.PlayerController;
             _monsterController = combatSceneManager.MonsterController;
 
-            Debug.Log("Before: "+_monsterController.BeforeAttackTime);
+            Debug.Log("Before: " + _monsterController.BeforeAttackTime);
             Debug.Log("After: " + _monsterController.AfterAttackTime);
-            Debug.Log("Remaining: "+_monsterController.RemainingTime);
+            Debug.Log("Remaining: " + _monsterController.RemainingTime);
 
             StartCoroutine(UIInit());
 
@@ -97,17 +99,19 @@ namespace LocationRPG
 
         private IEnumerator MonsterAttack()
         {
+            _attackState = AttackState.MONSTERATTACKING;
             yield return Attack(_monsterController, _playerController);
         }
 
         public void OnAttackButton()
         {
             Debug.Log(_state);
-            if (_state != CombatState.PLAYERTURN)
+            if (_state != CombatState.PLAYERTURN || _attackState == AttackState.PLAYERATTACKING)
             {
                 return;
             }
 
+            _attackState = AttackState.PLAYERATTACKING;
             StartCoroutine(PlayerAttack());
         }
 
@@ -132,7 +136,7 @@ namespace LocationRPG
             _playerController.Unit.IncreaseDefense(2f);
 
             yield return new WaitForSeconds(2f);
-
+            
             //start EnemyTurn
         }
 
@@ -179,25 +183,27 @@ namespace LocationRPG
             yield return new WaitForSeconds(1.5f);
 
             unitController.AnimationController.ToggleIdle();
-            
+
             switch (_state)
             {
-                case CombatState.PLAYERTURN :
+                case CombatState.PLAYERTURN:
                     if (hasDied)
                     {
                         _state = CombatState.WON;
                         EndBattle();
                         break;
                     }
+
                     StartCoroutine(MonsterTurn());
                     break;
-                case CombatState.MONSTERTURN :
+                case CombatState.MONSTERTURN:
                     if (hasDied)
                     {
                         _state = CombatState.LOST;
                         EndBattle();
                         break;
                     }
+
                     StartCoroutine(PlayerTurn());
                     break;
                 default:
@@ -205,7 +211,7 @@ namespace LocationRPG
                     break;
             }
         }
-        
+
         private void EndBattle()
         {
             if (_state == CombatState.WON)

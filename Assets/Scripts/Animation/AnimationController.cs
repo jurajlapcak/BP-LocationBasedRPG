@@ -23,7 +23,6 @@ namespace LocationRPG
 
             //save currently playing animation state
             CurrentAnimation = animation;
-            Debug.Log(CurrentAnimation);
         }
         
         public void ToggleWalking()
