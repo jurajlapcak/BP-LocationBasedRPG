@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 namespace LocationRPG
 {
@@ -48,8 +50,8 @@ namespace LocationRPG
             OptionsOverlayInit();
 
             yield return new WaitUntil(() => resultOverlay.IsInitialized);
-            OptionsOverlayInit();
-            
+            ResultOverlayInit();
+
             Debug.Log("Initialized all overlays");
             _isInitialized = true;
         }
@@ -75,6 +77,15 @@ namespace LocationRPG
             ButtonInit(optionsOverlay.CloseButton, EnableUIOverlay);
         }
 
+        private void ResultOverlayInit()
+        {
+            resultOverlay.Screen.RegisterCallback<MouseDownEvent>(ev => { LockInteractions(); });
+            resultOverlay.Screen.RegisterCallback<MouseUpEvent>(ev =>
+            {
+                UnlockInteractions();
+                ChangeToWorldScene();
+            });
+        }
 
         private void EnableUIOverlay()
         {
@@ -98,6 +109,11 @@ namespace LocationRPG
             combatOverlay.ShowOverlay();
             menuOverlay.HideOverlay();
             optionsOverlay.ShowOverlay();
+        }
+
+        private void ChangeToWorldScene()
+        {
+            SceneSwitchManager.Instance.SwitchScene(SceneNames.WORLD_SCENE, null);
         }
     }
 }

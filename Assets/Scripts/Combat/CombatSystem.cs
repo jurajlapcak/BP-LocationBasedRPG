@@ -48,12 +48,10 @@ namespace LocationRPG
 
         private IEnumerator Init()
         {
+            yield return new WaitUntil(() => CombatSceneManager.Instance.IsInitialized);
+            
             _playerController = combatSceneManager.PlayerController;
             _monsterController = combatSceneManager.MonsterController;
-
-            Debug.Log("Before: " + _monsterController.BeforeAttackTime);
-            Debug.Log("After: " + _monsterController.AfterAttackTime);
-            Debug.Log("Remaining: " + _monsterController.RemainingTime);
 
             StartCoroutine(UIInit());
 
@@ -105,7 +103,6 @@ namespace LocationRPG
 
         public void OnAttackButton()
         {
-            Debug.Log(_state);
             if (_state != CombatState.PLAYERTURN || _attackState == AttackState.PLAYERATTACKING)
             {
                 return;
@@ -117,7 +114,6 @@ namespace LocationRPG
 
         public void OnDefendButton()
         {
-            Debug.Log(_state);
             if (_state != CombatState.PLAYERTURN)
             {
                 return;
@@ -134,7 +130,7 @@ namespace LocationRPG
         private IEnumerator PlayerDefend()
         {
             _playerController.Unit.IncreaseDefense(2f);
-
+            Debug.Log(_playerController.Unit.Defense);
             yield return new WaitForSeconds(2f);
             
             //start EnemyTurn
@@ -163,6 +159,10 @@ namespace LocationRPG
             if (!hasDied)
             {
                 currentHp = enemUnitController.Unit.CurrentHp;
+            }
+            else
+            {
+                enemUnitController.AnimationController.PlayDying();
             }
 
             if (_state == CombatState.PLAYERTURN)
@@ -217,12 +217,11 @@ namespace LocationRPG
             if (_state == CombatState.WON)
             {
                 combatUIManager.ResultOverlay.ShowWin();
-                Debug.Log("You've WON!");
+                
             }
             else if (_state == CombatState.LOST)
             {
                 combatUIManager.ResultOverlay.ShowLose();
-                Debug.Log("You've LOST!");
             }
         }
 

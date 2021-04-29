@@ -22,7 +22,7 @@ namespace LocationRPG
         public override void Init(GeometryChangedEvent evt)
         {
             _screen = _root.Q("screen");
-
+            
             _loseText = _root.Q<Label>("lose-text");
             _winText = _root.Q<Label>("win-text");
 

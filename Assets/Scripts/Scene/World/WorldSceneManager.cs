@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace LocationRPG
 {
-    public class WorldSceneManager : RPGSceneManager
+    public class WorldSceneManager : Singleton<WorldSceneManager>
     {
         
         //called when object that has this component is enabled
@@ -24,7 +24,7 @@ namespace LocationRPG
         }
 
         
-        public override void monsterInterract(GameObject monster)
+        public void MonsterInteract(GameObject monster)
         {
             Player player = GameManager.Instance.CurrentPlayer.Unit;
             List<GameObject> objectsToMove = new List<GameObject>();
@@ -32,7 +32,7 @@ namespace LocationRPG
             
             player.Save();
             
-            SceneSwitchManager.Instance.SwitchScene(SceneNameConstants.COMBAT_SCENE, objectsToMove);
+            SceneSwitchManager.Instance.SwitchScene(SceneNames.COMBAT_SCENE, objectsToMove);
         }
     }
 }

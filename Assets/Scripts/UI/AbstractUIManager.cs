@@ -25,13 +25,11 @@ namespace LocationRPG
 
         protected void LockInteractions()
         {
-            Debug.Log("lock");
             InteractionManager.Instance.Lock();
         }
 
         protected void UnlockInteractions()
         {
-            Debug.Log("unlock");
             InteractionManager.Instance.Unlock();
         }
     }

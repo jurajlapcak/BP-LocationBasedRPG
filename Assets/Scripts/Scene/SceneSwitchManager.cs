@@ -22,11 +22,18 @@ namespace LocationRPG
             AsyncOperation sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
 
-            SceneManager.sceneLoaded += (scene, mode) => { SceneManager.SetActiveScene(sceneToLoad); };
 
-            foreach (GameObject gameObj in objectsToMove)
+            SceneManager.sceneLoaded += (scene, mode) =>
             {
-                SceneManager.MoveGameObjectToScene(gameObj, sceneToLoad);
+                SceneManager.SetActiveScene(scene);
+            };
+
+            if (objectsToMove != null)
+            {
+                foreach (GameObject gameObj in objectsToMove)
+                {
+                    SceneManager.MoveGameObjectToScene(gameObj, sceneToLoad);
+                }
             }
 
             while (!sceneAsync.isDone)
