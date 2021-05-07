@@ -49,7 +49,7 @@ namespace LocationRPG
         private IEnumerator Init()
         {
             yield return new WaitUntil(() => CombatSceneManager.Instance.IsInitialized);
-            
+
             _playerController = combatSceneManager.PlayerController;
             _monsterController = combatSceneManager.MonsterController;
 
@@ -73,10 +73,16 @@ namespace LocationRPG
         {
             yield return new WaitUntil(() => combatUIManager.IsInitialized);
             yield return new WaitUntil(() => combatSceneManager.IsInitialized);
-            combatUIManager.CombatOverlay.PlayerHp.text =
-                _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
-            combatUIManager.CombatOverlay.MonsterHp.text =
-                _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
+
+            combatUIManager.CombatOverlay.UpdateBar(CombatBars.PLAYERBAR, _playerController.Unit.CurrentHp,
+                _playerController.Unit.Hp);
+            combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, _monsterController.Unit.CurrentHp,
+                _monsterController.Unit.Hp);
+            //
+            // combatUIManager.CombatOverlay.PlayerHp.text =
+            //     _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
+            // combatUIManager.CombatOverlay.MonsterHp.text =
+            //     _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
 
             _isInitialized = true;
             OnInitialize?.Invoke();
@@ -130,9 +136,8 @@ namespace LocationRPG
         private IEnumerator PlayerDefend()
         {
             _playerController.Unit.IncreaseDefense(2f);
-            Debug.Log(_playerController.Unit.Defense);
             yield return new WaitForSeconds(2f);
-            
+
             //start EnemyTurn
         }
 
@@ -217,7 +222,6 @@ namespace LocationRPG
             if (_state == CombatState.WON)
             {
                 combatUIManager.ResultOverlay.ShowWin();
-                
             }
             else if (_state == CombatState.LOST)
             {

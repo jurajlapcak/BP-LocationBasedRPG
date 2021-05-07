@@ -108,3 +108,13 @@
     position: absolute;
     top: 50%;
 }
+
+.hp-text{
+    left: 5%;
+    top: 18%;
+}
+
+.xp-text{
+    left: 5%;
+    top: 53%;
+}

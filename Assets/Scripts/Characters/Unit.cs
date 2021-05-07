@@ -5,18 +5,18 @@ namespace LocationRPG
 {
     public class Unit : MonoBehaviour
     {
-        [SerializeField] protected int _level = 1;
-        [SerializeField] protected int _xp = 0;
-        [SerializeField] protected int _requiredXp = 10;
-        [SerializeField] protected int _levelBase = 10;
+        [SerializeField] protected int _level;
+        [SerializeField] protected int _xp;
+        [SerializeField] protected int _requiredXp;
+        [SerializeField] protected int _levelBase;
 
-        [SerializeField] protected float _hp = 100;
+        [SerializeField] protected float _hp;
         [SerializeField] protected float _currentHp;
 
-        [SerializeField] protected float _defense = 1;
+        [SerializeField] protected float _defense;
         [SerializeField] protected float _currentDefense;
 
-        [SerializeField] protected float _attack = 1;
+        [SerializeField] protected float _attack;
 
         private void OnEnable()
         {

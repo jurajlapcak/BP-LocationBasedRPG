@@ -63,31 +63,26 @@ namespace LocationRPG
             float rotationAngle = location.DeviceOrientation;
 
             // 'Orientation' changes all the time, pass through immediately
+            if (rotationAngle > location.UserHeading)
             {
-                if (subtractUserHeading)
-                {
-                    if (rotationAngle > location.UserHeading)
-                    {
-                        rotationAngle = 360 - (rotationAngle - location.UserHeading);
-                    }
-                    else
-                    {
-                        rotationAngle = location.UserHeading - rotationAngle + 360;
-                    }
-
-                    if (rotationAngle < 0)
-                    {
-                        rotationAngle += 360;
-                    }
-
-                    if (rotationAngle >= 360)
-                    {
-                        rotationAngle -= 360;
-                    }
-                }
-
-                _targetRotation = Quaternion.Euler(NewEulerAngles(rotationAngle));
+                rotationAngle = 360 - (rotationAngle - location.UserHeading);
             }
+            else
+            {
+                rotationAngle = location.UserHeading - rotationAngle + 360;
+            }
+
+            if (rotationAngle < 0)
+            {
+                rotationAngle += 360;
+            }
+
+            if (rotationAngle >= 360)
+            {
+                rotationAngle -= 360;
+            }
+
+            _targetRotation = Quaternion.Euler(NewEulerAngles(rotationAngle));
         }
 
         private Vector3 NewEulerAngles(float newAngle)

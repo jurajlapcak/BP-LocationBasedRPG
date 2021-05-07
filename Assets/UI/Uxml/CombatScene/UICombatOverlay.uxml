@@ -22,7 +22,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
 
-                <ui:Label text="0" display-tooltip-when-elided="true" name="playerHp" class="hp-text player-hp"/>
+                <ui:Label text="Loading" display-tooltip-when-elided="true" name="playerHp" class="bar-text player-hp"/>
 
                 <ui:Label text="Monster" display-tooltip-when-elided="true" name="Monster-name"
                           class="unit-name monster-name"/>
@@ -35,16 +35,16 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
 
-                <ui:Label text="0" display-tooltip-when-elided="true" name="monsterHp" class="hp-text monster-hp"/>
+                <ui:Label text="Loading" display-tooltip-when-elided="true" name="monsterHp" class="bar-text monster-hp"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">
             <ui:VisualElement class="buttons-panel">
-                <ui:Button name="attackButton" class="action-button attack-button">
+                <ui:Button name="attackButton" class="action-button attack-button button">
                     <ui:Label text="Attack" display-tooltip-when-elided="true" name="optionsText"
                               class="button-label"/>
                 </ui:Button>
-                <ui:Button name="defendButton" class="action-button defend-button">
+                <ui:Button name="defendButton" class="action-button defend-button button">
                     <ui:Label text="Defend" display-tooltip-when-elided="true" name="optionsText"
                               class="button-label"/>
                 </ui:Button>

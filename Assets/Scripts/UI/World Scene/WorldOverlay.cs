@@ -9,16 +9,21 @@ namespace LocationRPG
         private Button _menuButton;
         private Button _characterButton;
 
-        private VisualElement _experienceBarFilling;
-        private VisualElement _healthBarFilling;
+        private VisualElement _experienceBar;
+        private VisualElement _healthBar;
 
+        private Label _hp;
+        private Label _xp;
+        
         public Button MenuButton => _menuButton;
         public Button CharacterButton => _characterButton;
 
+        public Label Hp => _hp;
+        public Label Xp => _xp;
         private void OnEnable()
         {
-            _experienceBarFilling = null;
-            _healthBarFilling = null;
+            _experienceBar = null;
+            _healthBar = null;
 
             _root = GetComponent<UIDocument>().rootVisualElement;
             _root.RegisterCallback<GeometryChangedEvent>(Init);
@@ -31,34 +36,38 @@ namespace LocationRPG
             _menuButton = _root.Q<Button>("menuButton");
             _characterButton = _root.Q<Button>("characterButton");
 
-            _experienceBarFilling = _root.Q("experienceBarFilling");
-            _healthBarFilling = _root.Q("healthBarFilling");
+            _experienceBar = _root.Q("experienceBarBar");
+            _healthBar = _root.Q("healthBarBar");
 
+            _hp = _root.Q<Label>("hp");
+            _xp = _root.Q<Label>("xp");
+            
             _isInitialized = true;
         }
 
         private void Update()
         {
-            if (!(_healthBarFilling is null))
+            if (!(_healthBar is null))
             {
                 float currentHp = GameManager.Instance.CurrentPlayer.Unit.CurrentHp;
                 float maxHp = GameManager.Instance.CurrentPlayer.Unit.Hp;
                 
-                UpdateBar(_healthBarFilling, currentHp, maxHp);
+                UpdateBar(_healthBar, _hp, currentHp, maxHp);
             }
 
-            if (!(_experienceBarFilling is null))
+            if (!(_experienceBar is null))
             {
                 float currentExp = GameManager.Instance.CurrentPlayer.Unit.Xp;
                 float maxExp = GameManager.Instance.CurrentPlayer.Unit.RequiredXp;
-                UpdateBar(_experienceBarFilling, currentExp, maxExp);
+                UpdateBar(_experienceBar, _xp, currentExp, maxExp);
             }
         }
 
-        private void UpdateBar(VisualElement barFilling, float currentValue, float maxValue)
+        private void UpdateBar(VisualElement barFilling, Label label, float currentValue, float maxValue)
         {
             float ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
 
+            label.text = currentValue + "/" + maxValue;
             barFilling.transform.scale = new Vector3(ratio, 1, 1);
         }
     }

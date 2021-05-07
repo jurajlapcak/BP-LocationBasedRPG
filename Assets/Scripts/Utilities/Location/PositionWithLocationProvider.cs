@@ -1,6 +1,9 @@
-﻿using Mapbox.Unity.Map;
+﻿using System;
+using Mapbox.Unity.Map;
 using Mapbox.Unity.Location;
 using UnityEngine;
+
+using UnityEngine.UI;
 
 namespace LocationRPG
 {
@@ -16,6 +19,9 @@ namespace LocationRPG
         //lerping controller for smooth transition between positions
         private LerpingController _lerpingController;
 
+        //testing
+        private Text latText;
+        private Text lngText;
 
         bool _isInitialized;
         private AbstractMap map;
@@ -39,6 +45,9 @@ namespace LocationRPG
         private void Awake()
         {
             _currentPlayer = GameManager.Instance.CurrentPlayer;
+            latText = GameObject.Find("lat").GetComponent<Text>();
+            lngText = GameObject.Find("lng").GetComponent<Text>();
+            
         }
 
         void Start()
@@ -59,6 +68,9 @@ namespace LocationRPG
             {
                 Location newLocation = LocationProvider.CurrentLocation;
 
+                latText.text = newLocation.LatitudeLongitude.x.ToString("F6");
+                lngText.text = newLocation.LatitudeLongitude.y.ToString("F6");
+                
                 float distance = (float) _distanceController.DistanceUpdate(newLocation);
                 if (distance == 0)
                 {

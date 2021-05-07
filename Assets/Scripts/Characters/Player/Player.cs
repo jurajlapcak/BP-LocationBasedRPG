@@ -6,7 +6,6 @@ namespace LocationRPG
 {
     public class Player : Unit
     {
-        //TODO: inventory
 
         //TODO: init
         public void Init()
@@ -23,7 +22,6 @@ namespace LocationRPG
             PlayerData playerData = SaveSystem.LoadPlayer();
             if (playerData is null)
             {
-                Debug.Log("Init");
                 Init();
             }
             else

@@ -23,12 +23,17 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
 
+                    <ui:Label text="Loading" display-tooltip-when-elided="true" name="hp" class="bar-text hp-text"/>
+                    
                     <ui:VisualElement name="experienceBar" class="status-bar experience-bar">
                         <ui:VisualElement name="experienceBarFrame" class="experience-bar-frame bar-frame"/>
                         <ui:VisualElement name="experienceBarBar" class="experience-bar-bar bar-bar">
                             <ui:VisualElement name="experienceBarFilling" class="experience-bar-filling bar-filling"/>
                         </ui:VisualElement>
                     </ui:VisualElement>
+
+                    <ui:Label text="Loading" display-tooltip-when-elided="true" name="xp" class="bar-text xp-text"/>
+
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

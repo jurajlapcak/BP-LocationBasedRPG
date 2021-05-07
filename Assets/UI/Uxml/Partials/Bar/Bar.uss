@@ -29,3 +29,10 @@
 .health-bar-filling{
     background-image: url('/Assets/Resources/Bar/Health.png');
 }
+
+
+.bar-text{
+    font-size: 420%;
+    color: white;
+    position: absolute;
+}

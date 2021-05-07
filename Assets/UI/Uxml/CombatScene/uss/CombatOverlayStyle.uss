@@ -61,18 +61,14 @@
     right: 5%;
 }
 
-.hp-text{
-    font-size: 420%;
-    color: white;
-    position: absolute;
-    top: 62%;
-}
 
 .player-hp{
+    top: 62%;
     left: 7%;
 }
 
 .monster-hp{
+    top: 62%;
     right: 7%;
 }
 
