@@ -16,9 +16,9 @@
 .menu-panel {
     flex-direction: row;
     width: 100%;
-    height: 7.5%;
+    height: 10%;
     position: absolute;
-    top: 2.5%;
+    top: 5%;
     left: 0;
 }
 
@@ -40,7 +40,7 @@
     width: 100%;
     height: 12.5%;
     position: absolute;
-    top: 10%;
+    top: 12%;
     left: 0;
 }
 
@@ -94,7 +94,7 @@
     width: 100%;
     height: 40%;
     position: absolute;
-    bottom: 30%;
+    top: 22%;
 }
 
 .button-label {
