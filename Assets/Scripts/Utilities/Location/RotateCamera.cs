@@ -8,11 +8,6 @@ namespace LocationRPG
     /// </summary>
     public class RotateCamera : MonoBehaviour
     {
-        [SerializeField]
-        [Tooltip(
-            "Only evaluated when 'Use Device Orientation' is checked. Subtracts UserHeading from DeviceOrientation. Useful if map is rotated by UserHeading and DeviceOrientation should be displayed relative to the heading.")]
-        bool subtractUserHeading;
-
         /// The rate at which the transform's rotation tries catch up to the provided heading.  
         [SerializeField]
         [Tooltip("The rate at which the transform's rotation tries catch up to the provided heading. ")]

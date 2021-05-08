@@ -4,21 +4,20 @@ namespace LocationRPG
 {
     public class InteractionManager : Singleton<InteractionManager>
     {
-        private bool interactionLock;
+        private bool _interactionLock;
 
         //true = locked interactions
         //false = unlocked interactions
-        public bool InteractionLock => interactionLock;
+        public bool InteractionLock => _interactionLock;
 
         public void Lock()
         {
-            interactionLock = true;
-
+            _interactionLock = true;
         }
 
         public void Unlock()
         {
-            interactionLock = false;
+            _interactionLock = false;
 
         }
     }

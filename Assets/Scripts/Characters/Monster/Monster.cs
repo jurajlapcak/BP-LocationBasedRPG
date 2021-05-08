@@ -6,5 +6,8 @@ namespace LocationRPG
 {
     public class Monster : Unit
     {
+        public Monster() : base()
+        {
+        }
     }
 }

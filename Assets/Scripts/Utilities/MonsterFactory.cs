@@ -7,7 +7,7 @@ namespace LocationRPG
 {
     public class MonsterFactory : Singleton<MonsterFactory>
     {
-        [SerializeField] private Monster[] availableMonsters;
+        [SerializeField] private MonsterController[] availableMonsters;
         [SerializeField] private PlayerController player;
         [SerializeField] private float waitTime = 45.0f;
         [SerializeField] private int startingMonsters = 5;
@@ -24,7 +24,7 @@ namespace LocationRPG
         {
             for (int i = 0; i < startingMonsters; i++)
             {
-                InstatiateMonster();
+                InstantiateMonster();
             }
 
             StartCoroutine(GenerateMonster());
@@ -35,11 +35,11 @@ namespace LocationRPG
             while (true)
             {
                 yield return new WaitForSeconds(waitTime);
-                InstatiateMonster();
+                InstantiateMonster();
             }
         }
 
-        private void InstatiateMonster()
+        private void InstantiateMonster()
         {
             var position = player.transform.position;
             float x = position.x + GenerateRandRange();
@@ -47,7 +47,7 @@ namespace LocationRPG
             float z = position.z + GenerateRandRange();
             int index = Random.Range(0, availableMonsters.Length);
 
-            Monster monster = Instantiate(availableMonsters[index], new Vector3(x, y, z), Quaternion.identity);
+            Instantiate(availableMonsters[index], new Vector3(x, y, z), Quaternion.identity);
         }
 
         private float GenerateRandRange()

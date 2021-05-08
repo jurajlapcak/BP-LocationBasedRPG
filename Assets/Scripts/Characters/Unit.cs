@@ -1,25 +1,28 @@
 ﻿using System;
-using UnityEngine;
 
 namespace LocationRPG
 {
-    public class Unit : MonoBehaviour
+    public class Unit
     {
-        [SerializeField] protected int _level;
-        [SerializeField] protected int _xp;
-        [SerializeField] protected int _requiredXp;
-        [SerializeField] protected int _levelBase;
+        protected int _level;
+        protected int _levelBase;
 
-        [SerializeField] protected float _hp;
-        [SerializeField] protected float _currentHp;
+        protected float _hp;
+        protected float _currentHp;
 
-        [SerializeField] protected float _defense;
-        [SerializeField] protected float _currentDefense;
+        protected float _defense;
+        protected float _currentDefense;
 
-        [SerializeField] protected float _attack;
+        protected float _attack;
 
-        private void OnEnable()
+        public Unit()
         {
+            _level = 1;
+
+            _hp = 100;
+            _defense = 1;
+            _attack = 10;
+            
             _currentHp = _hp;
             _currentDefense = _defense;
         }
@@ -28,18 +31,6 @@ namespace LocationRPG
         {
             get => _level;
             set => _level = value;
-        }
-
-        public int Xp
-        {
-            get => _xp;
-            set => _xp = value;
-        }
-
-        public int RequiredXp
-        {
-            get => _requiredXp;
-            set => _requiredXp = value;
         }
 
         public int LevelBase
@@ -59,6 +50,7 @@ namespace LocationRPG
             get => _currentHp;
             set => _currentHp = value;
         }
+
         public float Defense
         {
             get => _defense;
@@ -81,8 +73,6 @@ namespace LocationRPG
             {
                 return true;
             }
-
-            Debug.Log(_currentHp);
             
             return false;
         }
@@ -90,8 +80,6 @@ namespace LocationRPG
         public void IncreaseDefense(float defense)
         {
             _currentDefense += defense;
-            
-            Debug.Log(_currentDefense);
         }
     }
 }

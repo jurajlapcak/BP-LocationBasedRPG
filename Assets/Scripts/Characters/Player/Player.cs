@@ -1,12 +1,28 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
-
-namespace LocationRPG
+﻿namespace LocationRPG
 {
     public class Player : Unit
     {
+        private int _xp;
+        private int _requiredXp;
+        
+        public int Xp
+        {
+            get => _xp;
+            set => _xp = value;
+        }
 
+        public int RequiredXp
+        {
+            get => _requiredXp;
+            set => _requiredXp = value;
+        }
+        
+        public Player() : base()
+        {
+            _xp = 0;
+            _requiredXp = 100;
+        }
+        
         //TODO: init
         public void Init()
         {

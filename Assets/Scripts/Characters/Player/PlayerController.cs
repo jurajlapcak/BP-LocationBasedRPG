@@ -12,6 +12,12 @@ namespace LocationRPG
             _afterAttackTime = 0.5f;
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            unit = new Player();
+        }
+
         public void SavePlayer()
         {
             unit.Save();

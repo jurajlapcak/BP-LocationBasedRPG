@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using Mapbox.Map;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace LocationRPG

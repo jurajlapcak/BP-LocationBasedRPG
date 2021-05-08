@@ -2,7 +2,6 @@
 using Mapbox.Unity.Map;
 using Mapbox.Unity.Location;
 using UnityEngine;
-
 using UnityEngine.UI;
 
 namespace LocationRPG
@@ -47,7 +46,6 @@ namespace LocationRPG
             _currentPlayer = GameManager.Instance.CurrentPlayer;
             latText = GameObject.Find("lat").GetComponent<Text>();
             lngText = GameObject.Find("lng").GetComponent<Text>();
-            
         }
 
         void Start()
@@ -70,13 +68,14 @@ namespace LocationRPG
 
                 latText.text = newLocation.LatitudeLongitude.x.ToString("F6");
                 lngText.text = newLocation.LatitudeLongitude.y.ToString("F6");
-                
+
                 float distance = (float) _distanceController.DistanceUpdate(newLocation);
                 if (distance == 0)
                 {
                     _distanceController.SetTimePassed(1.0f);
                     if (!_lerpingController.IsLerping)
                     {
+                        //change animation
                         _currentPlayer.AnimationController.ToggleIdle();
                     }
                 }
@@ -88,6 +87,8 @@ namespace LocationRPG
                         _lerpingController.StartLerping(transform.position,
                             map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                         _distanceController.SetTimePassed(Time.deltaTime);
+
+                        //change animation
                         _currentPlayer.AnimationController.ToggleWalking();
                     }
                     else
@@ -95,6 +96,7 @@ namespace LocationRPG
                         _distanceController.Deny(distance, Time.deltaTime);
                         if (!_lerpingController.IsLerping)
                         {
+                            //change animation
                             _currentPlayer.AnimationController.ToggleIdle();
                         }
                     }

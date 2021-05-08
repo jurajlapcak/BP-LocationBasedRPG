@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
@@ -6,15 +7,15 @@ namespace LocationRPG
 {
     public abstract class UnitController<T> : MonoBehaviour where T : Unit
     {
-        [SerializeField] protected T unit;
+        protected T unit;
         [SerializeField] protected GameObject unitModel;
         protected AnimationController _animationController;
 
         protected LerpingController _lerpingController;
         protected bool _isMoving;
 
-        public const float MoveTime = 0.5f; 
-        
+        public const float MoveTime = 0.5f;
+
         protected float _attackTime = 3f;
         protected float _beforeAttackTime = 1f;
         protected float _afterAttackTime = 1f;
@@ -22,6 +23,7 @@ namespace LocationRPG
         public float AttackTime => _attackTime;
         public float BeforeAttackTime => _beforeAttackTime;
         public float AfterAttackTime => _afterAttackTime;
+
         public float RemainingTime
         {
             get
@@ -36,20 +38,19 @@ namespace LocationRPG
             get => unit;
             set => unit = value;
         }
-        
+
         public AnimationController AnimationController => _animationController;
 
         protected virtual void OnEnable()
         {
             Assert.IsNotNull(unitModel);
-            Assert.IsNotNull(unit);
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _animationController = new AnimationController(unitModel.GetComponent<Animator>(),
                 AnimationConstants.IDLE);
-            // if (SceneManager.GetActiveScene().name == SceneNameConstants.COMBAT_SCENE)
+            // if (SceneManager.GetActiveScene().name == SceneNames.COMBAT_SCENE)
             // {
                 _lerpingController = new LerpingController(MoveTime);
             // }
@@ -66,11 +67,11 @@ namespace LocationRPG
         public virtual void MoveToEnemy(GameObject enemy)
         {
         }
-        
+
         public virtual void MoveToPlace()
         {
         }
-        
+
         protected void MoveToGameObject(GameObject monster, float offset)
         {
             Vector3 endPosition = monster.transform.position;

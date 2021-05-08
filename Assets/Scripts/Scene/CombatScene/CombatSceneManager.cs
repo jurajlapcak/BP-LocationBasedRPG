@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace LocationRPG
@@ -42,16 +41,18 @@ namespace LocationRPG
         private void SceneInit(Scene scene, LoadSceneMode mode)
         {
             //initialize enemy
-            GameObject monster = GameObject.Find("monster-interacted");
-            _monster = monster.GetComponent<Monster>();
-            _monsterController = monster.GetComponent<MonsterController>();
+            GameObject monsterGameObject = GameObject.Find("monster-interacted");
+            _monsterController = monsterGameObject.GetComponent<MonsterController>();
+            _monster = _monsterController.Unit;
 
-            //position monster to it's place
-            monster.transform.position = Vector3.zero;
-            monster.transform.rotation = new Quaternion(0, 0, 0, 0);
-            ;
-            monster.transform.SetParent(monsterParent.transform, false);
-            monster.name = "Monster";
+            //set transform to zero value
+            //so that game object is not offset of its parent
+            monsterGameObject.transform.position = Vector3.zero;
+            monsterGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+            
+            //set monster a parent
+            monsterGameObject.transform.SetParent(monsterParent.transform, false);
+            monsterGameObject.name = "Monster";
 
             //initialize player
             _playerController = playerParent.GetComponent<PlayerController>();

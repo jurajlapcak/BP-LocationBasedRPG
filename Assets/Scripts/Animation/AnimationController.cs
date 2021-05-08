@@ -2,15 +2,15 @@
 
 namespace LocationRPG
 {
-    public class AnimationController
+    public class AnimationController //TODO : MonoBehaviour
     {
         private Animator _animator;
         private string CurrentAnimation;
 
-        public AnimationController(Animator _animator, string _currentAnimation)
+        public AnimationController(Animator animator, string currentAnimation)
         {
-            this._animator = _animator;
-            CurrentAnimation = _currentAnimation;
+            _animator = animator;
+            CurrentAnimation = currentAnimation;
         }
 
         private void ChangeAnimation(string animation)
