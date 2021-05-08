@@ -79,12 +79,7 @@ namespace LocationRPG
 
         private void ResultOverlayInit()
         {
-            resultOverlay.Screen.RegisterCallback<MouseDownEvent>(ev => { LockInteractions(); });
-            resultOverlay.Screen.RegisterCallback<MouseUpEvent>(ev =>
-            {
-                UnlockInteractions();
-                ChangeToWorldScene();
-            });
+            resultOverlay.Screen.RegisterCallback<ClickEvent>(ev => { ChangeToWorldScene(); });
         }
 
         private void EnableUIOverlay()

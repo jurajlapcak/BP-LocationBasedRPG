@@ -40,6 +40,11 @@ namespace LocationRPG
         //initializes scene
         private void SceneInit(Scene scene, LoadSceneMode mode)
         {
+            //initialize player
+            _playerController = playerParent.GetComponent<PlayerController>();
+            _playerController.LoadPlayer();
+            _player = _playerController.Unit;
+            
             //initialize enemy
             GameObject monsterGameObject = GameObject.Find("monster-interacted");
             _monsterController = monsterGameObject.GetComponent<MonsterController>();
@@ -54,10 +59,6 @@ namespace LocationRPG
             monsterGameObject.transform.SetParent(monsterParent.transform, false);
             monsterGameObject.name = "Monster";
 
-            //initialize player
-            _playerController = playerParent.GetComponent<PlayerController>();
-            _playerController.LoadPlayer();
-            _player = _playerController.Unit;
             _isInitialized = true;
             SceneManager.sceneLoaded -= SceneInit;
         }

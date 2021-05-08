@@ -33,7 +33,7 @@ namespace LocationRPG
 
         void Play()
         {
-            SceneManager.LoadScene(SceneNames.WORLD_SCENE);
+            SceneSwitchManager.Instance.SwitchScene(SceneNames.WORLD_SCENE, null);
         }
 
         void ShowOptions()

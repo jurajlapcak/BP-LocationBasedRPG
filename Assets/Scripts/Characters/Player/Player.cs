@@ -21,11 +21,22 @@
         {
             _xp = 0;
             _requiredXp = 100;
+            _attack = 50;
         }
         
         //TODO: init
-        public void Init()
+        private void Init()
         {
+            _level = 1;
+            _hp = 100;
+            _currentHp = _hp;
+            _defense = 1;
+            _currentDefense = _defense;
+
+            _xp = 0;
+            _requiredXp = 100;
+            
+            _attack = 50;
         }
 
         public void Save()
@@ -42,14 +53,16 @@
             }
             else
             {
-                _level = playerData.Level;
-                _xp = playerData.Xp;
-                _requiredXp = playerData.RequiredXp;
-                _levelBase = playerData.LevelBase;
-
-                _hp = playerData.Hp;
-                _defense = playerData.Defense;
-                _attack = playerData.Attack;
+                Init();
+                    
+                // _level = playerData.Level;
+                // _xp = playerData.Xp;
+                // _requiredXp = playerData.RequiredXp;
+                // _levelBase = playerData.LevelBase;
+                //
+                // _hp = playerData.Hp;
+                // _defense = playerData.Defense;
+                // _attack = playerData.Attack;
             }
         }
     }

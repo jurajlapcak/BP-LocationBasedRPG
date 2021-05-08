@@ -75,11 +75,6 @@ namespace LocationRPG
                 _playerController.Unit.Hp);
             combatUIManager.CombatOverlay.UpdateBar(CombatBars.MONSTERBAR, _monsterController.Unit.CurrentHp,
                 _monsterController.Unit.Hp);
-            //
-            // combatUIManager.CombatOverlay.PlayerHp.text =
-            //     _playerController.Unit.CurrentHp + "/" + _playerController.Unit.Hp;
-            // combatUIManager.CombatOverlay.MonsterHp.text =
-            //     _monsterController.Unit.CurrentHp + "/" + _monsterController.Unit.Hp;
 
             _isInitialized = true;
             OnInitialize?.Invoke();
@@ -155,7 +150,7 @@ namespace LocationRPG
             yield return new WaitForSeconds(unitController.AfterAttackTime);
 
             //temporary dmg
-            bool hasDied = enemUnitController.Unit.TakeDamage(10f);
+            bool hasDied = enemUnitController.Unit.TakeDamage(unitController.Unit.Attack);
             float currentHp = 0f;
             //update UI current hp
             if (!hasDied)

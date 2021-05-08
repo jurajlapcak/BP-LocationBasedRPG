@@ -1,4 +1,7 @@
-﻿namespace LocationRPG
+﻿using System.Collections;
+using UnityEngine;
+
+namespace LocationRPG
 {
     public class SkeletonController : MonsterController
     {
@@ -12,8 +15,16 @@
         protected override void Awake()
         {
             base.Awake();
+            StartCoroutine(Init());
+        }
+
+        //TODO: temporary
+        private IEnumerator Init()
+        {
+            yield return new WaitUntil(() => !(GameManager.Instance.CurrentPlayer.Unit is null));
             PlayerController playerController = GameManager.Instance.CurrentPlayer;
             unit = new Skeleton(playerController.Unit);
+            
         }
     }
 }
