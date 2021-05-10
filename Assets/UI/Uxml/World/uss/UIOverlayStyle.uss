@@ -7,7 +7,7 @@
 
 .bottom-panel {
     width: 100%;
-    height: 25%;
+    height: 20%;
     position: absolute;
     bottom: 0;
     background-color: rgb(53, 53, 50);
@@ -28,13 +28,15 @@
     background-color: rgba(228, 228, 228, 0);
     border-color: rgba(228, 228, 228, 0);
 }
-.menu-panel{
+
+.menu-panel {
     width: 100%;
     height: 7.5%;
     position: absolute;
     top: 6.5%;
     left: 0;
 }
+
 .menu-button {
     -unity-background-scale-mode: scale-to-fit;
     flex-direction: row;
@@ -54,6 +56,13 @@
     top: 0;
     left: 0;
     background-color: rgb(167, 144, 91);
+    -unity-text-align: middle-center;
+}
+
+.lvl-text {
+    font-size: 600%;
+    color: white;
+    position: initial;
 }
 
 .character-button {
@@ -68,7 +77,7 @@
     background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/ProfileButton.png');
 }
 
-.character-panel{
+.character-panel {
     width: 20%;
     height: 100%;
     position: absolute;
@@ -77,13 +86,15 @@
     margin-left: 5%;
     margin-right: 5%;
 }
-.bars-panel{
+
+.bars-panel {
     width: 70%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 30%;
 }
+
 .bar-panel {
     width: 100%;
     height: 80%;
@@ -109,12 +120,12 @@
     top: 50%;
 }
 
-.hp-text{
+.hp-text {
     left: 5%;
     top: 18%;
 }
 
-.xp-text{
+.xp-text {
     left: 5%;
     top: 53%;
 }

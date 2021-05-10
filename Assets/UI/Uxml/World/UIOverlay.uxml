@@ -8,12 +8,14 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">
-            <ui:VisualElement name="namePanel" class="name-panel"/>
+            <ui:VisualElement name="namePanel" class="name-panel">
+                <ui:Label text="Loading" display-tooltip-when-elided="true" name="lvl" class="lvl-text"/>
+            </ui:VisualElement>
             <ui:VisualElement name="barPanel" class="bar-panel">
                 <ui:VisualElement class="character-panel">
                     <ui:Button name="characterButton" class="overlay-button character-button"/>
                 </ui:VisualElement>
-                
+
                 <Style src="/Assets/UI/Uxml/Partials/Bar/Bar.uss"/>
                 <ui:VisualElement class="bars-panel">
                     <ui:VisualElement name="healthBar" class="status-bar health-bar">
@@ -24,7 +26,7 @@
                     </ui:VisualElement>
 
                     <ui:Label text="Loading" display-tooltip-when-elided="true" name="hp" class="bar-text hp-text"/>
-                    
+
                     <ui:VisualElement name="experienceBar" class="status-bar experience-bar">
                         <ui:VisualElement name="experienceBarFrame" class="experience-bar-frame bar-frame"/>
                         <ui:VisualElement name="experienceBarBar" class="experience-bar-bar bar-bar">

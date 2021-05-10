@@ -14,6 +14,8 @@ namespace LocationRPG
 
         private Label _hp;
         private Label _xp;
+
+        private Label _lvl;
         
         public Button MenuButton => _menuButton;
         public Button CharacterButton => _characterButton;
@@ -41,7 +43,9 @@ namespace LocationRPG
 
             _hp = _root.Q<Label>("hp");
             _xp = _root.Q<Label>("xp");
-            
+
+            _lvl = _root.Q<Label>("lvl");
+                
             _isInitialized = true;
         }
 
@@ -51,24 +55,29 @@ namespace LocationRPG
             {
                 float currentHp = GameManager.Instance.CurrentPlayer.Unit.CurrentHp;
                 float maxHp = GameManager.Instance.CurrentPlayer.Unit.Hp;
-                
                 UpdateBar(_healthBar, _hp, currentHp, maxHp);
             }
 
             if (!(_experienceBar is null))
             {
-                float currentExp = GameManager.Instance.CurrentPlayer.Unit.Xp;
-                float maxExp = GameManager.Instance.CurrentPlayer.Unit.RequiredXp;
+                double currentExp = GameManager.Instance.CurrentPlayer.Unit.Xp;
+                double maxExp = GameManager.Instance.CurrentPlayer.Unit.RequiredXp;
                 UpdateBar(_experienceBar, _xp, currentExp, maxExp);
+            }
+
+            if (!(_lvl is null))
+            {
+                double lvl = GameManager.Instance.CurrentPlayer.Unit.Level;
+                _lvl.text = "Player Level: " + lvl;
             }
         }
 
-        private void UpdateBar(VisualElement barFilling, Label label, float currentValue, float maxValue)
+        private void UpdateBar(VisualElement barFilling, Label label, double currentValue, double maxValue)
         {
-            float ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
+            double ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
 
             label.text = currentValue + "/" + maxValue;
-            barFilling.transform.scale = new Vector3(ratio, 1, 1);
+            barFilling.transform.scale = new Vector3((float)ratio, 1, 1);
         }
     }
 }
