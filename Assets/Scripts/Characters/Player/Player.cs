@@ -36,7 +36,7 @@
             _xp = 0;
             _requiredXp = 100;
             
-            _attack = 50;
+            _attack = 100;
         }
 
         public void Save()

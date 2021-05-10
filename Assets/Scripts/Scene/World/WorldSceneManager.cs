@@ -6,7 +6,8 @@ namespace LocationRPG
 {
     public class WorldSceneManager : Singleton<WorldSceneManager>
     {
-        
+        private bool changingScene;
+
         //called when object that has this component is enabled
         private void OnEnable()
         {
@@ -26,6 +27,8 @@ namespace LocationRPG
         
         public void MonsterInteract(GameObject monster)
         {
+            if(changingScene) return;
+            changingScene = true;
             Player player = GameManager.Instance.CurrentPlayer.Unit;
             List<GameObject> objectsToMove = new List<GameObject>();
             objectsToMove.Add(monster);

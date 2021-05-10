@@ -16,15 +16,18 @@ namespace LocationRPG
 
         private CombatSystem _combatSystem;
 
+        private bool changingScene;
+
         public CombatOverlay CombatOverlay => combatOverlay;
         public MenuOverlay MenuOverlay => menuOverlay;
         public OptionsOverlay OptionsOverlay => optionsOverlay;
 
-        public ResultOverlay ResultOverlay => resultOverlay; 
-        
+        public ResultOverlay ResultOverlay => resultOverlay;
+
         private void OnEnable()
         {
             _isInitialized = false;
+            changingScene = false;
             Assert.IsNotNull(combatOverlay);
             Assert.IsNotNull(menuOverlay);
             Assert.IsNotNull(optionsOverlay);
@@ -97,7 +100,7 @@ namespace LocationRPG
             menuOverlay.ShowOverlay();
             optionsOverlay.HideOverlay();
         }
-        
+
         private void EnableOptionsScreen()
         {
             LockInteractions();
@@ -108,6 +111,8 @@ namespace LocationRPG
 
         private void ChangeToWorldScene()
         {
+            if (changingScene) return;
+            changingScene = true;
             SceneSwitchManager.Instance.SwitchScene(SceneNames.WORLD_SCENE, null);
         }
     }
