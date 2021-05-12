@@ -12,3 +12,7 @@
     <li>UI xml and css in folder: <a href="https://github.com/georgeHeishi/LocationBasedRPG/tree/master/Assets/UI">LocationBasedRPG/Assets/UI/</a></li>
   </ul
 </div>
+
+<di>
+  <a href="https://drive.google.com/drive/folders/1ccpXrOXs2JD7AtSGlnaOcHk5ie_0t6UG?usp=sharing"> Avaiable APK builds </a>
+</div>
