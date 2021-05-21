@@ -2,27 +2,27 @@
 
 namespace LocationRPG
 {
-    public class AnimationController //TODO : MonoBehaviour
+    public class AnimationController : MonoBehaviour
     {
-        private Animator _animator;
-        private string CurrentAnimation;
+        [SerializeField] private Animator _animator;
+        private string _currentAnimation;
 
-        public AnimationController(Animator animator, string currentAnimation)
+        public string CurrentAnimation
         {
-            _animator = animator;
-            CurrentAnimation = currentAnimation;
+            get => _currentAnimation;
+            set => _currentAnimation = value;
         }
 
         private void ChangeAnimation(string animation)
         {
             //do not overloop
-            if (CurrentAnimation == animation) return;
+            if (_currentAnimation == animation) return;
 
            //play new animation
             _animator.Play(animation);
 
             //save currently playing animation state
-            CurrentAnimation = animation;
+            _currentAnimation = animation;
         }
         
         public void ToggleWalking()

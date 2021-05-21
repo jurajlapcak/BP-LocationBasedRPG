@@ -1,7 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
     <Style src="uss/UIMenuStyle.uss"/>
+    
     <ui:VisualElement name="screen" class="screen" style="display: none;">
+        <ui:VisualElement name="black-screen" class="screen black-screen"/>
         <ui:VisualElement name="menuPanel" class="menu-panel">
             <ui:VisualElement name="closePanel" class="close-panel">
                 <ui:Button name="closeButton" class="close-button"/>

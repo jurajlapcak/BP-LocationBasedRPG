@@ -1,17 +1,18 @@
 .menu-panel {
-    width: 60%;
+    width: 70%;
     height: 60%;
     position: absolute;
-    left: 20%;
+    left: 15%;
     top: 20%;
-    background-color: whitesmoke;
+    background-color: rgb(53, 53, 50);
+    border-radius: 25px;
 }
 
 .menu-button {
-    width: 85%;
+    width: 75%;
     height: 15%;
     position: absolute;
-    left: 7.5%;
+    left: 12.5%;
     border-left-width: 10px;
     border-right-width: 10px;
     border-top-width: 10px;
@@ -24,12 +25,12 @@
 
 .options-button {
     top: 25%;
-    background-color: rgb(200, 200, 200);
+    background-color: white;
 }
 
 .exit-button {
-    top: 55%;
-    background-color: rgb(200, 200, 200);
+    top: 60%;
+    background-color: white;
 }
 
 .button-label {

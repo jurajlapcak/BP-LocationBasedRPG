@@ -13,6 +13,15 @@
     background-color: rgb(53, 53, 50);
 }
 
+.visual-bottom-panel{
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(167, 144, 91);
+}
+
 .menu-panel {
     flex-direction: row;
     width: 100%;
@@ -94,7 +103,7 @@
     width: 100%;
     height: 40%;
     position: absolute;
-    top: 22%;
+    top: 30%;
 }
 
 .button-label {
@@ -109,7 +118,8 @@
     flex-direction: row;
     flex-grow: 0;
     background-color: rgb(200, 200, 200);
-    border-color: rgb(200, 200, 200);
+    border-color: rgb(79, 77, 77);
+    border-width: 2px;
     width: 30%;
     height: 100%;
     position: absolute;
@@ -117,8 +127,10 @@
 
 .attack-button {
     left: 10%;
+    background-color: white;
 }
 
 .defend-button {
     left: 60%;
+    background-color: white;
 }

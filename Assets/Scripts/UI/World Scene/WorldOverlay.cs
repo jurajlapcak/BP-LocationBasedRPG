@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine.UIElements;
 using UnityEngine;
 
 namespace LocationRPG
@@ -16,12 +17,13 @@ namespace LocationRPG
         private Label _xp;
 
         private Label _lvl;
-        
+
         public Button MenuButton => _menuButton;
         public Button CharacterButton => _characterButton;
 
         public Label Hp => _hp;
         public Label Xp => _xp;
+
         private void OnEnable()
         {
             _experienceBar = null;
@@ -45,7 +47,7 @@ namespace LocationRPG
             _xp = _root.Q<Label>("xp");
 
             _lvl = _root.Q<Label>("lvl");
-                
+
             _isInitialized = true;
         }
 
@@ -53,8 +55,8 @@ namespace LocationRPG
         {
             if (!(_healthBar is null))
             {
-                float currentHp = GameManager.Instance.CurrentPlayer.Unit.CurrentHp;
-                float maxHp = GameManager.Instance.CurrentPlayer.Unit.Hp;
+                double currentHp = GameManager.Instance.CurrentPlayer.Unit.CurrentHp;
+                double maxHp = GameManager.Instance.CurrentPlayer.Unit.Hp;
                 UpdateBar(_healthBar, _hp, currentHp, maxHp);
             }
 
@@ -75,9 +77,24 @@ namespace LocationRPG
         private void UpdateBar(VisualElement barFilling, Label label, double currentValue, double maxValue)
         {
             double ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
+            
+            string currentValueString = reduceBigNumber(currentValue);
+            string maxValueString = reduceBigNumber(maxValue);
 
-            label.text = currentValue + "/" + maxValue;
-            barFilling.transform.scale = new Vector3((float)ratio, 1, 1);
+            label.text = currentValueString + "/" + maxValueString;
+            barFilling.transform.scale = new Vector3((float) ratio, 1, 1);
+        }
+
+        private string reduceBigNumber(double number)
+        {
+            string thousands = "";
+
+            while (number > 100000)
+            {
+                number /= 1000;
+                thousands += "K";
+            }
+            return Math.Round(number, 3) + thousands;
         }
     }
 }

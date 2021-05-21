@@ -151,7 +151,7 @@ namespace LocationRPG
 
             //temporary dmg
             bool hasDied = enemUnitController.Unit.TakeDamage(unitController.Unit.Attack);
-            float currentHp = 0f;
+            double currentHp = 0f;
             //update UI current hp
             if (!hasDied)
             {
@@ -213,12 +213,18 @@ namespace LocationRPG
         {
             if (_state == CombatState.WON)
             {
+                Monster monster = (Monster)_monsterController.Unit;
+                _playerController.Unit.AddXp(monster.RewardXp);
+                
                 combatUIManager.ResultOverlay.ShowWin();
             }
             else if (_state == CombatState.LOST)
             {
                 combatUIManager.ResultOverlay.ShowLose();
             }
+            
+            
+            _playerController.SavePlayer();
         }
 
         //generates random turn

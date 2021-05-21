@@ -42,7 +42,6 @@ namespace LocationRPG
         {
             //initialize player
             _playerController = playerParent.GetComponent<PlayerController>();
-            _playerController.LoadPlayer();
             _player = _playerController.Unit;
             
             //initialize enemy

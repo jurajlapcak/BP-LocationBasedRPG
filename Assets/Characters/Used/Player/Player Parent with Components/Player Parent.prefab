@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6822131558167741670}
   - component: {fileID: 6822131558167741671}
+  - component: {fileID: 5331424912354720584}
   - component: {fileID: 6822131558167741667}
   - component: {fileID: 6822131557459532270}
   - component: {fileID: 6822131557459532272}
-  - component: {fileID: 6822131557459532273}
+  - component: {fileID: 390269379444463204}
   m_Layer: 0
   m_Name: Player Parent
   m_TagString: Untagged
@@ -50,6 +51,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitModel: {fileID: 7955061271534699760}
+  animationController: {fileID: 5331424912354720584}
+--- !u!114 &5331424912354720584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822131558167741669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b694bb816a499290d30c4ee91e80cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 3732906212761961520}
 --- !u!54 &6822131558167741667
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimalDistance: 1
---- !u!114 &6822131557459532273
+--- !u!114 &390269379444463204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,10 +122,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6822131558167741669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a21e7685ebb477a9e098caef0d854bd, type: 3}
+  m_Script: {fileID: 11500000, guid: ab994c3327ea44c18fd247abc330a4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationFollowFactor: 1
 --- !u!1001 &4986679602833085228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 2313126265193106790, guid: c0330b4ad9bb56e4d81a53a31a7efd2d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2313126265193106790, guid: c0330b4ad9bb56e4d81a53a31a7efd2d,
         type: 3}
@@ -189,6 +203,12 @@ GameObject:
 --- !u!4 &7290728256640867914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2313126265193106790, guid: c0330b4ad9bb56e4d81a53a31a7efd2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4986679602833085228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3732906212761961520 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8573108497796552476, guid: c0330b4ad9bb56e4d81a53a31a7efd2d,
     type: 3}
   m_PrefabInstance: {fileID: 4986679602833085228}
   m_PrefabAsset: {fileID: 0}

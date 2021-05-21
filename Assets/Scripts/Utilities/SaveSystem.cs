@@ -6,6 +6,8 @@ namespace LocationRPG
 {
 
     //SAVE paths: https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
+    // https://forum.unity.com/threads/save-file-gets-deleted-when-updating-on-android.388043/
+    
     public static class SaveSystem
     {
         public static void SavePlayer(Player player)

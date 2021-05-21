@@ -14,26 +14,15 @@ namespace LocationRPG
         //distance that device covered since last update
         private double _distance;
 
-        //speed that passed since the last transform of position [s]
-        private double _timePassed;
-
 
         public double Distance => _distance;
 
-        public void SetTimePassed(double time)
-        {
-            _timePassed = time;
-        }
-
-        public double TimePassed => _timePassed;
-
-        public double CurrentSpeed => _distance / _timePassed;
+        public double DistanceCovered => _distanceCovered;
 
         public DistanceController(Location oldLocation, double distanceCovered)
         {
             _cheapRuler = new CheapRuler(oldLocation.LatitudeLongitude.x
                 , CheapRulerUnits.Meters);
-            _timePassed = 1;
             _oldLocation = oldLocation;
             _distanceCovered = distanceCovered;
         }
@@ -50,15 +39,11 @@ namespace LocationRPG
 
         //remembers newLocation as location that player is at at the moment
         //Also adds covered distance to distance counter
-        public void Apply(Location newLocation, double distance)
+        public void AddNewDistance(Location newLocation, double distance)
         {
             _distanceCovered += distance;
             _oldLocation = newLocation;
         }
-
-        public void Deny(double distance, double time)
-        {
-            _timePassed += time;
-        }
+        
     }
 }

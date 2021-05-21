@@ -8,6 +8,11 @@
     bottom: 0;
 }
 
+.black-screen {
+    background-color: black;
+    opacity: 0.85;
+}
+
 .close-button {
     -unity-background-scale-mode: scale-to-fit;
     flex-grow: 0;

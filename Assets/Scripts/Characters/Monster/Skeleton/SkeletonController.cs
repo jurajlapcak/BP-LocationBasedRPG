@@ -18,13 +18,11 @@ namespace LocationRPG
             StartCoroutine(Init());
         }
 
-        //TODO: temporary
         private IEnumerator Init()
         {
             yield return new WaitUntil(() => !(GameManager.Instance.CurrentPlayer.Unit is null));
             PlayerController playerController = GameManager.Instance.CurrentPlayer;
             unit = new Skeleton(playerController.Unit);
-            
         }
     }
 }

@@ -52,11 +52,20 @@ namespace LocationRPG
         {
             LocationProviderFactory.Instance.mapManager.OnInitialized += () =>
             {
-                _isInitialized = true;
                 map = LocationProviderFactory.Instance.mapManager;
+                
+                Location newLocation = LocationProvider.CurrentLocation;
+                if (_isInitialized == false)
+                {
+                    latText.text = newLocation.LatitudeLongitude.x.ToString("F6");
+                    lngText.text = newLocation.LatitudeLongitude.y.ToString("F6");
+                    transform.position = map.GeoToWorldPosition(newLocation.LatitudeLongitude);
+                }
+                
                 _distanceController = new DistanceController(LocationProvider.CurrentLocation, 0);
                 _lerpingController =
-                    new LerpingController(map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude));
+                    new LerpingController(map.GeoToWorldPosition(newLocation.LatitudeLongitude));
+                _isInitialized = true;
             };
         }
 
@@ -70,35 +79,21 @@ namespace LocationRPG
                 lngText.text = newLocation.LatitudeLongitude.y.ToString("F6");
 
                 float distance = (float) _distanceController.DistanceUpdate(newLocation);
-                if (distance == 0)
+                if (distance >= minimalDistance)
                 {
-                    _distanceController.SetTimePassed(1.0f);
+                    _distanceController.AddNewDistance(newLocation, distance);
+                    _lerpingController.StartLerping(transform.position,
+                        map.GeoToWorldPosition(newLocation.LatitudeLongitude));
+
+                    //change animation
+                    _currentPlayer.AnimationController.ToggleWalking();
+                }
+                else
+                {
                     if (!_lerpingController.IsLerping)
                     {
                         //change animation
                         _currentPlayer.AnimationController.ToggleIdle();
-                    }
-                }
-                else
-                {
-                    if (distance >= minimalDistance)
-                    {
-                        _distanceController.Apply(newLocation, distance);
-                        _lerpingController.StartLerping(transform.position,
-                            map.GeoToWorldPosition(newLocation.LatitudeLongitude));
-                        _distanceController.SetTimePassed(Time.deltaTime);
-
-                        //change animation
-                        _currentPlayer.AnimationController.ToggleWalking();
-                    }
-                    else
-                    {
-                        _distanceController.Deny(distance, Time.deltaTime);
-                        if (!_lerpingController.IsLerping)
-                        {
-                            //change animation
-                            _currentPlayer.AnimationController.ToggleIdle();
-                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Mapbox.Unity.Location;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LocationRPG
 {
@@ -56,26 +57,25 @@ namespace LocationRPG
         void LocationProvider_OnLocationUpdated(Location location)
         {
             float rotationAngle = location.DeviceOrientation;
-
             // 'Orientation' changes all the time, pass through immediately
-            if (rotationAngle > location.UserHeading)
-            {
-                rotationAngle = 360 - (rotationAngle - location.UserHeading);
-            }
-            else
-            {
-                rotationAngle = location.UserHeading - rotationAngle + 360;
-            }
+            // if (rotationAngle > location.UserHeading)
+            // {
+            //     rotationAngle = 360 - (rotationAngle - location.UserHeading);
+            // }
+            // else
+            // {
+            //     rotationAngle = location.UserHeading - rotationAngle + 360;
+            // }
 
-            if (rotationAngle < 0)
-            {
-                rotationAngle += 360;
-            }
-
-            if (rotationAngle >= 360)
-            {
-                rotationAngle -= 360;
-            }
+            // if (rotationAngle < 0)
+            // {
+            //     rotationAngle += 360;
+            // }
+            //
+            // if (rotationAngle >= 360)
+            // {
+            //     rotationAngle -= 360;
+            // }
 
             _targetRotation = Quaternion.Euler(NewEulerAngles(rotationAngle));
         }
@@ -86,8 +86,8 @@ namespace LocationRPG
             var currentEuler = localRotation.eulerAngles;
             var euler = Mapbox.Unity.Constants.Math.Vector3Zero;
 
+            euler.x =  currentEuler.x;
             euler.y = -newAngle;
-            euler.x = currentEuler.x;
             euler.z = currentEuler.z;
 
             return euler;

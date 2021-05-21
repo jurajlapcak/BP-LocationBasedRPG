@@ -12,8 +12,7 @@ namespace LocationRPG
         private void Awake()
         {
             Assert.IsNotNull(currentPlayer);
-            Application.targetFrameRate = 20;
+            Application.targetFrameRate = 60;
         }
-
     }
 }

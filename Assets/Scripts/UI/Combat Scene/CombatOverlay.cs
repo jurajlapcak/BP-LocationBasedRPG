@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine.UIElements;
 using UnityEngine;
 
 namespace LocationRPG
@@ -59,20 +60,20 @@ namespace LocationRPG
             _isInitialized = true;
         }
 
-        public void UpdateBar(CombatBars bar, float currentValue, float maxValue)
+        public void UpdateBar(CombatBars bar, double currentValue, double maxValue)
         {
             
-            float ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
+            double ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
             if (bar == CombatBars.PLAYERBAR)
             {
-                _playerHp.text = currentValue + "/" + maxValue;
-                _playerHealthBar.transform.scale = new Vector3(ratio, 1, 1);
+                _playerHp.text = Math.Round(currentValue, 3) + "/" + Math.Round(maxValue, 3);
+                _playerHealthBar.transform.scale = new Vector3((float)ratio, 1, 1);
             }
             else
             {
-                _monsterHp.text = currentValue + "/" + maxValue;
-                _monsterHealthBar.style.left = new StyleLength(Length.Percent(100-(ratio * 100)));
-                _monsterHealthBar.transform.scale = new Vector3(ratio, 1, 1);
+                _monsterHp.text = Math.Round(currentValue, 3) + "/" + Math.Round(maxValue, 3);
+                _monsterHealthBar.style.left = new StyleLength(Length.Percent((float) (100-(ratio * 100))));
+                _monsterHealthBar.transform.scale = new Vector3((float)ratio, 1, 1);
             }
         }
     }

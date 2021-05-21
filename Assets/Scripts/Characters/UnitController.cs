@@ -9,7 +9,8 @@ namespace LocationRPG
     {
         protected T unit;
         [SerializeField] protected GameObject unitModel;
-        protected AnimationController _animationController;
+        
+        [SerializeField] protected AnimationController animationController;
 
         protected LerpingController _lerpingController;
         protected bool _isMoving;
@@ -39,7 +40,7 @@ namespace LocationRPG
             set => unit = value;
         }
 
-        public AnimationController AnimationController => _animationController;
+        public AnimationController AnimationController => animationController;
 
         protected virtual void OnEnable()
         {
@@ -48,17 +49,14 @@ namespace LocationRPG
 
         protected virtual void Awake()
         {
-            _animationController = new AnimationController(unitModel.GetComponent<Animator>(),
-                AnimationConstants.IDLE);
-            // if (SceneManager.GetActiveScene().name == SceneNames.COMBAT_SCENE)
-            // {
-                _lerpingController = new LerpingController(MoveTime);
-            // }
+            animationController.CurrentAnimation = AnimationConstants.IDLE;
+            
+            _lerpingController = new LerpingController(MoveTime);
         }
 
         private void FixedUpdate()
         {
-            if (_lerpingController.IsLerping)
+            if (_lerpingController!=null &&_lerpingController.IsLerping)
             {
                 gameObject.transform.position = _lerpingController.Lerp();
             }

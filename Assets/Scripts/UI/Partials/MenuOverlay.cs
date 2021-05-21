@@ -37,7 +37,7 @@ namespace LocationRPG
             Debug.Log("Game is exiting");
             
             GameManager.Instance.CurrentPlayer.SavePlayer();
-            
+            ; 
             Application.Quit();
         }
     }

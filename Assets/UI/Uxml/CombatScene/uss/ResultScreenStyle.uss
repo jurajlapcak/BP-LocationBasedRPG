@@ -1,7 +1,3 @@
-.black-screen {
-    background-color: black;
-    opacity: 0.85;
-}
 
 .main-panel{
     height: 50%;

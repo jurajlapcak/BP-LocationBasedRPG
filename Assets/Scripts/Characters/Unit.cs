@@ -5,15 +5,13 @@ namespace LocationRPG
     public class Unit
     {
         protected int _level;
-        protected int _levelBase;
 
-        protected float _hp;
-        protected float _currentHp;
+        protected double _hp;
+        protected double _currentHp;
 
-        protected float _defense;
-        protected float _currentDefense;
+        protected double _attack;
 
-        protected float _attack;
+        protected double _defense;
 
         public Unit()
         {
@@ -22,9 +20,8 @@ namespace LocationRPG
             _hp = 100;
             _defense = 1;
             _attack = 10;
-            
+
             _currentHp = _hp;
-            _currentDefense = _defense;
         }
 
         public int Level
@@ -33,31 +30,25 @@ namespace LocationRPG
             set => _level = value;
         }
 
-        public int LevelBase
-        {
-            get => _levelBase;
-            set => _levelBase = value;
-        }
-
-        public float Hp
+        public double Hp
         {
             get => _hp;
             set => _hp = value;
         }
 
-        public float CurrentHp
+        public double CurrentHp
         {
             get => _currentHp;
             set => _currentHp = value;
         }
 
-        public float Defense
+        public double Defense
         {
             get => _defense;
             set => _defense = value;
         }
 
-        public float Attack
+        public double Attack
         {
             get => _attack;
             set => _attack = value;
@@ -65,7 +56,7 @@ namespace LocationRPG
 
         //if return = true then unit has died
         //          = false then unit didn't die
-        public bool TakeDamage(float damage)
+        public bool TakeDamage(double damage)
         {
             _currentHp -= damage;
 
@@ -73,13 +64,22 @@ namespace LocationRPG
             {
                 return true;
             }
-            
+
             return false;
         }
 
-        public void IncreaseDefense(float defense)
+        public void IncreaseDefense(double defense)
         {
-            _currentDefense += defense;
+            _defense += defense;
+        }
+
+
+//TODO: geometricka postupnost a nie relativne pripocitanie k staremu levelu
+        public void UpdateCombatStats(int level)
+        {
+            _attack = CharacterConstants.BASEATTACK + ((level - 1) * CharacterConstants.COMBATMULTIPLIER);
+            _hp = CharacterConstants.BASEHEALTH + ((level - 1)) * CharacterConstants.COMBATMULTIPLIER;
+            _currentHp = _hp;
         }
     }
 }

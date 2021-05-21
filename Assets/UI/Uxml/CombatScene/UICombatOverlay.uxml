@@ -39,6 +39,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottomPanel" class="bottom-panel">
+            <ui:VisualElement class="visual-bottom-panel"/>
             <ui:VisualElement class="buttons-panel">
                 <ui:Button name="attackButton" class="action-button attack-button button">
                     <ui:Label text="Attack" display-tooltip-when-elided="true" name="optionsText"
