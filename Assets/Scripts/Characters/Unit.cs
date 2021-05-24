@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LocationRPG
 {
@@ -58,6 +59,9 @@ namespace LocationRPG
         //          = false then unit didn't die
         public bool TakeDamage(double damage)
         {
+            double relativeDamage = damage - _defense;
+            damage = relativeDamage < 0 ? 0 : relativeDamage;
+
             _currentHp -= damage;
 
             if (_currentHp <= 0)
@@ -68,13 +72,12 @@ namespace LocationRPG
             return false;
         }
 
-        public void IncreaseDefense(double defense)
+        public void IncreaseDefense()
         {
-            _defense += defense;
+            _defense = Random.Range(0f, (float) _attack);
         }
 
 
-//TODO: geometricka postupnost a nie relativne pripocitanie k staremu levelu
         public void UpdateCombatStats(int level)
         {
             _attack = CharacterConstants.BASEATTACK + ((level - 1) * CharacterConstants.COMBATMULTIPLIER);

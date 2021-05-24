@@ -23,6 +23,8 @@
     background-image: url('/Assets/Resources/Buttons/UsefulButtonsPack/ExitButton.png');
     background-color: rgba(228, 228, 228, 0);
     border-color: rgba(228, 228, 228, 0);
+    
+    color: #7a7a7a;
 }
 
 .close-panel {

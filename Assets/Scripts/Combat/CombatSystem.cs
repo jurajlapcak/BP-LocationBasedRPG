@@ -82,6 +82,7 @@ namespace LocationRPG
 
         private IEnumerator PlayerTurn()
         {
+            _playerController.Unit.Defense = 0;
             _state = CombatState.PLAYERTURN;
             yield return new WaitForSeconds(1.5f);
             //Wait for player action
@@ -112,7 +113,7 @@ namespace LocationRPG
 
         public void OnDefendButton()
         {
-            if (_state != CombatState.PLAYERTURN)
+            if (_state != CombatState.PLAYERTURN || _attackState == AttackState.PLAYERATTACKING)
             {
                 return;
             }
@@ -127,10 +128,10 @@ namespace LocationRPG
 
         private IEnumerator PlayerDefend()
         {
-            _playerController.Unit.IncreaseDefense(2f);
+            _playerController.Unit.IncreaseDefense();
             yield return new WaitForSeconds(2f);
-
-            //start EnemyTurn
+            
+            ChangeTurn();
         }
 
         private IEnumerator Attack<T, TU>(UnitController<T> unitController, UnitController<TU> enemUnitController)
@@ -181,6 +182,10 @@ namespace LocationRPG
 
             unitController.AnimationController.ToggleIdle();
 
+            ChangeTurn(hasDied);
+        }
+
+        private void ChangeTurn(bool hasDied = false){
             switch (_state)
             {
                 case CombatState.PLAYERTURN:
@@ -208,7 +213,7 @@ namespace LocationRPG
                     break;
             }
         }
-
+        
         private void EndBattle()
         {
             if (_state == CombatState.WON)

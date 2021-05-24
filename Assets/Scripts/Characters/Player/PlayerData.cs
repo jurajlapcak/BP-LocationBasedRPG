@@ -12,7 +12,6 @@ namespace LocationRPG
         private double _xpRate;
         private double _xpSum;
         private double _hp;
-        private double _defense;
         private double _attack;
 
         public int Level => _level;
@@ -29,8 +28,6 @@ namespace LocationRPG
         
         public double Hp => _hp;
 
-        public double Defense => _defense;
-
         public double Attack => _attack;
 
         public PlayerData(Player playerStats)
@@ -42,7 +39,6 @@ namespace LocationRPG
             _xpRate = playerStats.XpRate;
             _xpSum = playerStats.XpSum;
             _hp = playerStats.Hp;
-            _defense = playerStats.Defense;
             _attack = playerStats.Attack;
         }
     }

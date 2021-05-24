@@ -11,6 +11,8 @@ namespace LocationRPG
         private VisualElement _optionsButton;
         private VisualElement _exitButton;
 
+        private bool switchingScene = false;
+
         public new class UxmlFactory : UxmlFactory<TitleScreenManager, UxmlTraits>
         {
         }
@@ -33,7 +35,11 @@ namespace LocationRPG
 
         void Play()
         {
-            SceneSwitchManager.Instance.SwitchScene(SceneNames.WORLD_SCENE, null);
+            if (!switchingScene)
+            {
+                switchingScene = true;
+                SceneSwitchManager.Instance.SwitchScene(SceneNames.WORLD_SCENE, null);
+            }
         }
 
         void ShowOptions()

@@ -113,7 +113,6 @@ namespace LocationRPG
             _hp = 100;
             _currentHp = _hp;
             _defense = 1;
-            // _currentDefense = _defense;
 
             _baseXp = 100;
             _xpRate = 1.1;
@@ -148,7 +147,6 @@ namespace LocationRPG
                 _xpRate = playerData.XpRate;
                 _xpSum = playerData.XpSum;
                 _hp = playerData.Hp;
-                _defense = playerData.Defense;
                 _attack = playerData.Attack;
             }
         }
