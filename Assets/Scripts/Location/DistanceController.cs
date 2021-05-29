@@ -19,12 +19,13 @@ namespace LocationRPG
 
         public double DistanceCovered => _distanceCovered;
 
-        public DistanceController(Location oldLocation, double distanceCovered)
+        public DistanceController(Location oldLocation)
         {
             _cheapRuler = new CheapRuler(oldLocation.LatitudeLongitude.x
                 , CheapRulerUnits.Meters);
             _oldLocation = oldLocation;
-            _distanceCovered = distanceCovered;
+            Load();
+            // _distanceCovered = distanceCovered;
         }
 
         //count distance 
@@ -44,6 +45,24 @@ namespace LocationRPG
             _distanceCovered += distance;
             _oldLocation = newLocation;
         }
-        
+
+        public void Save()
+        {
+            SaveSystem.SaveDistance(this);
+        }
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void Load()
+        {
+            DistanceData distanceData = SaveSystem.LoadDistance();
+            if (distanceData is null || distanceData.DistanceCovered == 0)
+            {
+                _distanceCovered = 0;
+            }
+            else
+            {
+                _distanceCovered = distanceData.DistanceCovered;
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace LocationRPG
     public abstract class UnitController<T> : MonoBehaviour where T : Unit
     {
         protected T unit;
+        
         [SerializeField] protected GameObject unitModel;
         
         [SerializeField] protected AnimationController animationController;

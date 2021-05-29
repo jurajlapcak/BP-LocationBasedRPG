@@ -3,8 +3,10 @@
     <Style src="uss/UICharacterStyle.uss"/>
     
     <ui:VisualElement name="screen" class="screen" style="display: none;">
-        <ui:VisualElement name="closePanel" class="close-panel">
-            <ui:Button name="closeButton" class="close-button"/>
+        <ui:VisualElement name="upperPanel" class="upper-panel">
+            <ui:VisualElement name="closePanel" class="close-panel">
+                <ui:Button name="closeButton" class="close-button"/>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

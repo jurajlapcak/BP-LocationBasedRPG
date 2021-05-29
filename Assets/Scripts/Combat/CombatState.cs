@@ -2,10 +2,10 @@
 {
     public enum CombatState
     {
-        START,
-        PLAYERTURN,
-        MONSTERTURN,
-        WON,
-        LOST
+        Start,
+        PlayerTurn,
+        EnemyTurn,
+        Won,
+        Lost
     }
 }

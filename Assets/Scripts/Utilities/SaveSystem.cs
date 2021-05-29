@@ -38,5 +38,34 @@ namespace LocationRPG
             Debug.Log("Save file not found in " + path);
             return null;
         }
+
+        public static void SaveDistance(DistanceController distanceController)
+        {
+            string path = Application.persistentDataPath + "/distance.bin";
+
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(path);
+            DistanceData distanceData = new DistanceData(distanceController.DistanceCovered);
+            bf.Serialize(file, distanceData);
+            file.Close();
+        }
+        
+        public static DistanceData LoadDistance()
+        {
+            string path = Application.persistentDataPath + "/distance.bin";
+
+            if (File.Exists(path))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(path, FileMode.Open);
+                DistanceData distanceData = (DistanceData) bf.Deserialize(file);
+                file.Close();
+
+                return distanceData;
+            }
+
+            Debug.Log("Save file not found in " + path);
+            return null;
+        }
     }
 }

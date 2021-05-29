@@ -1,11 +1,27 @@
 .screen{
-    background-color: white;
+    background-color: rgb(53, 53, 50);
 }
 
-.close-panel{
-    height: 10%;
+.upper-panel {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    left: 0;
 }
+.close-panel{
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 5%;}
 
 .close-button{
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: row;
+    flex-grow: 0;
     width: 10%;
+    height: 100%;
+    position: absolute;
+    right: 1%;
+    bottom: 0;
 }

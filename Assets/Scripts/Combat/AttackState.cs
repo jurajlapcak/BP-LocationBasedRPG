@@ -3,8 +3,8 @@ namespace LocationRPG
 {
     public enum AttackState
     {
-        NONE,
-        PLAYERATTACKING,
-        MONSTERATTACKING
+        None,
+        PlayerAttacking,
+        MonsterAttacking
     }
 }

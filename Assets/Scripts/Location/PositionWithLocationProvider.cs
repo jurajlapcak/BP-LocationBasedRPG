@@ -62,7 +62,7 @@ namespace LocationRPG
                     transform.position = map.GeoToWorldPosition(newLocation.LatitudeLongitude);
                 }
                 
-                _distanceController = new DistanceController(LocationProvider.CurrentLocation, 0);
+                _distanceController = new DistanceController(LocationProvider.CurrentLocation);
                 _lerpingController =
                     new LerpingController(map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                 _isInitialized = true;
@@ -108,6 +108,16 @@ namespace LocationRPG
                     transform.position = _lerpingController.Lerp();
                 }
             }
+        }
+
+        public void SaveDistance()
+        {
+            _distanceController.Save();
+        }
+
+        public void LoadDistance()
+        {
+            _distanceController.Load();
         }
     }
 }

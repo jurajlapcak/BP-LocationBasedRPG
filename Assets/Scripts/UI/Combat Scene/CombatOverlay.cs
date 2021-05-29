@@ -6,8 +6,8 @@ namespace LocationRPG
 {
     public enum CombatBars
     {
-        PLAYERBAR,
-        MONSTERBAR
+        PlayerBar,
+        MonsterBar
     }
 
     [RequireComponent(typeof(UIDocument))]
@@ -64,7 +64,7 @@ namespace LocationRPG
         {
             
             double ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
-            if (bar == CombatBars.PLAYERBAR)
+            if (bar == CombatBars.PlayerBar)
             {
                 _playerHp.text = Math.Round(currentValue, 3) + "/" + Math.Round(maxValue, 3);
                 _playerHealthBar.transform.scale = new Vector3((float)ratio, 1, 1);

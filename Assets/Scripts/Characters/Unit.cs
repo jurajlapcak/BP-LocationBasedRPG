@@ -19,7 +19,7 @@ namespace LocationRPG
             _level = 1;
 
             _hp = 100;
-            _defense = 1;
+            _defense = 0;
             _attack = 10;
 
             _currentHp = _hp;
