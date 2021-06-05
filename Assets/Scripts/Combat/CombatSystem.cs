@@ -117,7 +117,8 @@ namespace LocationRPG
             {
                 return;
             }
-
+            
+            _attackState = AttackState.PlayerAttacking;
             StartCoroutine(PlayerDefend());
         }
 

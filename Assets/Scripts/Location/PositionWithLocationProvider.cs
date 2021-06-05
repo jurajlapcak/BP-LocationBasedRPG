@@ -41,6 +41,10 @@ namespace LocationRPG
             }
         }
 
+        public DistanceController DistanceController => _distanceController;
+
+        public bool IsInitialized => _isInitialized;
+        
         private void Awake()
         {
             _currentPlayer = GameManager.Instance.CurrentPlayer;
@@ -62,7 +66,10 @@ namespace LocationRPG
                     transform.position = map.GeoToWorldPosition(newLocation.LatitudeLongitude);
                 }
                 
+                //initialize distance
                 _distanceController = new DistanceController(LocationProvider.CurrentLocation);
+                _distanceController.Load();
+                
                 _lerpingController =
                     new LerpingController(map.GeoToWorldPosition(newLocation.LatitudeLongitude));
                 _isInitialized = true;

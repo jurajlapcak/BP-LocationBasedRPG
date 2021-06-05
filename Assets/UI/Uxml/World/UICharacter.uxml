@@ -1,11 +1,42 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss"/>
-    <Style src="uss/UICharacterStyle.uss"/>
-    
+    <Style src="/Assets/UI/Uxml/_uss/UIStyle.uss" />
+    <Style src="uss/UICharacterStyle.uss" />
     <ui:VisualElement name="screen" class="screen" style="display: none;">
         <ui:VisualElement name="upperPanel" class="upper-panel">
             <ui:VisualElement name="closePanel" class="close-panel">
-                <ui:Button name="closeButton" class="close-button"/>
+                <ui:Button name="closeButton" class="close-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottomPanel" class="bottom-panel">
+            <ui:VisualElement name="statsContainer" class="stats-container">
+                <ui:VisualElement class="stats-row level-container">
+                    <ui:Label text="Level:" class="stats-label text" />
+                    <ui:Label text="Loading" name="level" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row xp-container">
+                    <ui:Label text="XP:" class="stats-label text" />
+                    <ui:Label text="Loading" name="xp" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row xpSummary-container">
+                    <ui:Label text="XP Summary:" class="stats-label text" />
+                    <ui:Label text="Loading" name="xpSummary" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row xpRequired-container">
+                    <ui:Label text="Required XP:" class="stats-label text" />
+                    <ui:Label text="Loading" name="xpRequired" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row health-container">
+                    <ui:Label text="Health:" class="stats-label text" />
+                    <ui:Label text="Loading" name="health" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row attack-container">
+                    <ui:Label text="Attack:" class="stats-label text" />
+                    <ui:Label text="Loading" name="attack" class="stats-value text" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stats-row distanceCovered-container">
+                    <ui:Label text="Distance:" class="stats-label text" />
+                    <ui:Label text="Loading" name="distanceCovered" class="stats-value text" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

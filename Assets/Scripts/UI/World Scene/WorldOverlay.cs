@@ -78,23 +78,11 @@ namespace LocationRPG
         {
             double ratio = currentValue > 0f ? currentValue / maxValue : 0.001f;
             
-            string currentValueString = reduceBigNumber(currentValue);
-            string maxValueString = reduceBigNumber(maxValue);
+            string currentValueString = ReduceBigNumber(currentValue);
+            string maxValueString = ReduceBigNumber(maxValue);
 
             label.text = currentValueString + "/" + maxValueString;
             barFilling.transform.scale = new Vector3((float) ratio, 1, 1);
-        }
-
-        private string reduceBigNumber(double number)
-        {
-            string thousands = "";
-
-            while (number > 100000)
-            {
-                number /= 1000;
-                thousands += "K";
-            }
-            return Math.Round(number, 3) + thousands;
         }
     }
 }

@@ -110,20 +110,24 @@ namespace LocationRPG
         private void Init()
         {
             _level = 1;
-            _hp = 100;
+            _hp = CharacterConstants.BASEHEALTH;
             _currentHp = _hp;
+            _attack = CharacterConstants.BASEATTACK;
             _defense = 1;
 
+            //progression system
             _baseXp = 100;
             _xpRate = 1.1;
 
-            // _xp = 0;
-            // _xpSum = 0;
-            _xp = 90;
-            _xpSum = 90;
+            _xp = 0;
+            _xpSum = 0;
+            
+            //testing
+            // _xp = 90;
+            // _xpSum = 90;
+            // _attack = 100;
+            
             _requiredXp = CalculateRequiredXp(_baseXp, _xpRate, 1);
-
-            _attack = 100;
         }
 
         public void Save()

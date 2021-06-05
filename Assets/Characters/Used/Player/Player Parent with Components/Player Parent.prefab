@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be986c9e7f4456f81cdbf1308a6db5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6822131558167741671}
+  camera: {fileID: 3903094953480540959}
 --- !u!1001 &4986679602833085228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,6 +301,12 @@ PrefabInstance:
 --- !u!4 &3903094953480540960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7532130393229554811, guid: 2853d4deed365644f9cc1e094b5a1399,
+    type: 3}
+  m_PrefabInstance: {fileID: 6822131558184200027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &3903094953480540959 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7532130393229554756, guid: 2853d4deed365644f9cc1e094b5a1399,
     type: 3}
   m_PrefabInstance: {fileID: 6822131558184200027}
   m_PrefabAsset: {fileID: 0}

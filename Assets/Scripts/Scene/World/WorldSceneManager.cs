@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace LocationRPG
 {
     public class WorldSceneManager : Singleton<WorldSceneManager>
     {
+        [SerializeField] private LocationRPG.PositionWithLocationProvider position;
         private bool changingScene;
 
         //called when object that has this component is enabled
         private void OnEnable()
         {
+            Assert.IsNotNull(position);
             //when scene loaded
             SceneManager.sceneLoaded += SceneInit;
         }
@@ -22,6 +25,7 @@ namespace LocationRPG
             
             //initialize player
             playerController.LoadPlayer();
+            // position.LoadDistance();
         }
 
         
@@ -34,6 +38,7 @@ namespace LocationRPG
             objectsToMove.Add(monster);
             
             player.Save();
+            position.SaveDistance();
             
             SceneSwitchManager.Instance.SwitchScene(SceneNames.COMBAT_SCENE, objectsToMove);
         }

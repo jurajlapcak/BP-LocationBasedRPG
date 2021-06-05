@@ -26,5 +26,17 @@ namespace LocationRPG
         {
             _screen.style.display = DisplayStyle.None;
         }
+        
+        protected string ReduceBigNumber(double number)
+        {
+            string thousands = "";
+
+            while (number > 100000)
+            {
+                number /= 1000;
+                thousands += "K";
+            }
+            return Math.Round(number, 3) + thousands;
+        }
     }
 }
