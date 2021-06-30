@@ -2438,7 +2438,7 @@ PrefabInstance:
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1,
         type: 3}
       propertyPath: _latitudeLongitude.Array.data[0]
-      value: 48.891199, 21.687302
+      value: 48.142042, 17.106557
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1,
         type: 3}
