@@ -13,6 +13,14 @@
   </ul
 </div>
 
-<di>
-  <a href="https://drive.google.com/drive/folders/1ccpXrOXs2JD7AtSGlnaOcHk5ie_0t6UG?usp=sharing"> Avaiable APK builds </a>
+<div>
+  <h3>
+    <a href="https://drive.google.com/drive/folders/1ccpXrOXs2JD7AtSGlnaOcHk5ie_0t6UG?usp=sharing"> Avaiable APK builds </a>
+  </h3>
+</div>
+    
+<div>
+  <h3>
+    <a href="https://github.com/georgeHeishi/BP-LocationBasedRPG/blob/master/pdf/JurajLapcak_BP.pdf"> PDF of Bachelor's thesis </a>
+  </h3>    
 </div>
