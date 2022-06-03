@@ -1,5 +1,5 @@
 <div>
-  <h1>LocationBasedRPG</h1>
+  <h1>LocationBasedRPG - DEPRECATED, I'm no longer in game development</h1>
   <img src="https://github.com/georgeHeishi/LocationBasedRPG/blob/master/Assets/Resources/Icon/icon1.png" width="270" />
   <hr>
 </div>
